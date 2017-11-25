@@ -4,6 +4,7 @@ A project to parse and validate various identifiers used in Czech Republic (e.g.
 ## Design principles
 Basically if you ever worked in a bank, you know you often get a garbage as an input. You get an IBAN where you should get BIC, you get wrong invalid data all the time. 
 
+* Principle -1: **Identifiers are immutable**
 * Principle 0: **Each identifier must be able to say whether it is a valid or invalid one**
 * Principle 1: **No matter what kind of garbage you get, you can't reject it. Invalid identifier can be constructed as easily as a valid identifier.**
   * When I get '1954' as an account number, I must keep it. Use all important properties `IsValid` (possibly `HasStandardForm`) to check if you should ignore.
