@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace Identifiers.Tests
 {
@@ -57,7 +58,8 @@ namespace Identifiers.Tests
         [InlineData("125131001", 1)]
         public void MonthPartHasAdded50ForFermales(string birthNumber, int? birthMonth)
         {
-            Assert.Equal(birthMonth, new BirthNumber(birthNumber).Month);
+            var determinedMonth = IgnoreOutsideRange(new BirthNumber(birthNumber).Month);
+            Assert.Equal(birthMonth, determinedMonth);
         }
 
         [Theory]
@@ -75,9 +77,11 @@ namespace Identifiers.Tests
         [InlineData("0479010010", 9)]
         [InlineData("0482010010", 12)]
         [InlineData("0483010010", null)]
-        public void MonthPartCanHave20AddedWhenAllocationExhausedAfterYear2003(string birthNumber, int? birthMonth)
+        public void MonthPartCanHave20AddedWhenAllocationExhausedAfterYear2003(string birthNumber, int? expectedBirthMonth)
         {
-            Assert.Equal(birthMonth, new BirthNumber(birthNumber).Month);
+            var isOutsideRange = expectedBirthMonth == null;
+            var determinedMonth = IgnoreOutsideRange(new BirthNumber(birthNumber).Month);
+            Assert.Equal(expectedBirthMonth, determinedMonth);
         }
 
         [Theory]
@@ -140,10 +144,20 @@ namespace Identifiers.Tests
         [InlineData("0001010011", false)]
         [InlineData("5412242561", true)]
         [InlineData("7552318510", false)]
-        
+
         public void NumberAfter1954IsValidOnlyIfItIsHasStandardFormAndValidDatePartAndCheckDigit(string birthNumber, bool shouldBeValid)
         {
             Assert.Equal(shouldBeValid, new BirthNumber(birthNumber).IsValid);
+        }
+
+        private int? IgnoreOutsideRange(int? month)
+        {
+            if (month == null || month < 1 || month > 12)
+            {
+                return null;
+            }
+
+            return month;
         }
     }
 }

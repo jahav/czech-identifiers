@@ -127,9 +127,9 @@ namespace Identifiers
         public int? Year => HasStandardForm ? year : (int?)null;
 
         /// <summary>
-        /// Return a month of birth, if the number has a standard form and month is within a valid range.
+        /// Return a month of birth, if the number has a standard form.
         /// </summary>
-        public int? Month => (HasStandardForm && month >= 1 && month <= 12) ? month : (int?)null;
+        public int? Month => HasStandardForm ? month : (int?)null;
 
         /// <summary>
         /// Return a day of birth, if the number has a standard form.
