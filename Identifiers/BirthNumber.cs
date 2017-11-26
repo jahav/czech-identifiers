@@ -19,29 +19,26 @@ namespace Identifiers.Czech
     /// <see cref="http://www.mvcr.cz/clanek/overovani-rodneho-cisla-331794.aspx"/>
     public class BirthNumber : IIdentifier
     {
+        private const int datePartLowerLimit = 0;
+        private const int datePartUpperLimit = 99;
+        private const int sequenceLowerLimit = 0;
+        private const int sequenceUpperLimit = 999;
+        private const int checkDigitLowerLimit = 0;
+        private const int checkDigitUpperLimit = 9;
+
         private const int centuryYear1954 = 54;
-        private const int yearDigit0 = 0;
-        private const int yearDigit1 = 1;
-        private const int monthDigit0 = 2;
-        private const int monthDigit1 = 3;
-        private const int dayDigit0 = 4;
-        private const int dayDigit1 = 5;
-        private const int sequenceDigit0 = 6;
-        private const int sequenceDigit1 = 7;
-        private const int sequenceDigit2 = 8;
-        private const int checkDigit = 9;
 
         /// <summary>
         /// Birth numbers for women have added 50 for their month part, e.g. 455508/001 means a first woman born at 8 May 1945.
         /// <see cref="https://www.zakonyprolidi.cz/cs/2000-133/">Law number. 133/2000 § 13 (5)</see>
         /// </summary>
-        private const int womanMonthShift = 50;
+        internal const int WomanMonthShift = 50;
 
         /// <summary>
         /// When all sequential numbers for a day are assigned, it is possible to utilize another space by adding 20 to the month part.
         /// <see cref="https://www.zakonyprolidi.cz/cs/2000-133/">Law number. 133/2000 § 13 (5)</see>
         /// </summary>
-        private const int exhaustMonthShift = 20;
+        internal const int ExhaustMonthShift = 20;
 
         /// <summary>
         /// Every birth number after 1.1.1954 has a check digit, so it is 10 digits.
@@ -49,51 +46,61 @@ namespace Identifiers.Czech
         /// <remarks><c>\d</c> character class includes other digits from other character set, so it is not used.</remarks>
         private readonly static Regex standardForm = new Regex("^[0-9]{9,10}$");
 
-        private readonly string input;
+        private readonly int yearPart;
+        private readonly int monthPart;
+        private readonly int dayPart;
+        private readonly int sequence;
+        private readonly int? checkDigit;
 
         /// <summary>
-        /// Digits of the birth number. Only set if birth number is in standard form.
+        /// Create a new birth number in standard form.
         /// </summary>
-        private readonly int[] digits;
-        private readonly int year;
-        private readonly int month;
-        private readonly int day;
-        private readonly int expectedCheckDigit;
-        private readonly bool isDatePartValid;
-
-        /// <summary>
-        /// Create a new instance of a <see cref="BirthNumber"/>.
-        /// </summary>
-        /// <param name="birthNumber">A string that will be used as a identification number. Can be null.</param>
-        public BirthNumber(string birthNumber)
+        /// <param name="yearPart"></param>
+        /// <param name="monthPart"></param>
+        /// <param name="dayPart"></param>
+        /// <param name="sequence"></param>
+        /// <param name="checkDigit"></param>
+        /// <param name="input"></param>
+        public BirthNumber(int yearPart, int monthPart, int dayPart, int sequence, int? checkDigit, string input)
         {
-            input = birthNumber;
-            HasStandardFormat = birthNumber != null && standardForm.IsMatch(birthNumber);
-            if (!HasStandardFormat)
+            if (IsDatePartOutOfRange(yearPart))
             {
-                return;
+                throw new ArgumentOutOfRangeException(nameof(yearPart), $"Year part of birth number can be from {datePartLowerLimit} to {datePartUpperLimit}, but argument was {yearPart}.");
             }
 
-            digits = new int[birthNumber.Length];
-            for (int i = 0; i < birthNumber.Length; i++)
+            if (IsDatePartOutOfRange(monthPart))
             {
-                digits[i] = birthNumber[i] - '0';
+                throw new ArgumentOutOfRangeException(nameof(monthPart), $"Month part of birth number can be from {datePartLowerLimit} to {datePartUpperLimit}, but argument was {monthPart}.");
             }
 
-            year = CalculateYear();
-            month = CalculateMonth();
-            day = digits[dayDigit0] * 10 + digits[dayDigit1];
-            isDatePartValid = CheckDateValidity();
-
-            var number = 0;
-            for (int i = yearDigit0; i <= sequenceDigit2; i++)
+            if (IsDatePartOutOfRange(dayPart))
             {
-                number = number * 10 + digits[i];
+                throw new ArgumentOutOfRangeException(nameof(dayPart), $"Day part of birth number can be from {datePartLowerLimit} to {datePartUpperLimit}, but argument was {dayPart}.");
             }
 
-            var modulo = number % 11;
-            expectedCheckDigit = modulo == 10 ? 0 : modulo;
+            if (sequence < sequenceLowerLimit || sequence > sequenceUpperLimit)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sequence), $"Sequence of birth number can be from {sequenceLowerLimit} to {sequenceUpperLimit}, but argument was {sequence}.");
+            }
+
+            if (checkDigit.HasValue && (checkDigit < checkDigitLowerLimit || checkDigit > checkDigitUpperLimit))
+            {
+                throw new ArgumentOutOfRangeException(nameof(checkDigit), $"Check digit of birth number can either be empty or from {checkDigitLowerLimit} to {checkDigitUpperLimit}, but argument was {checkDigit}.");
+            }
+
+            HasStandardFormat = true;
+            this.yearPart = yearPart;
+            this.monthPart = monthPart;
+            this.dayPart = dayPart;
+            this.sequence = sequence;
+            this.checkDigit = checkDigit;
+            Input = input;
         }
+
+        /// <summary>
+        /// Input used to create the identifier.
+        /// </summary>
+        public string Input { get; }
 
         /// <summary>
         /// Does the input have a standard form?
@@ -107,15 +114,16 @@ namespace Identifiers.Czech
         {
             get
             {
-                if (HasStandardFormat && isDatePartValid)
+                if (HasStandardFormat && IsDateValid)
                 {
                     if (IsAfter1954)
                     {
-                        return expectedCheckDigit == digits[checkDigit];
+                        return CalculateCheckDigit() == checkDigit;
                     }
 
                     return true;
                 }
+
                 return false;
             }
         }
@@ -123,28 +131,48 @@ namespace Identifiers.Czech
         /// <summary>
         /// Return a year of birth, if the number has a standard form.
         /// </summary>
-        public int? Year => HasStandardFormat ? year : (int?)null;
+        public int? Year => HasStandardFormat ? CalculateYear() : (int?)null;
 
         /// <summary>
-        /// Return a month of birth, if the number has a standard form.
+        /// Return a month of birth, if the number has a standard form. If the month part of birth 
+        /// number is invalid, the returned month will be out of 1-12 range.
         /// </summary>
-        public int? Month => HasStandardFormat ? month : (int?)null;
+        public int? Month => HasStandardFormat ? CalculateMonth() : (int?)null;
 
         /// <summary>
         /// Return a day of birth, if the number has a standard form.
         /// </summary>
-        public int? Day => HasStandardFormat ? day : (int?)null;
+        public int? Day => HasStandardFormat ? dayPart : (int?)null;
 
         /// <summary>
         /// Get expected check digit, if the birth number has a standard form and is after year 1954.
         /// </summary>
-        public int? ExpectedCheckDigit => HasStandardFormat && IsAfter1954 ? expectedCheckDigit : (int?)null;
+        public int? ExpectedCheckDigit => HasStandardFormat && IsAfter1954 ? CalculateCheckDigit() : (int?)null;
 
-        private bool IsAfter1954 => input.Length == 10;
+        private bool IsAfter1954 => !(checkDigit is null);
+
+        private bool IsDateValid
+        {
+            get
+            {
+                var month = CalculateMonth();
+                if (month < 1 || month > 12 || dayPart < 1)
+                {
+                    return false;
+                }
+
+                if (dayPart > DateTime.DaysInMonth(CalculateYear(), month))
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
 
         public int CalculateYear()
         {
-            var yearInCentury = digits[yearDigit0] * 10 + digits[yearDigit1];
+            var yearInCentury = yearPart;
             int year = yearInCentury;
             if (IsAfter1954)
             {
@@ -174,36 +202,33 @@ namespace Identifiers.Czech
 
         private int CalculateMonth()
         {
-            var month = digits[monthDigit0] * 10 + digits[monthDigit1];
-            var isFemale = month > womanMonthShift;
-            if (isFemale)
+            var month = monthPart;
+            var isWomen = monthPart > WomanMonthShift;
+            if (isWomen)
             {
-                month -= 50;
+                month -= WomanMonthShift;
             }
 
             // law for exhaustion entered force at 2004
-            var isExhaused = year > 2003 && month > exhaustMonthShift;
+            var isExhaused = CalculateYear() > 2003 && month > ExhaustMonthShift;
             if (isExhaused)
             {
-                month -= exhaustMonthShift;
+                month -= ExhaustMonthShift;
             }
 
             return month;
         }
 
-        private bool CheckDateValidity()
+        private int CalculateCheckDigit()
         {
-            if (month < 1 || month > 12 || day < 1)
-            {
-                return false;
-            }
+            var number = ((yearPart * 1_00 + monthPart) * 1_00 + dayPart) * 1_000 + sequence;
+            var modulo = number % 11;
+            return modulo == 10 ? 0 : modulo;
+        }
 
-            if (day > DateTime.DaysInMonth(year, month))
-            {
-                return false;
-            }
-
-            return true;
+        private bool IsDatePartOutOfRange(int datePart)
+        {
+            return datePart < datePartLowerLimit || datePart > datePartUpperLimit;
         }
     }
 }

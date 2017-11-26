@@ -1,163 +1,265 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Identifiers.Czech.Tests
 {
     public class BirthNumberTest
     {
+        [Theory]
+        [InlineData(0, 0, 0)]
+        [InlineData(99, 99, 99)]
+        public void StandardFormConstructor_Accepts0To99InDateParts(int yearPart, int monthPart, int dayPart)
+        {
+            new BirthNumber(yearPart, monthPart, dayPart, 0, null, string.Empty);
+        }
+
+        [Theory]
+        [InlineData(-1, 0, 0)]
+        [InlineData(0, -1, 0)]
+        [InlineData(0, 0, -1)]
+        [InlineData(100, 0, 0)]
+        [InlineData(0, 100, 0)]
+        [InlineData(0, 0, 100)]
+        public void StandardFormConstructor_OnNumbersOutside0To99InDatePart_ThrowsOutOfRangeException(int yearPart, int monthPart, int dayPart)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(yearPart, monthPart, dayPart, 0, null, string.Empty));
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(99)]
+        public void StandardFormConstructor_Accepts0To999InSequence(int sequence)
+        {
+            new BirthNumber(0, 0, 0, sequence, null, string.Empty);
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(1000)]
+        public void StandardFormConstructor_OnNumbersOutside0To999InSequence_ThrowsOutOfRangeException(int sequence)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(0, 0, 0, sequence, null, string.Empty));
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData(0)]
+        [InlineData(9)]
+        public void StandardFormConstructor_Accepts0To9OrNullInCheckDigit(int? checkDigit)
+        {
+            new BirthNumber(0, 0, 0, 0, checkDigit, string.Empty);
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(10)]
+        public void StandardFormConstructor_OnNumbersOutside0To9InCheckDigit_ThrowsOutOfRangeException(int checkDigit)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(0, 0, 0, 0, checkDigit, string.Empty));
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("846517/0014")]
+        public void StandardFormConstructor_AcceptsAnythingInInput(string input)
+        {
+            var birthNumber = new BirthNumber(0, 0, 0, 0, 0, input);
+            Assert.Equal(input, birthNumber.Input);
+        }
+
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(5, 5)]
+        [InlineData(12, 12)]
+        [InlineData(51, 1)]
+        [InlineData(57, 7)]
+        [InlineData(62, 12)]
+        public void MonthPartCanBeShiftedBy50ForWomen(int monthPart, int expectedMonth)
+        {
+            var birthNumber = new BirthNumber(0, monthPart, 1, 0, 0, null);
+            Assert.Equal(expectedMonth, birthNumber.Month);
+        }
+
+        [Theory]
+        [InlineData(21, 1)]
+        [InlineData(29, 9)]
+        [InlineData(32, 12)]
+        [InlineData(71, 1)]
+        [InlineData(74, 4)]
+        [InlineData(82, 12)]
+        public void MonthPartCanBeShiftedBy20WhenSequenceIsExhaustedAfterYear2003(int monthPart, int expectedMonth)
+        {
+            var birthNumber = new BirthNumber(04, monthPart, 1, 0, 0, null);
+            Assert.Equal(expectedMonth, birthNumber.Month);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetInvalidMonthPartsAfter2003))]
+        [MemberData(nameof(GetInvalidMonthPartsBefore2004))]
+        public void BirthNumberWithInvalidMonthPartWillBeOutOf1To12Range(int year, int monthPart)
+        {
+            var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0, null);
+            Assert.NotInRange(birthNumber.Month.Value, 1, 12);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetValidMonthPartsAfter2003))]
+        [MemberData(nameof(GetValidMonthPartsBefore2004))]
+        public void BirthNumberWithValidMonthPartWillBeIn1To12Range(int year, int monthPart)
+        {
+            var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0, null);
+            Assert.InRange(birthNumber.Month.Value, 1, 12);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllYears))]
+        public void BirthNumberCorrectlyDeterminesYear(int yearPart, bool hasCheckDigit, int expectedYear)
+        {
+            var birthNumber = new BirthNumber(yearPart, 1, 1, 1, hasCheckDigit ? 1 : (int?)null, string.Empty);
+            Assert.Equal(expectedYear, birthNumber.Year);
+        }
+
+        [Theory]
+        [InlineData(54, 01, 01, 001, 0)]
+        [InlineData(65, 03, 19, 264, 1)]
+        [InlineData(95, 59, 12, 190, 2)]
+        [InlineData(01, 51, 19, 448, 3)]
+        [InlineData(79, 53, 22, 994, 4)]
+        [InlineData(98, 11, 08, 551, 5)]
+        [InlineData(55, 52, 24, 269, 6)]
+        [InlineData(00, 04, 26, 620, 7)]
+        [InlineData(67, 59, 14, 148, 8)]
+        [InlineData(54, 55, 28, 586, 9)]
+        [InlineData(78, 01, 23, 354, 0)]
+        public void ExpectedCheckDigitIsCalculatedAsNumberWithoutCheckDigitModulo11(int yearPart, int monthPart, int dayPart, int sequence, int expectedCheckDigit)
+        {
+            Assert.Equal(expectedCheckDigit, new BirthNumber(yearPart, monthPart, dayPart, sequence, 5, string.Empty).ExpectedCheckDigit);
+        }
+
         [Fact]
-        public void NullDoesntHaveStandardForm()
+        public void ExpectedCheckDigit_ForBirthNumbersBefore1954_IsNull()
         {
-            Assert.False(new BirthNumber(null).HasStandardFormat);
-        }
-
-        [Fact]
-        public void Number9Or10DigitsHaveStandardForm()
-        {
-            Assert.True(new BirthNumber("123456789").HasStandardFormat);
-            Assert.True(new BirthNumber("1234567890").HasStandardFormat);
-        }
-
-        [Fact]
-        public void NumberLongerThan10DigitsDoesntHaveStandardForm()
-        {
-            Assert.False(new BirthNumber("12345678901").HasStandardFormat);
-        }
-
-        [Fact]
-        public void NumberShorterThan9DigitsDoesntHaveStandardForm()
-        {
-            Assert.False(new BirthNumber("123456").HasStandardFormat);
+            Assert.Null(new BirthNumber(50, 1, 1, 1, null, string.Empty).ExpectedCheckDigit);
         }
 
         [Theory]
-        [InlineData("09004264555", false)]
-        [InlineData("9004264555", true)]
-        public void NumberIsValidOnlyIfHasStandardForm(string birthNumber, bool shouldBeValid)
+        [InlineData(0)]
+        [InlineData(13)]
+        [InlineData(99)]
+        public void Day_ForStandardFormConstructor_IsEqualToDayPart(int day)
         {
-            Assert.Equal(shouldBeValid, new BirthNumber(birthNumber).IsValid);
+            Assert.Equal(day, new BirthNumber(50, 1, day, 1, null, string.Empty).Day);
         }
 
         [Theory]
-        [InlineData("505504237", true)]
-        [InlineData("355105307", true)]
-        [InlineData("505500001", false)]
-        [InlineData("530004001", false)]
-        [InlineData("539904001", false)]
-        [InlineData("530599001", false)]
-        public void DatePartMustBeValidDateForValidNumber(string birthNumber, bool shouldBeValid)
+        [InlineData(50, 55, 04, true)]
+        [InlineData(35, 51, 05, true)]
+        [InlineData(50, 62, 31, true)]
+        [InlineData(53, 00, 04, false)]
+        [InlineData(53, 99, 04, false)]
+        [InlineData(53, 05, 99, false)]
+        public void DatePartMustBeValidDateForValidNumber(int yearPart, int monthPart, int dayPart, bool shouldBeValid)
         {
-            Assert.Equal(shouldBeValid, new BirthNumber(birthNumber).IsValid);
+            Assert.Equal(shouldBeValid, new BirthNumber(yearPart, monthPart, dayPart, 1, null, string.Empty).IsValid);
         }
 
         [Theory]
-        [InlineData("505504237", 5)]
-        [InlineData("126224452", 12)]
-        [InlineData("355001001", null)]
-        [InlineData("455008001", null)]
-        [InlineData("125131001", 1)]
-        public void MonthPartHasAdded50ForFermales(string birthNumber, int? birthMonth)
+        [InlineData(54, null, 1854)]
+        [InlineData(99, null, 1899)]
+        [InlineData(00, null, 1900)]
+        [InlineData(53, null, 1953)]
+        [InlineData(54, 0, 1954)]
+        [InlineData(99, 0, 1999)]
+        [InlineData(00, 0, 2000)]
+        [InlineData(17, 0, 2017)]
+        [InlineData(53, 0, 2053)]
+        public void YearIsAccuratelyDetermined(int yearPart, int? checkDigit, int expectedYear)
         {
-            var determinedMonth = IgnoreOutsideRange(new BirthNumber(birthNumber).Month);
-            Assert.Equal(birthMonth, determinedMonth);
+            Assert.Equal(expectedYear, new BirthNumber(yearPart, 1, 1, 0, checkDigit, string.Empty).Year);
         }
 
         [Theory]
-        [InlineData("032101001", null)]
-        [InlineData("037101001", null)]
-        [InlineData("0321010010", null)]
-        [InlineData("0371010010", null)]
-        [InlineData("0420010010", null)]
-        [InlineData("0421010010", 1)]
-        [InlineData("0429010010", 9)]
-        [InlineData("0432010010", 12)]
-        [InlineData("0433010010", null)]
-        [InlineData("0470010010", null)]
-        [InlineData("0471010010", 1)]
-        [InlineData("0479010010", 9)]
-        [InlineData("0482010010", 12)]
-        [InlineData("0483010010", null)]
-        public void MonthPartCanHave20AddedWhenAllocationExhausedAfterYear2003(string birthNumber, int? expectedBirthMonth)
+        [InlineData(53)]
+        [InlineData(70)]
+        public void ExpectedCheckDigit_Before1954_IsNull(int yearPart)
         {
-            var isOutsideRange = expectedBirthMonth == null;
-            var determinedMonth = IgnoreOutsideRange(new BirthNumber(birthNumber).Month);
-            Assert.Equal(expectedBirthMonth, determinedMonth);
+            Assert.Null(new BirthNumber(yearPart, 1, 1, 0, null, string.Empty).ExpectedCheckDigit);
         }
 
         [Theory]
-        [InlineData("540101001", 1854)]
-        [InlineData("990101001", 1899)]
-        [InlineData("000101001", 1900)]
-        [InlineData("530101001", 1953)]
-        [InlineData("5401010010", 1954)]
-        [InlineData("9901010010", 1999)]
-        [InlineData("0001010010", 2000)]
-        [InlineData("1701010010", 2017)]
-        [InlineData("5301010010", 2053)]
-        public void YearIsAccuratelyDetermined(string birthNumber, int expectedYear)
+        [InlineData(00, 01, 01, 000, 8, false)]
+        [InlineData(00, 01, 01, 000, 9, true)]
+        [InlineData(00, 01, 01, 001, 0, true)]
+        [InlineData(00, 01, 01, 001, 1, false)]
+        [InlineData(54, 12, 24, 256, 1, true)]
+        [InlineData(75, 52, 31, 851, 0, false)]
+        public void BirthNumbersAfter1954_IsValid_OnlyIfItIsHasStandardFormAndValidDatePartAndCheckDigit(int yearPart, int monthPart, int dayPart, int sequence, int checkDigit, bool shouldBeValid)
         {
-            Assert.Equal(expectedYear, new BirthNumber(birthNumber).Year);
-        }
-
-        public void YearIsNullIfNumberIsNotInStandardForm()
-        {
-            Assert.Null(new BirthNumber("123456").Year);
+            var birthNumber = new BirthNumber(yearPart, monthPart, dayPart, sequence, checkDigit, string.Empty);
+            Assert.Equal(shouldBeValid, birthNumber.IsValid);
         }
 
         [Theory]
-        [InlineData("5401010010", 0)]
-        [InlineData("6503192641", 1)]
-        [InlineData("9559121902", 2)]
-        [InlineData("0151194483", 3)]
-        [InlineData("7953229944", 4)]
-        [InlineData("9811085515", 5)]
-        [InlineData("5552242696", 6)]
-        [InlineData("0004266207", 7)]
-        [InlineData("6759141488", 8)]
-        [InlineData("5455285869", 9)]
-        [InlineData("7801233540", 0)]
-        public void ExpectedCheckDigitIsSumModulo11(string birthNumber, int expectedCheckDigit)
+        [InlineData(00, 01, 01, true)]
+        [InlineData(00, 12, 01, true)]
+        [InlineData(00, 02, 28, true)]
+        [InlineData(00, 13, 01, false)]
+        [InlineData(54, 12, 70, false)]
+        [InlineData(75, 02, 30, false)]
+        public void BirthNumbersBefore1954_IsValid_OnlyIfItIsHasStandardFormAndValidDatePart(int yearPart, int monthPart, int dayPart, bool shouldBeValid)
         {
-            Assert.Equal(expectedCheckDigit, new BirthNumber(birthNumber).ExpectedCheckDigit);
+            var birthNumber = new BirthNumber(yearPart, monthPart, dayPart, 0, null, string.Empty);
+            Assert.Equal(shouldBeValid, birthNumber.IsValid);
         }
 
-        [Theory]
-        [InlineData("530101001")]
-        [InlineData("700101001")]
-        public void ExpectedCheckDigitIsNullBefore1954(string birthNumber)
+        public static IEnumerable<object[]> GetAllYears()
         {
-            Assert.Null(new BirthNumber(birthNumber).ExpectedCheckDigit);
-        }
-
-        [Theory]
-        [InlineData("0000")]
-        [InlineData("0xDEADBEEF")]
-        public void ExpectedCheckDigitIsNullInNumbersWithoutStandardForm(string birthNumber)
-        {
-            Assert.Null(new BirthNumber(birthNumber).ExpectedCheckDigit);
-        }
-
-        [Theory]
-        [InlineData("0001010008", false)]
-        [InlineData("0001010009", true)]
-        [InlineData("0001010010", true)]
-        [InlineData("0001010011", false)]
-        [InlineData("5412242561", true)]
-        [InlineData("7552318510", false)]
-
-        public void NumberAfter1954IsValidOnlyIfItIsHasStandardFormAndValidDatePartAndCheckDigit(string birthNumber, bool shouldBeValid)
-        {
-            Assert.Equal(shouldBeValid, new BirthNumber(birthNumber).IsValid);
-        }
-
-        private int? IgnoreOutsideRange(int? month)
-        {
-            if (month == null || month < 1 || month > 12)
+            for (int year = 1854; year < 1954; year++)
             {
-                return null;
+                yield return new object[] { year % 100, false, year };
             }
-
-            return month;
+            for (int year = 1954; year < 2054; year++)
+            {
+                yield return new object[] { year % 100, true, year };
+            }
         }
+
+        public static IEnumerable<object[]> GetInvalidMonthPartsAfter2003()
+        {
+            int year = 17;
+            yield return new object[] { year, 0 };
+            for (int i = 13; i <= 20; i++) yield return new object[] { year, i };
+            for (int i = 33; i <= 50; i++) yield return new object[] { year, i };
+            for (int i = 63; i <= 70; i++) yield return new object[] { year, i };
+            for (int i = 83; i <= 99; i++) yield return new object[] { year, i };
+        }
+
+        public static IEnumerable<object[]> GetInvalidMonthPartsBefore2004()
+        {
+            int year = 01;
+            yield return new object[] { year, 0 };
+            for (int i = 13; i <= 50; i++) yield return new object[] { year, i };
+            for (int i = 63; i <= 99; i++) yield return new object[] { year, i };
+        }
+
+        public static IEnumerable<object[]> GetValidMonthPartsAfter2003()
+        {
+            int year = 17;
+            for (int i = 1; i <= 12; i++) yield return new object[] { year, i };
+            for (int i = 21; i <= 32; i++) yield return new object[] { year, i };
+            for (int i = 51; i <= 62; i++) yield return new object[] { year, i };
+            for (int i = 71; i <= 82; i++) yield return new object[] { year, i };
+        }
+
+        public static IEnumerable<object[]> GetValidMonthPartsBefore2004()
+        {
+            int year = 01;
+            for (int i = 1; i <= 12; i++) yield return new object[] { year, i };
+            for (int i = 51; i <= 62; i++) yield return new object[] { year, i };
+        }
+
     }
 }

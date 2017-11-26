@@ -1,12 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Identifiers.Czech
 {
-    internal class BirthNumberParser : IIdentifierParser<string, BirthNumber>
+    public class BirthNumberParser : IIdentifierParser<string, BirthNumber>
     {
+        private const int yearDigit0 = 0;
+        private const int yearDigit1 = 1;
+        private const int monthDigit0 = 2;
+        private const int monthDigit1 = 3;
+        private const int dayDigit0 = 4;
+        private const int dayDigit1 = 5;
+        private const int sequenceDigit0 = 6;
+        private const int sequenceDigit1 = 7;
+        private const int sequenceDigit2 = 8;
+        private const int checkDigit = 9;
+
         /// <summary>
         /// Every birth number after 1.1.1954 has a check digit, so it is 10 digits.
         /// </summary>
@@ -52,7 +61,51 @@ namespace Identifiers.Czech
             {
                 throw new FormatException($"Unable to parse number '{input}'. Expecting a number in a 'YYMMDDSSS[C]?' format.");
             }
-            throw new NotImplementedException();
+
+            var birthNumber = input;
+            var digits = new int[birthNumber.Length];
+            for (int i = 0; i < birthNumber.Length; i++)
+            {
+                digits[i] = birthNumber[i] - '0';
+            }
+
+            var yearPart = digits[yearDigit0] * 10 + digits[yearDigit1];
+            var monthPart = digits[monthDigit0] * 10 + digits[monthDigit1];
+            var dayPart = digits[dayDigit0] * 10 + digits[dayDigit1];
+            var sequence = digits[sequenceDigit0] * 100 + digits[sequenceDigit1] * 10 + digits[sequenceDigit2];
+
+            return new BirthNumber(yearPart, monthPart, dayPart, sequence, (digits.Length > checkDigit) ? digits[checkDigit] : (int?)null, input);
+        }
+
+
+
+        private bool IsWoman(int monthPart) => monthPart > BirthNumber.WomanMonthShift;
+
+        private bool InExhaustedRange(int monthPart, int year, bool isWoman)
+        {
+            if (isWoman)
+            {
+                monthPart -= BirthNumber.WomanMonthShift;
+            }
+
+            // law for exhaustion entered force at 2004
+            return year > 2003 && monthPart > BirthNumber.ExhaustMonthShift;
+        }
+
+        private int CalculateMonth(int monthPart, int year, bool isWoman, bool isExhaustRange)
+        {
+            if (isWoman)
+            {
+                monthPart -= BirthNumber.WomanMonthShift;
+            }
+
+            // law for exhaustion entered force at 2004
+            if (isExhaustRange)
+            {
+                monthPart -= BirthNumber.ExhaustMonthShift;
+            }
+
+            return monthPart;
         }
     }
 }
