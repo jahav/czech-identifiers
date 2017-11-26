@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
 namespace Identifiers.Czech
 {
@@ -18,11 +17,6 @@ namespace Identifiers.Czech
         private const long numberUpperLimit = 9999999;
         private const long checkDigitLowerLimit = 0;
         private const long checkDigitUpperLimit = 9;
-
-        /// <summary>
-        /// The input value of the number, might be valid, might be not.
-        /// </summary>
-        private readonly string input;
 
         /// <summary>
         /// The IČO number from first 7 digits.
