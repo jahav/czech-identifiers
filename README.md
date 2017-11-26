@@ -1,5 +1,7 @@
-# czech-identifiers
+# czech-identifiers 
 A project to parse and validate various identifiers used in Czech Republic (e.g. birth number, IČO..).
+[![Build status](https://ci.appveyor.com/api/projects/status/aqrjgivpxk33w71k?svg=true)](https://ci.appveyor.com/project/jahav/czech-identifiers)
+
 
 ## Design principles
 Basically if you ever worked in a bank, you know you often get a garbage as an input. You get an IBAN where you should get BIC, you get wrong invalid data all the time. 
