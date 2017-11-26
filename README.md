@@ -1,7 +1,7 @@
 # czech-identifiers 
 A project to parse and validate various identifiers used in Czech Republic (e.g. birth number, IČO..).
 
-[![Build status](https://ci.appveyor.com/api/projects/status/aqrjgivpxk33w71k?svg=true)](https://ci.appveyor.com/project/jahav/czech-identifiers)
+[![Build status](https://ci.appveyor.com/api/projects/status/aqrjgivpxk33w71k?svg=true)](https://ci.appveyor.com/project/jahav/czech-identifiers)  [![codecov](https://codecov.io/gh/jahav/czech-identifiers/branch/master/graph/badge.svg)](https://codecov.io/gh/jahav/czech-identifiers)
 
 
 ## Design principles
