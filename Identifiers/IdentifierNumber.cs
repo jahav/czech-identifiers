@@ -11,7 +11,7 @@ namespace Identifiers
     /// Unfortunatelly, I was unable to find official definition, so I ended up with this: 
     /// <see cref="https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo"/>.
     /// </remarks>
-    public class IdentificationNumber
+    public class IdentificationNumber : IIdentifier
     {
         /// <summary>
         /// Length of the identification number.
@@ -26,10 +26,10 @@ namespace Identifiers
         /// <summary>
         /// The input value of the number, might be valid, might be not.
         /// </summary>
-        private readonly string raw;
+        private readonly string input;
 
         /// <summary>
-        /// Array of digits extracted from the <see cref="raw"/>, but only if it has <see cref="HasStandardFormat"/>.
+        /// Array of digits extracted from the <see cref="input"/>, but only if it has <see cref="HasStandardFormat"/>.
         /// </summary>
         private readonly int[] digits;
 
@@ -38,13 +38,13 @@ namespace Identifiers
         private int expectedCheckDigit;
 
         /// <summary>
-        /// 
+        /// Create a new instance of a <see cref="IdentificationNumber"/>.
         /// </summary>
-        /// <param name="input">8 digit string in a standard form. Can be null.</param>
-        public IdentificationNumber(string input)
+        /// <param name="identifierNumber">A string that will be used as a identification number. Can be null.</param>
+        public IdentificationNumber(string identifierNumber)
         {
-            raw = input;
-            HasStandardFormat = raw != null && standardForm.IsMatch(raw);
+            input = identifierNumber;
+            HasStandardFormat = input != null && standardForm.IsMatch(input);
             if (!HasStandardFormat)
             {
                 return;
@@ -53,7 +53,7 @@ namespace Identifiers
             digits = new int[length];
             for (int i = 0; i < length; i++)
             {
-                digits[i] = raw[i] - '0';
+                digits[i] = input[i] - '0';
             }
 
             modulo = CalculateModulo();

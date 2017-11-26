@@ -17,7 +17,7 @@ namespace Identifiers
     /// </ul>
     /// </summary>
     /// <see cref="http://www.mvcr.cz/clanek/overovani-rodneho-cisla-331794.aspx"/>
-    public class BirthNumber
+    public class BirthNumber : IIdentifier
     {
         private const int centuryYear1954 = 54;
         private const int yearDigit0 = 0;
@@ -37,7 +37,6 @@ namespace Identifiers
         /// </summary>
         private const int womanMonthShift = 50;
 
-
         /// <summary>
         /// When all sequential numbers for a day are assigned, it is possible to utilize another space by adding 20 to the month part.
         /// <see cref="https://www.zakonyprolidi.cz/cs/2000-133/">Law number. 133/2000 § 13 (5)</see>
@@ -50,7 +49,7 @@ namespace Identifiers
         /// <remarks><c>\d</c> character class includes other digits from other character set, so it is not used.</remarks>
         private readonly static Regex standardForm = new Regex("^[0-9]{9,10}$");
 
-        private readonly string raw;
+        private readonly string input;
 
         /// <summary>
         /// Digits of the birth number. Only set if birth number is in standard form.
@@ -65,20 +64,20 @@ namespace Identifiers
         /// <summary>
         /// Create a new instance of a <see cref="BirthNumber"/>.
         /// </summary>
-        /// <param name="input">A string that will be used as a identification number. Can be null.</param>
-        public BirthNumber(string input)
+        /// <param name="birthNumber">A string that will be used as a identification number. Can be null.</param>
+        public BirthNumber(string birthNumber)
         {
-            raw = input;
-            HasStandardForm = input != null && standardForm.IsMatch(input);
-            if (!HasStandardForm)
+            input = birthNumber;
+            HasStandardFormat = birthNumber != null && standardForm.IsMatch(birthNumber);
+            if (!HasStandardFormat)
             {
                 return;
             }
 
-            digits = new int[input.Length];
-            for (int i = 0; i < input.Length; i++)
+            digits = new int[birthNumber.Length];
+            for (int i = 0; i < birthNumber.Length; i++)
             {
-                digits[i] = input[i] - '0';
+                digits[i] = birthNumber[i] - '0';
             }
 
             year = CalculateYear();
@@ -99,7 +98,7 @@ namespace Identifiers
         /// <summary>
         /// Does the input have a standard form?
         /// </summary>
-        public bool HasStandardForm { get; }
+        public bool HasStandardFormat { get; }
 
         /// <summary>
         /// Is the birth number standard and valid?
@@ -108,7 +107,7 @@ namespace Identifiers
         {
             get
             {
-                if (HasStandardForm && isDatePartValid)
+                if (HasStandardFormat && isDatePartValid)
                 {
                     if (IsAfter1954)
                     {
@@ -124,24 +123,24 @@ namespace Identifiers
         /// <summary>
         /// Return a year of birth, if the number has a standard form.
         /// </summary>
-        public int? Year => HasStandardForm ? year : (int?)null;
+        public int? Year => HasStandardFormat ? year : (int?)null;
 
         /// <summary>
         /// Return a month of birth, if the number has a standard form.
         /// </summary>
-        public int? Month => HasStandardForm ? month : (int?)null;
+        public int? Month => HasStandardFormat ? month : (int?)null;
 
         /// <summary>
         /// Return a day of birth, if the number has a standard form.
         /// </summary>
-        public int? Day => HasStandardForm ? day : (int?)null;
+        public int? Day => HasStandardFormat ? day : (int?)null;
 
         /// <summary>
         /// Get expected check digit, if the birth number has a standard form and is after year 1954.
         /// </summary>
-        public int? ExpectedCheckDigit => HasStandardForm && IsAfter1954 ? expectedCheckDigit : (int?)null;
+        public int? ExpectedCheckDigit => HasStandardFormat && IsAfter1954 ? expectedCheckDigit : (int?)null;
 
-        private bool IsAfter1954 => raw.Length == 10;
+        private bool IsAfter1954 => input.Length == 10;
 
         public int CalculateYear()
         {
