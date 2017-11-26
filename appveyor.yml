@@ -2,8 +2,8 @@ version: 1.0.{build}
 image: Visual Studio 2017
 before_build:
  - cmd: nuget restore
-build_script:
- - msbuild /verbosity:quiet "czech-identifiers.sln"
+build:
+  verbosity: normal
 test_script:
  - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"packages\xunit.runner.console.2.2.0\tools\xunit.console.x86.exe" -targetargs:"Identifiers.Tests\bin\Debug\netcoreapp2.0\Identifiers.Czech.Tests.dll -noshadow" -output:".\coverage.xml"
 # use codecov bash script. Requires powershell and bash to be installed, which both are on the AppVeyor machine image
