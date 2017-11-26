@@ -1,6 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
-namespace Identifiers
+namespace Identifiers.Czech
 {
 
     /// <summary>
@@ -13,15 +14,10 @@ namespace Identifiers
     /// </remarks>
     public class IdentificationNumber : IIdentifier
     {
-        /// <summary>
-        /// Length of the identification number.
-        /// </summary>
-        private const int length = 8;
-
-        /// <summary>
-        /// A regular expressin that defines standard form of the ICO.
-        /// </summary>
-        private static readonly Regex standardForm = new Regex("^[0-9]{8}$");
+        private const long numberLowerLimit = 0;
+        private const long numberUpperLimit = 9999999;
+        private const long checkDigitLowerLimit = 0;
+        private const long checkDigitUpperLimit = 9;
 
         /// <summary>
         /// The input value of the number, might be valid, might be not.
@@ -29,36 +25,43 @@ namespace Identifiers
         private readonly string input;
 
         /// <summary>
-        /// Array of digits extracted from the <see cref="input"/>, but only if it has <see cref="HasStandardFormat"/>.
+        /// The IČO number from first 7 digits.
         /// </summary>
-        private readonly int[] digits;
-
-        private readonly int modulo;
-
-        private int expectedCheckDigit;
+        private long number;
 
         /// <summary>
-        /// Create a new instance of a <see cref="IdentificationNumber"/>.
+        /// The IČO check digit.
         /// </summary>
-        /// <param name="identifierNumber">A string that will be used as a identification number. Can be null.</param>
-        public IdentificationNumber(string identifierNumber)
+        private int checkDigit;
+
+        /// <summary>
+        /// A constructor used to create a identifier number that was succesfully parsed (=has <see cref="HasStandardFormat"/> <c>true</c>).
+        /// </summary>
+        /// <param name="number">First seven digits of IČO, a number from <see cref="numberLowerLimit"/> to <see cref="upperLowerLimit"/>.</param>
+        /// <param name="checkDigit">Check digit, doesn't have to be correct for the <paramref name="number"/>, but it must be from <see cref="checkDigitLowerLimit"/> to <see cref="checkDigitUpperLimit"/>.</param>
+        /// <param name="input">The identifier number <paramref name="number"/> and <paramref name="checkDigit"/> were parsed from.</param>
+        public IdentificationNumber(long number, int checkDigit, string input)
         {
-            input = identifierNumber;
-            HasStandardFormat = input != null && standardForm.IsMatch(input);
-            if (!HasStandardFormat)
+            if (number < numberLowerLimit || number > numberUpperLimit)
             {
-                return;
+                throw new ArgumentOutOfRangeException(nameof(number), $"Argument must be from {numberLowerLimit} to {numberUpperLimit}, but was {number}.");
             }
 
-            digits = new int[length];
-            for (int i = 0; i < length; i++)
+            if (checkDigit < checkDigitLowerLimit || checkDigit > checkDigitUpperLimit)
             {
-                digits[i] = input[i] - '0';
+                throw new ArgumentOutOfRangeException(nameof(checkDigit), $"Argument must be from {checkDigitLowerLimit} to {checkDigitUpperLimit}, but was {checkDigit}.");
             }
 
-            modulo = CalculateModulo();
-            expectedCheckDigit = CalculateExpectedCheckDigit(modulo);
+            Input = input;
+            HasStandardFormat = true;
+            this.number = number;
+            this.checkDigit = checkDigit;
         }
+
+        /// <summary>
+        /// Input value the identifier was created from, warts and all.
+        /// </summary>
+        public string Input { get; }
 
         /// <summary>
         /// Does the identification number use standard 8 digit format?
@@ -68,35 +71,41 @@ namespace Identifiers
         /// <summary>
         /// Is the identifier valid according to the specification.
         /// </summary>
-        public bool IsValid
-        {
-            get { return HasStandardFormat && CheckDigit == ExpectedCheckDigit; }
-        }
+        public bool IsValid => HasStandardFormat && CheckDigit == ExpectedCheckDigit;
 
         /// <summary>
-        /// The actual check digit of the number. Return null, if not in standard format.
+        /// Get a IČO number = umber constructed from first 7 digits (eight digit is check digit). Return null, if not in standard format.
         /// </summary>
-        public int? CheckDigit => HasStandardFormat ? digits[7] : (int?)null;
+        public long? Number => HasStandardFormat ? number : (long?)null;
 
         /// <summary>
-        /// The expected check digit according to the checksum algorithm. Return null, if not in standard format.
+        /// Get check digit of IČO (it is last, least significat digit). Return null, if not in standard format.
         /// </summary>
-        public int? ExpectedCheckDigit => HasStandardFormat ? expectedCheckDigit : (int?)null;
+        public int? CheckDigit => HasStandardFormat ? checkDigit : (int?)null;
+
+        /// <summary>
+        /// Get expected check digit according to the checksum algorithm. Return null, if not in standard format.
+        /// </summary>
+        public int? ExpectedCheckDigit => HasStandardFormat ? CalculateExpectedCheckDigit(CalculateModulo(number)) : (int?)null;
 
         /// <summary>
         /// Get modulo from digits:
         /// (digit_1 * 8 + digit_2 * 7 + digit_3 * 6 + digit_4 * 5 + digit_5 * 4 + digit_6 * 3 + digit_7 * 2) mod 11
         /// </summary>
         /// <returns>Calculated modulo of the identification number.</returns>
-        private int CalculateModulo()
+        private int CalculateModulo(long number)
         {
-            var moduloSum = 0;
-            for (int i = 0; i < length - 1; i++)
+            int weightedSum = 0;
+            int weight = 2;
+            while (number > 0)
             {
-                moduloSum += digits[i] * (8 - i);
+                var digit = (int)(number % 10);
+                weightedSum = weightedSum + digit * weight;
+                weight++;
+                number = number / 10;
             }
 
-            return moduloSum % 11;
+            return weightedSum % 11;
         }
 
         private int CalculateExpectedCheckDigit(int modulo)

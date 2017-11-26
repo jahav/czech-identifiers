@@ -1,81 +1,102 @@
 using System;
 using Xunit;
 
-namespace Identifiers.Tests
+namespace Identifiers.Czech.Tests
 {
     public class IdentifierNumberTest
     {
-        [Fact]
-        public void NullIsInvalidNumber()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(5001)]
+        [InlineData(9999999)]
+        public void StandardFormConstructorAcceptsNumberFrom0To9999999(int number)
         {
-            Assert.False(new IdentificationNumber(null).IsValid, "Null shouldn't throw an exception, but it is just invalid number.");
-        }
-
-        [Fact]
-        public void NumberLongerThan8DigitsIsInvalid()
-        {
-            var idNumber9digits = "000007064";
-            var idNum = new IdentificationNumber(idNumber9digits);
-            Assert.False(idNum.IsValid, "Although the number itself is valid, it has more than 8 digits.");
-        }
-
-        [Fact]
-        public void NumberShorterThan8DigitsIsInvalid()
-        {
-            var idNumber7digits = "0007064";
-            var idNum = new IdentificationNumber(idNumber7digits);
-            Assert.False(idNum.IsValid, "Although the number itself is valid, it has less than 8 digits.");
-        }
-
-        [Fact]
-        public void Number8DigitsLongIsValid()
-        {
-            var idNumber8digits = "00007064";
-            var idNum = new IdentificationNumber(idNumber8digits);
-            Assert.True(idNum.IsValid, "The number is valid and is 8 digits long.");
-        }
-
-        [Fact]
-        public void NumberMustHaveCorrectModulo()
-        {
-            var invalidIdNumber = new IdentificationNumber("00007063");
-            Assert.False(invalidIdNumber.IsValid, "The number should be invalid because of modulo.");
+            new IdentificationNumber(number, 0, string.Empty);
         }
 
         [Theory]
-        [InlineData("0006947")]
-        [InlineData("0045274649")]
+        [InlineData(-1854)]
+        [InlineData(-1)]
+        [InlineData(10000000)]
+        [InlineData(999999999)]
+        public void StandardFormConstructorThrowOutOfRangeOnNumberOutside0To9999999(int number)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new IdentificationNumber(number, 0, string.Empty));
+        }
+
+        [Theory]
+        [InlineData(125)]
+        public void NumberFromStandardFormConstructorCanBeRetrievedFromProperty(int number)
+        {
+            var idNumber = new IdentificationNumber(number, 0, string.Empty);
+            Assert.Equal(number, idNumber.Number);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(5)]
+        [InlineData(9)]
+        public void StandardFormConstructorAcceptsCheckDigitFrom0To9(int checkDigit)
+        {
+            new IdentificationNumber(0, checkDigit, string.Empty);
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(10)]
+        [InlineData(99)]
+        public void StandardFormConstructorThrowOutOfRangeOnCheckDigitOutside0To9(int checkDigit)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new IdentificationNumber(0, checkDigit, string.Empty));
+        }
+
+        [Theory]
+        [InlineData(4)]
+        public void CheckDigitFromStandardFormConstructorCanBeRetrievedFromProperty(int checkDigit)
+        {
+            var idNumber = new IdentificationNumber(0, checkDigit, string.Empty);
+            Assert.Equal(checkDigit, idNumber.CheckDigit);
+        }
+
+        [Fact]
+        public void StandardFormConstructorHasStandardFrom()
+        {
+            var idNumber = new IdentificationNumber(0, 0, string.Empty);
+            Assert.True(idNumber.HasStandardFormat);
+        }
+
+        [Fact]
+        public void StandardFormConstructorHasNonNullExpectedCheckDigit()
+        {
+            var idNumber = new IdentificationNumber(0, 0, string.Empty);
+            Assert.True(idNumber.HasStandardFormat);
+        }
+
+        [Theory]
         [InlineData(null)]
-        [InlineData("abc")]
-        public void CheckDigitIsNullOnNonstandardNumber(string nonStandardNumber)
+        [InlineData("")]
+        [InlineData("12345678")]
+        [InlineData("aaskljfsdlf sdflkj  ")]
+        public void StandardFormConstructorAcceptsAnythingAsInput(string input)
         {
-            Assert.Null(new IdentificationNumber(nonStandardNumber).CheckDigit);
+            var idNumber = new IdentificationNumber(0, 0, input);
+            Assert.Equal(input, idNumber.Input);
         }
 
         [Theory]
-        [InlineData("00006947", 7)]
-        [InlineData("25702556", 6)]
-        public void CheckDigitOnStandardNumberIsLastDigit(string standardNumber, int checkDigit)
+        [InlineData(706, 3, 3)]
+        public void ValidNumberMustHaveCorrectChecksum(long number, int checkDigit, int expectedCheckDigit)
         {
-            Assert.Equal(checkDigit, new IdentificationNumber(standardNumber).CheckDigit);
+            var invalidIdNumber = new IdentificationNumber(number, checkDigit, null);
+            Assert.False(invalidIdNumber.IsValid);
         }
 
         [Theory]
-        [InlineData("0006947")]
-        [InlineData("0045274649")]
-        [InlineData(null)]
-        [InlineData("abc")]
-        public void ExpectedCheckDigitIsNullOnNonstandardNumber(string nonStandardNumber)
+        [InlineData(6966396, 9, 3)]
+        [InlineData(694, 0, 7)]
+        public void ExpectedCheckDigitIsCalculateAsWeightedSumModulo11(long invalidIdNumber, int checkDigit, int expectedCheckDigit)
         {
-            Assert.Null(new IdentificationNumber(nonStandardNumber).ExpectedCheckDigit);
-        }
-
-        [Theory]
-        [InlineData("69663969", 3)]
-        [InlineData("00006940", 7)]
-        public void ExpectedCheckDigitIsCalculateCorrectly(string invalidIdNumber, int expectedCheckDigit)
-        {
-            var idNumber = new IdentificationNumber(invalidIdNumber);
+            var idNumber = new IdentificationNumber(invalidIdNumber, checkDigit, null);
             Assert.False(idNumber.IsValid, "Last digit is not correct.");
             Assert.Equal(expectedCheckDigit, idNumber.ExpectedCheckDigit);
         }

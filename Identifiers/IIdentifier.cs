@@ -1,4 +1,4 @@
-﻿namespace Identifiers
+﻿namespace Identifiers.Czech
 {
     /// <summary>
     /// Interface for all identifiers.

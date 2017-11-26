@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace Identifiers
+namespace Identifiers.Czech
 {
     /// <summary>
     /// An account number used in Czech Republic, it consists from three parts:

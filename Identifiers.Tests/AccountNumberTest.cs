@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Identifiers.Tests
+namespace Identifiers.Czech.Tests
 {
     public class AccountNumberTest
     {

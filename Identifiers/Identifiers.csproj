@@ -13,6 +13,8 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>First release, identifiers are tested, but significant changes API will happen.</PackageReleaseNotes>
     <PackageTags>identifier validation parsing</PackageTags>
+    <AssemblyName>Identifiers.Czech</AssemblyName>
+    <RootNamespace>Identifiers.Czech</RootNamespace>
   </PropertyGroup>
 
 </Project>
