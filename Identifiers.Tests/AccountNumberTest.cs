@@ -1,114 +1,51 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace Identifiers.Czech.Tests
 {
     public class AccountNumberTest
     {
         [Fact]
-        public void NullDoesntHaveStandardForm()
+        public void StandardFormatConstructor_BankCode_CantBeNull()
         {
-            Assert.False(new AccountNumber(null).HasStandardFormat);
+            Assert.Throws<ArgumentNullException>(() => new AccountNumber(0, 0, null, string.Empty));
         }
 
         [Theory]
-        [InlineData("0012/0300", 12, "0300")]
-        [InlineData("1234567890/6200", 1234567890, "6200")]
-        [InlineData("0000/6200", 0, "6200")]
-        public void CanAcceptAccountWithoutPrefix(string accountNumber, int? expectedNumber, string expectedBankCode)
+        [InlineData(0, false)]
+        [InlineData(10, false)]
+        [InlineData(19, true)]
+        [InlineData(9000000001, true)]
+        [InlineData(5000000000, false)]
+        [InlineData(400000, false)]
+        public void NumberMustHaveAtLeast2NonZeroDigitsToBeValid(long number, bool isValid)
         {
-            var account = new AccountNumber(accountNumber);
-            Assert.True(account.HasStandardFormat);
-            Assert.Equal(expectedNumber, account.Number);
-            Assert.Equal(expectedBankCode, account.BankCode);
+            Assert.Equal(isValid, new AccountNumber(0, number, "0100", string.Empty).IsValid);
         }
 
         [Theory]
-        [InlineData("17-0012/0300", 17, 12, "0300")]
-        [InlineData("000-1234567890/6200", 0, 1234567890, "6200")]
-        public void CanAcceptAccountWithPrefix(string accountNumber, int? expectedPrefix, int? expectedNumber, string expectedBankCode)
+        [InlineData(19, 11, true)]
+        [InlineData(742418, 132, true)]
+        [InlineData(00483, 35, false)]
+        [InlineData(575427, 152, false)]
+        [InlineData(58509, 118, false)]
+        [InlineData(73, 17, false)]
+        public void PrefixChecksumMustBeFullyDivisibleBy11ToBeValid(long prefix, int prefixChecksum, bool isValid)
         {
-            var account = new AccountNumber(accountNumber);
-            Assert.True(account.HasStandardFormat);
-            Assert.Equal(expectedPrefix, account.Prefix);
-            Assert.Equal(expectedNumber, account.Number);
-            Assert.Equal(expectedBankCode, account.BankCode);
-        }
-
-        [Theory]
-        [InlineData("1234567-12/0100")]
-        [InlineData("abcdef-12/0100")]
-        public void PrefixMustBe0To6DigitsToBeInStandardForm(string invalidInput)
-        {
-            var invalidAccount = new AccountNumber(invalidInput);
-            Assert.False(invalidAccount.HasStandardFormat);
-            Assert.Null(invalidAccount.Prefix);
-            Assert.Null(invalidAccount.Number);
-            Assert.Null(invalidAccount.BankCode);
-        }
-
-        [Theory]
-        [InlineData("1/0100")]
-        [InlineData("12345678901/0100")]
-        [InlineData("abc/0100")]
-        [InlineData("a2/0100")]
-        public void AccountNumberMustBe2To10DigitsToBeInStandardForm(string invalidInput)
-        {
-            var invalidAccount = new AccountNumber(invalidInput);
-            Assert.False(invalidAccount.HasStandardFormat);
-            Assert.Null(invalidAccount.Prefix);
-            Assert.Null(invalidAccount.Number);
-            Assert.Null(invalidAccount.BankCode);
-        }
-
-        [Theory]
-        [InlineData("12/123")]
-        [InlineData("12/12345")]
-        [InlineData("12/abcd")]
-        [InlineData("12/A100")]
-        public void BankCode4DigitsToBeInStandardForm(string invalidInput)
-        {
-            var invalidAccount = new AccountNumber(invalidInput);
-            Assert.False(invalidAccount.HasStandardFormat);
-            Assert.Null(invalidAccount.Prefix);
-            Assert.Null(invalidAccount.Number);
-            Assert.Null(invalidAccount.BankCode);
-        }
-
-        [Theory]
-        [InlineData("00/0100", false)]
-        [InlineData("10/0100", false)]
-        [InlineData("19/0100", true)]
-        [InlineData("9000000001/0100", true)]
-        [InlineData("5000000000/0100", false)]
-        [InlineData("000400000/0100", false)]
-        public void NumberMustHaveAtLeast2NonZeroDigitsToBeValid(string account, bool isValid)
-        {
-            Assert.Equal(isValid, new AccountNumber(account).IsValid);
-        }
-
-        [Theory]
-        [InlineData("19-19/0100", 11, true)]
-        [InlineData("742418-19/0100", 132, true)]
-        [InlineData("00483-19/0000", 35, false)]
-        [InlineData("575427-19/0000", 152, false)]
-        [InlineData("58509-19/0000", 118, false)]
-        [InlineData("73-19/0000", 17, false)]
-        public void PrefixChecksumMustBeFullyDivisibleBy11ToBeValid(string account, int prefixChecksum, bool isValid)
-        {
-            var accountNumber = new AccountNumber(account);
+            var accountNumber = new AccountNumber(prefix, 19, "0100", string.Empty);
             Assert.Equal(accountNumber.PrefixChecksum % 11 == 0, isValid);
             Assert.Equal(prefixChecksum, accountNumber.PrefixChecksum);
             Assert.Equal(isValid, accountNumber.IsValid);
         }
 
         [Theory]
-        [InlineData("765178/0100", 166, false)]
-        [InlineData("37/0100", 13, false)]
-        [InlineData("78/0100", 22, true)]
-        [InlineData("9999999999/0100", 495, true)]
-        public void NumberChecksumMustBeFullyDivisibleBy11ToBeValid(string account, int numberChecksum, bool isValid)
+        [InlineData(765178, 166, false)]
+        [InlineData(37, 13, false)]
+        [InlineData(78, 22, true)]
+        [InlineData(9999999999, 495, true)]
+        public void NumberChecksumMustBeFullyDivisibleBy11ToBeValid(long number, int numberChecksum, bool isValid)
         {
-            var accountNumber = new AccountNumber(account);
+            var accountNumber = new AccountNumber(0, number, "0100", string.Empty);
             Assert.Equal(accountNumber.NumberChecksum % 11 == 0, isValid);
             Assert.Equal(numberChecksum, accountNumber.NumberChecksum);
             Assert.Equal(isValid, accountNumber.IsValid);

@@ -24,74 +24,76 @@ namespace Identifiers.Czech
         /// </summary>
         private static int[] weights = new int[] { 1, 2, 4, 8, 5, 10, 9, 7, 3, 6 };
 
-        /// <summary>
-        /// Accoring to the CNB decree no.169/2011, the prefix and account number should be 
-        /// "clearly separated", so it could possibly be something else than dash, but dash is used by everyone.
-        /// Use parser for converions.
-        /// </summary>
-        private static Regex standardForm = new Regex("^(([0-9]{1,6})-|-?)([0-9]{2,10})/([0-9]{4}$)");
-
-        private readonly string input;
+        long prefix;
+        long number;
+        string bankCode;
 
         /// <summary>
         /// Create a new instance of a <see cref="AccountNumber"/>.
         /// </summary>
         /// <param name="accountNumber">A string of the czech account number. Can be invalid or even null.</param>
-        public AccountNumber(string accountNumber)
+        public AccountNumber(long prefix, long number, string bankCode, string input)
         {
-            input = accountNumber;
-            if (accountNumber == null)
+            if (bankCode == null)
             {
-                HasStandardFormat = false;
-                return;
+                throw new System.ArgumentNullException(nameof(bankCode));
             }
 
-            Match match = standardForm.Match(accountNumber);
-            if (!match.Success)
-            {
-                HasStandardFormat = false;
-                return;
-            }
-
+            Input = input;
             HasStandardFormat = true;
-            bool prefixFound = match.Groups[2].Captures.Count == 1;
-            if (prefixFound)
-            {
-                Prefix = long.Parse(match.Groups[2].Captures[0].Value, NumberStyles.None, CultureInfo.InvariantCulture);
-            }
-
-            Number = long.Parse(match.Groups[3].Captures[0].Value, NumberStyles.None, CultureInfo.InvariantCulture);
-            BankCode = match.Groups[4].Captures[0].Value;
+            this.prefix = prefix;
+            this.number = number;
+            this.bankCode = bankCode;
         }
 
+        /// <summary>
+        /// The original input from which was the account number created.
+        /// </summary>
+        public string Input { get; }
+
+        /// <summary>
+        /// Does the account number has a standard format.
+        /// </summary>
         public bool HasStandardFormat { get; }
 
+        /// <summary>
+        /// Check if the account number is valid.
+        /// </summary>
+        /// <remarks>
+        /// The account number is valid, if it has
+        /// <ul>
+        ///   <li>standard format.</li>
+        ///   <li>Prefix weighted checksum is divisiable by 11.</li>
+        ///   <li>Number weighted checksum is divisiable by 11.</li>
+        ///   <li>Number has at least two non-zero digits.</li>
+        /// </ul>
+        /// </remarks>
         public bool IsValid => HasStandardFormat && PrefixChecksum % 11 == 0 && NumberChecksum % 11 == 0 && CalculateNonDigitCount(Number) >= 2;
 
         /// <summary>
         /// Prefix part of the the account, if the number has a standard form.
         /// </summary>
-        public long? Prefix { get; }
+        public long? Prefix => HasStandardFormat ? prefix : (long?)null;
 
         /// <summary>
         /// The account number, if the number has a standard form. 
         /// </summary>
-        public long? Number { get; }
+        public long? Number => HasStandardFormat ? number : (long?)null;
 
         /// <summary>
         /// Code of the bank where the account is, if the number has a standard form.
         /// </summary>
-        public string BankCode { get; }
+        public string BankCode => HasStandardFormat ? bankCode : null;
 
         /// <summary>
         /// Get a checksum for a prefix, if the number has a standard form.
         /// </summary>
-        public int? PrefixChecksum => HasStandardFormat ? CheckSum(Prefix ?? 0) : (int?)null;
+        public int? PrefixChecksum => HasStandardFormat ? CheckSum(prefix) : (int?)null;
 
         /// <summary>
         /// Get a checksum for a prefix, if the number has a standard form.
         /// </summary>
-        public int? NumberChecksum => HasStandardFormat ? CheckSum(Number ?? 0) : (int?)null;
+        public int? NumberChecksum => HasStandardFormat ? CheckSum(number) : (int?)null;
 
         /// <summary>
         /// Get a number of digits that are not zero.
