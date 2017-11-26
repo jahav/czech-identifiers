@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/jahav/czech-identifiers</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/jahav/czech-identifiers/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>First release, identifiers are tested, but significant changes API will.</PackageReleaseNotes>
+    <PackageReleaseNotes>First release, identifiers are tested, but significant changes API will happen.</PackageReleaseNotes>
     <PackageTags>identifier validation parsing</PackageTags>
   </PropertyGroup>
 
