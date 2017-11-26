@@ -24,3 +24,9 @@ You can fing companies at https://justce.cz and self-employed persons at http://
 
 It seems that official sources describing validation algorithm are sparse/nonexistent when it comes to the validation of IČO, so I ended up with
 https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo.
+
+# Building NuGet package
+* Open VS dev console `Program Files (x86)/Microsoft Visual Studio/2017/Community/Common7/Tools/VsDevCmd.bat`
+* Go to `Identitifiers` directory (there is csproj there)
+* run `msbuild /t:pack /p:Configuration=Release`
+* in `bin/Release` will be the `Identifiers.Czech.*.nupkg` package
