@@ -1,7 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <PackageId>Identifiers.Czech</PackageId>
+    <PackageVersion>1.0.0-alpha</PackageVersion>
+    <Authors>jahav</Authors>
+    <Title>Identifiers.Czech</Title>
+    <Description>A parsing/validation library for various identifiers used in Czech Republic, e.g. IČO (identifier number for legal persons), rodné číslo (birth number), číslo účtu (bank account number).</Description>
+    <Copyright>Copyright 2017 (c) jahav. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/jahav/czech-identifiers</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/jahav/czech-identifiers/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>First release, identifiers are tested, but significant changes API will.</PackageReleaseNotes>
+    <PackageTags>identifier validation parsing</PackageTags>
   </PropertyGroup>
 
 </Project>

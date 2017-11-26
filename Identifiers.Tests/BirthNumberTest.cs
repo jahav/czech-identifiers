@@ -8,26 +8,26 @@ namespace Identifiers.Tests
         [Fact]
         public void NullDoesntHaveStandardForm()
         {
-            Assert.False(new BirthNumber(null).HasStandardForm);
+            Assert.False(new BirthNumber(null).HasStandardFormat);
         }
 
         [Fact]
         public void Number9Or10DigitsHaveStandardForm()
         {
-            Assert.True(new BirthNumber("123456789").HasStandardForm);
-            Assert.True(new BirthNumber("1234567890").HasStandardForm);
+            Assert.True(new BirthNumber("123456789").HasStandardFormat);
+            Assert.True(new BirthNumber("1234567890").HasStandardFormat);
         }
 
         [Fact]
         public void NumberLongerThan10DigitsDoesntHaveStandardForm()
         {
-            Assert.False(new BirthNumber("12345678901").HasStandardForm);
+            Assert.False(new BirthNumber("12345678901").HasStandardFormat);
         }
 
         [Fact]
         public void NumberShorterThan9DigitsDoesntHaveStandardForm()
         {
-            Assert.False(new BirthNumber("123456").HasStandardForm);
+            Assert.False(new BirthNumber("123456").HasStandardFormat);
         }
 
         [Theory]

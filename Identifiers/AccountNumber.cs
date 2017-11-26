@@ -33,6 +33,10 @@ namespace Identifiers
 
         private readonly string input;
 
+        /// <summary>
+        /// Create a new instance of a <see cref="AccountNumber"/>.
+        /// </summary>
+        /// <param name="accountNumber">A string of the czech account number. Can be invalid or even null.</param>
         public AccountNumber(string accountNumber)
         {
             input = accountNumber;
