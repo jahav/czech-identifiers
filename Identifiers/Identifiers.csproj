@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Identifiers.Czech</PackageId>
     <PackageVersion>1.0.0-alpha</PackageVersion>
     <Authors>jahav</Authors>
@@ -15,6 +15,11 @@
     <PackageTags>identifier validation parsing</PackageTags>
     <AssemblyName>Identifiers.Czech</AssemblyName>
     <RootNamespace>Identifiers.Czech</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
 </Project>
