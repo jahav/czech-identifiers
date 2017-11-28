@@ -84,11 +84,12 @@ namespace Identifiers.Czech.Tests
         }
 
         [Theory]
-        [InlineData(706, 3, 3)]
+        [InlineData(706, 3, 4)]
         public void ValidNumberMustHaveCorrectChecksum(long number, int checkDigit, int expectedCheckDigit)
         {
             var invalidIdNumber = new IdentificationNumber(number, checkDigit, null);
             Assert.False(invalidIdNumber.IsValid);
+            Assert.Equal(expectedCheckDigit, invalidIdNumber.ExpectedCheckDigit);
         }
 
         [Theory]
