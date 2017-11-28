@@ -30,16 +30,6 @@ namespace Identifiers.Czech.Tests
         public void Input_ShorterThan9Digits_ThrowsFormatException()
         {
             Assert.Throws<FormatException>(() => parser.Parse("123456"));
-        }
-
-        private int? IgnoreOutsideRange(int? month)
-        {
-            if (month == null || month < 1 || month > 12)
-            {
-                return null;
-            }
-
-            return month;
-        }
+        }        
     }
 }

@@ -76,36 +76,5 @@ namespace Identifiers.Czech
 
             return new BirthNumber(yearPart, monthPart, dayPart, sequence, (digits.Length > checkDigit) ? digits[checkDigit] : (int?)null, input);
         }
-
-
-
-        private bool IsWoman(int monthPart) => monthPart > BirthNumber.WomanMonthShift;
-
-        private bool InExhaustedRange(int monthPart, int year, bool isWoman)
-        {
-            if (isWoman)
-            {
-                monthPart -= BirthNumber.WomanMonthShift;
-            }
-
-            // law for exhaustion entered force at 2004
-            return year > 2003 && monthPart > BirthNumber.ExhaustMonthShift;
-        }
-
-        private int CalculateMonth(int monthPart, int year, bool isWoman, bool isExhaustRange)
-        {
-            if (isWoman)
-            {
-                monthPart -= BirthNumber.WomanMonthShift;
-            }
-
-            // law for exhaustion entered force at 2004
-            if (isExhaustRange)
-            {
-                monthPart -= BirthNumber.ExhaustMonthShift;
-            }
-
-            return monthPart;
-        }
     }
 }
