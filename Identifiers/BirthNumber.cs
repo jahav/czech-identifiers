@@ -15,7 +15,7 @@ namespace Identifiers.Czech
     /// </ul>
     /// </summary>
     /// <see cref="http://www.mvcr.cz/clanek/overovani-rodneho-cisla-331794.aspx"/>
-    public class BirthNumber : IIdentifier
+    public struct BirthNumber : IIdentifier
     {
         private const int datePartLowerLimit = 0;
         private const int datePartUpperLimit = 99;
@@ -207,7 +207,7 @@ namespace Identifiers.Czech
             return modulo == 10 ? 0 : modulo;
         }
 
-        private bool IsDatePartOutOfRange(int datePart)
+        private static bool IsDatePartOutOfRange(int datePart)
         {
             return datePart < datePartLowerLimit || datePart > datePartUpperLimit;
         }

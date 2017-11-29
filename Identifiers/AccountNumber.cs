@@ -14,7 +14,7 @@
     /// </summary>
     /// <see cref="https://www.cnb.cz/miranda2/export/sites/www.cnb.cz/cs/platebni_styk/pravni_predpisy/download/vyhl_169_2011.pdf">Decree 169/2011</see>
     /// <see cref="https://www.cnb.cz/cs/platebni_styk/iban/iban_napoveda.html"/>
-    public class AccountNumber : IIdentifier
+    public struct AccountNumber : IIdentifier
     {
         /// <summary>
         /// Weights of the digits, from the rightmost to the leftmost (=index 0 is the rightmost one, index 9 is leftmost one).

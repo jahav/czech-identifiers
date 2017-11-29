@@ -11,7 +11,7 @@ namespace Identifiers.Czech
     /// Unfortunatelly, I was unable to find official definition, so I ended up with this: 
     /// <see cref="https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo"/>.
     /// </remarks>
-    public class IdentificationNumber : IIdentifier
+    public struct IdentificationNumber : IIdentifier
     {
         private const long numberLowerLimit = 0;
         private const long numberUpperLimit = 9999999;
