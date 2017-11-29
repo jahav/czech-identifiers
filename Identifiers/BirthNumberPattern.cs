@@ -28,7 +28,7 @@ namespace Identifiers.Czech
         /// <summary>
         /// A pattern for the birth number written as a 9 or 10 digit number (including leading zeros) with a slash between digit date part and sequence number.
         /// </summary>
-        public static BirthNumberPattern StandardPattern { get; } = new BirthNumberPattern("^([0-9]{2})([0-9]{2})([0-9]{2})/([0-9]{3})([0-9]?)$", "{0:00}{1:00}{2:00}{3:000}{4}");
+        public static BirthNumberPattern StandardPattern { get; } = new BirthNumberPattern("^([0-9]{2})([0-9]{2})([0-9]{2})/([0-9]{3})([0-9])?$", "{0:00}{1:00}{2:00}{3:000}{4}");
 
         /// <summary>
         /// A pattern for the birth number written as a 9 or 10 digit number including leading zeros.
@@ -58,7 +58,7 @@ namespace Identifiers.Czech
         ///     </item>
         /// </list>
         /// </remarks>
-        public static BirthNumberPattern NumberPattern { get; } = new BirthNumberPattern("^([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{3})([0-9]?)$", "{0:00}{1:00}{2:00}/{3:000}{4}");
+        public static BirthNumberPattern NumberPattern { get; } = new BirthNumberPattern("^([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{3})([0-9])?$", "{0:00}{1:00}{2:00}/{3:000}{4}");
 
         private BirthNumberPattern(string regexpPattern, string format)
         {
