@@ -101,7 +101,7 @@ namespace Identifiers.Czech.Tests
         public void BirthNumberWithInvalidMonthPartWillBeOutOf1To12Range(int year, int monthPart)
         {
             var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0, null);
-            Assert.NotInRange(birthNumber.Month.Value, 1, 12);
+            Assert.NotInRange(birthNumber.Month, 1, 12);
         }
 
         [Theory]
@@ -110,7 +110,7 @@ namespace Identifiers.Czech.Tests
         public void BirthNumberWithValidMonthPartWillBeIn1To12Range(int year, int monthPart)
         {
             var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0, null);
-            Assert.InRange(birthNumber.Month.Value, 1, 12);
+            Assert.InRange(birthNumber.Month, 1, 12);
         }
 
         [Theory]

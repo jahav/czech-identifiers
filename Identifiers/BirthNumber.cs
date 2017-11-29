@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Identifiers.Czech
@@ -88,7 +85,6 @@ namespace Identifiers.Czech
                 throw new ArgumentOutOfRangeException(nameof(checkDigit), $"Check digit of birth number can either be empty or from {checkDigitLowerLimit} to {checkDigitUpperLimit}, but argument was {checkDigit}.");
             }
 
-            HasStandardFormat = true;
             this.yearPart = yearPart;
             this.monthPart = monthPart;
             this.dayPart = dayPart;
@@ -103,18 +99,14 @@ namespace Identifiers.Czech
         public string Input { get; }
 
         /// <summary>
-        /// Does the input have a standard form?
-        /// </summary>
-        public bool HasStandardFormat { get; }
-
-        /// <summary>
-        /// Is the birth number standard and valid?
+        /// Is the birth number valid? The birth number is valid, if its date is valid and 
+        /// check digit is correct for birth numbers after 1954.
         /// </summary>
         public bool IsValid
         {
             get
             {
-                if (HasStandardFormat && IsDateValid)
+                if (IsDateValid)
                 {
                     if (IsAfter1954)
                     {
@@ -129,25 +121,25 @@ namespace Identifiers.Czech
         }
 
         /// <summary>
-        /// Return a year of birth, if the number has a standard form.
+        /// Return a year of birth.
         /// </summary>
-        public int? Year => HasStandardFormat ? CalculateYear() : (int?)null;
+        public int Year => CalculateYear();
 
         /// <summary>
-        /// Return a month of birth, if the number has a standard form. If the month part of birth 
+        /// Return a month of birth. If the month part of birth 
         /// number is invalid, the returned month will be out of 1-12 range.
         /// </summary>
-        public int? Month => HasStandardFormat ? CalculateMonth() : (int?)null;
+        public int Month => CalculateMonth();
 
         /// <summary>
-        /// Return a day of birth, if the number has a standard form.
+        /// Return a day of birth. Is the birth number is invalid, day might be invalid too.
         /// </summary>
-        public int? Day => HasStandardFormat ? dayPart : (int?)null;
+        public int Day => dayPart;
 
         /// <summary>
-        /// Get expected check digit, if the birth number has a standard form and is after year 1954.
+        /// Get expected check digit, if the birth number is after year 1954.
         /// </summary>
-        public int? ExpectedCheckDigit => HasStandardFormat && IsAfter1954 ? CalculateCheckDigit() : (int?)null;
+        public int? ExpectedCheckDigit => IsAfter1954 ? CalculateCheckDigit() : (int?)null;
 
         private bool IsAfter1954 => !(checkDigit is null);
 
