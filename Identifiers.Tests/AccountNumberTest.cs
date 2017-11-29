@@ -12,6 +12,17 @@ namespace Identifiers.Czech.Tests
         }
 
         [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("19/0300")]
+        [InlineData("very long string that seems to go on and on")]
+        public void StandardFormConstructor_AcceptsAnythingInInput(string input)
+        {
+            var accountNumber = new AccountNumber(0, 0, "0300", input);
+            Assert.Equal(input, accountNumber.Input);
+        }
+
+        [Theory]
         [InlineData(0, false)]
         [InlineData(10, false)]
         [InlineData(19, true)]
