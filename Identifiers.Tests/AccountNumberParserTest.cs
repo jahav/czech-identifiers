@@ -54,10 +54,9 @@ namespace Identifiers.Czech.Tests
         [InlineData("0012/0300", 12, "0300")]
         [InlineData("1234567890/6200", 1234567890, "6200")]
         [InlineData("0000/6200", 0, "6200")]
-        public void CanAcceptAccountWithoutPrefix(string accountNumber, int? expectedNumber, string expectedBankCode)
+        public void CanAcceptAccountWithoutPrefix(string accountNumber, int expectedNumber, string expectedBankCode)
         {
             var account = parser.Parse(accountNumber);
-            Assert.True(account.HasStandardFormat);
             Assert.Equal(expectedNumber, account.Number);
             Assert.Equal(expectedBankCode, account.BankCode);
         }
@@ -65,10 +64,9 @@ namespace Identifiers.Czech.Tests
         [Theory]
         [InlineData("17-0012/0300", 17, 12, "0300")]
         [InlineData("000-1234567890/6200", 0, 1234567890, "6200")]
-        public void CanAcceptAccountWithPrefix(string accountNumber, int? expectedPrefix, int? expectedNumber, string expectedBankCode)
+        public void CanAcceptAccountWithPrefix(string accountNumber, int expectedPrefix, int expectedNumber, string expectedBankCode)
         {
             var account = parser.Parse(accountNumber);
-            Assert.True(account.HasStandardFormat);
             Assert.Equal(expectedPrefix, account.Prefix);
             Assert.Equal(expectedNumber, account.Number);
             Assert.Equal(expectedBankCode, account.BankCode);

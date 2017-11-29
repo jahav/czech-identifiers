@@ -40,7 +40,6 @@ namespace Identifiers.Czech
             }
 
             Input = input;
-            HasStandardFormat = true;
             this.prefix = prefix;
             this.number = number;
             this.bankCode = bankCode;
@@ -52,48 +51,42 @@ namespace Identifiers.Czech
         public string Input { get; }
 
         /// <summary>
-        /// Does the account number has a standard format.
-        /// </summary>
-        public bool HasStandardFormat { get; }
-
-        /// <summary>
         /// Check if the account number is valid.
         /// </summary>
         /// <remarks>
         /// The account number is valid, if it has
         /// <ul>
-        ///   <li>standard format.</li>
         ///   <li>Prefix weighted checksum is divisiable by 11.</li>
         ///   <li>Number weighted checksum is divisiable by 11.</li>
         ///   <li>Number has at least two non-zero digits.</li>
         /// </ul>
         /// </remarks>
-        public bool IsValid => HasStandardFormat && PrefixChecksum % 11 == 0 && NumberChecksum % 11 == 0 && CalculateNonDigitCount(Number) >= 2;
+        public bool IsValid => PrefixChecksum % 11 == 0 && NumberChecksum % 11 == 0 && CalculateNonDigitCount(Number) >= 2;
 
         /// <summary>
-        /// Prefix part of the the account, if the number has a standard form.
+        /// Prefix part of the the account.
         /// </summary>
-        public long? Prefix => HasStandardFormat ? prefix : (long?)null;
+        public long Prefix => prefix;
 
         /// <summary>
-        /// The account number, if the number has a standard form. 
+        /// The number part of the account. 
         /// </summary>
-        public long? Number => HasStandardFormat ? number : (long?)null;
+        public long Number => number;
 
         /// <summary>
-        /// Code of the bank where the account is, if the number has a standard form.
+        /// Get code of the bank where the account is.
         /// </summary>
-        public string BankCode => HasStandardFormat ? bankCode : null;
+        public string BankCode => bankCode;
 
         /// <summary>
-        /// Get a checksum for a prefix, if the number has a standard form.
+        /// Get a checksum for a prefix part of the account number.
         /// </summary>
-        public int? PrefixChecksum => HasStandardFormat ? CheckSum(prefix) : (int?)null;
+        public int PrefixChecksum => CheckSum(prefix);
 
         /// <summary>
-        /// Get a checksum for a prefix, if the number has a standard form.
+        /// Get a checksum for the number part of the account number.
         /// </summary>
-        public int? NumberChecksum => HasStandardFormat ? CheckSum(number) : (int?)null;
+        public int NumberChecksum => CheckSum(number);
 
         /// <summary>
         /// Get a number of digits that are not zero.
