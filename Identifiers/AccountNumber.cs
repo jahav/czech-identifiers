@@ -1,4 +1,7 @@
-﻿namespace Identifiers.Czech
+﻿using System;
+using System.Globalization;
+
+namespace Identifiers.Czech
 {
     /// <summary>
     /// An account number used in Czech Republic, it consists from three parts:
@@ -14,7 +17,7 @@
     /// </summary>
     /// <see cref="https://www.cnb.cz/miranda2/export/sites/www.cnb.cz/cs/platebni_styk/pravni_predpisy/download/vyhl_169_2011.pdf">Decree 169/2011</see>
     /// <see cref="https://www.cnb.cz/cs/platebni_styk/iban/iban_napoveda.html"/>
-    public struct AccountNumber : IIdentifier
+    public struct AccountNumber : IIdentifier, IFormattable
     {
         /// <summary>
         /// Weights of the digits, from the rightmost to the leftmost (=index 0 is the rightmost one, index 9 is leftmost one).
@@ -120,6 +123,54 @@
             }
 
             return checksum;
+        }
+
+        /// <summary>
+        /// Format the account number according to the format.
+        /// </summary>
+        /// <remarks>
+        /// The format 
+        /// <list type="bullet">
+        ///     <item>
+        ///         <term>S</term>
+        ///         <description>Standard format. If prefix is </description>
+        ///     </item>
+        ///     <item>
+        ///         <term>F</term>
+        ///         <description>Full format, both prefix and number will be it </description>
+        ///     </item>
+        /// </list>
+        /// </remarks>
+        /// <param name="format">Format of the returned account. Can be null, in that case the <c>S</c> format will be used.</param>
+        /// <param name="formatProvider">Not used.</param>
+        /// <returns>Formatted account number.</returns>
+        /// <exception cref="ArgumentException">When unknown <paramref name="format"/> is is passed.</exception>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (format == null)
+            {
+                format = "S";
+            }
+
+            string prefixFormat;
+            string remainderFormat;
+            switch (format)
+            {
+                case "S":
+                case "s":
+                    prefixFormat = prefix != 0 ? "{0}-" : "";
+                    remainderFormat = "{1}/{2}";
+                    break;
+                case "F":
+                case "f":
+                    prefixFormat = "{0:000000}-";
+                    remainderFormat = "{1:0000000000}/{2}";
+                    break;
+                default:
+                    throw new ArgumentException($"Unknown format {format}.", nameof(format));
+            }
+
+            return string.Format(CultureInfo.InvariantCulture, prefixFormat + remainderFormat, prefix, number, bankCode);
         }
     }
 }

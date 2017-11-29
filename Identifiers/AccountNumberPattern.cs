@@ -19,11 +19,15 @@ namespace Identifiers.Czech
         /// <summary>
         /// Parse an account number, even with leading zeros. 
         /// </summary>
-        public static AccountNumberPattern StandardPattern = new AccountNumberPattern();
+        public static AccountNumberPattern StandardPattern = new AccountNumberPattern("S");
 
-        private AccountNumberPattern()
+        private readonly string format;
+
+        private AccountNumberPattern(string format)
         {
+            this.format = format;
         }
+
         public ParseResult<AccountNumber> Parse(string text)
         {
             if (text == null)
@@ -52,12 +56,17 @@ namespace Identifiers.Czech
 
         public string Format(AccountNumber value)
         {
-            throw new NotImplementedException();
+            return value.ToString(format, null);
         }
 
         public StringBuilder AppendFormat(AccountNumber value, StringBuilder builder)
         {
-            throw new NotImplementedException();
+            if (builder == null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
+            return builder.AppendFormat(Format(value));
         }
     }
 }
