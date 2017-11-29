@@ -68,8 +68,8 @@ namespace Identifiers.Czech.Tests
         [InlineData(62, 12)]
         public void MonthPartCanBeShiftedBy50ForWomen(int monthPart, int expectedMonth)
         {
-            var birthNumber = new BirthNumber(0, monthPart, 1, 0, 0);
-            Assert.Equal(expectedMonth, birthNumber.Month);
+            var dateOfBirth = new BirthNumber(0, monthPart, 1, 0, 0).DateOfBirth;
+            Assert.Equal(expectedMonth, dateOfBirth.Value.Month);
         }
 
         [Theory]
@@ -81,17 +81,18 @@ namespace Identifiers.Czech.Tests
         [InlineData(82, 12)]
         public void MonthPartCanBeShiftedBy20WhenSequenceIsExhaustedAfterYear2003(int monthPart, int expectedMonth)
         {
-            var birthNumber = new BirthNumber(04, monthPart, 1, 0, 0);
-            Assert.Equal(expectedMonth, birthNumber.Month);
+            var dateOfBirth = new BirthNumber(04, monthPart, 1, 0, 0).DateOfBirth;
+            Assert.NotNull(dateOfBirth);
+            Assert.Equal(expectedMonth, dateOfBirth.Value.Month);
         }
 
         [Theory]
         [MemberData(nameof(GetInvalidMonthPartsAfter2003))]
         [MemberData(nameof(GetInvalidMonthPartsBefore2004))]
-        public void BirthNumberWithInvalidMonthPartWillBeOutOf1To12Range(int year, int monthPart)
+        public void BirthNumberWithInvalidMonthWontHaveDateOfBirth(int year, int monthPart)
         {
-            var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0);
-            Assert.NotInRange(birthNumber.Month, 1, 12);
+            var dateOfBirth = new BirthNumber(year, monthPart, 1, 0, 0).DateOfBirth;
+            Assert.Null(dateOfBirth);
         }
 
         [Theory]
@@ -99,8 +100,9 @@ namespace Identifiers.Czech.Tests
         [MemberData(nameof(GetValidMonthPartsBefore2004))]
         public void BirthNumberWithValidMonthPartWillBeIn1To12Range(int year, int monthPart)
         {
-            var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0);
-            Assert.InRange(birthNumber.Month, 1, 12);
+            var dateOfBirth = new BirthNumber(year, monthPart, 1, 0, 0).DateOfBirth;
+            Assert.NotNull(dateOfBirth);
+            Assert.InRange(dateOfBirth.Value.Month, 1, 12);
         }
 
         [Theory]
@@ -108,7 +110,8 @@ namespace Identifiers.Czech.Tests
         public void BirthNumberCorrectlyDeterminesYear(int yearPart, bool hasCheckDigit, int expectedYear)
         {
             var birthNumber = new BirthNumber(yearPart, 1, 1, 1, hasCheckDigit ? 1 : (int?)null);
-            Assert.Equal(expectedYear, birthNumber.Year);
+            Assert.NotNull(birthNumber.DateOfBirth);
+            Assert.Equal(expectedYear, birthNumber.DateOfBirth.Value.Year);
         }
 
         [Theory]
@@ -135,12 +138,13 @@ namespace Identifiers.Czech.Tests
         }
 
         [Theory]
-        [InlineData(0)]
         [InlineData(13)]
-        [InlineData(99)]
-        public void Day_ForStandardFormConstructor_IsEqualToDayPart(int day)
+        [InlineData(31)]
+        public void IfDateOfBirthIsValidDayEqualsDayPart(int day)
         {
-            Assert.Equal(day, new BirthNumber(50, 1, day, 1, null).Day);
+            var dateOfBirth = new BirthNumber(50, 1, day, 1, null).DateOfBirth;
+            Assert.NotNull(dateOfBirth);
+            Assert.Equal(day, dateOfBirth.Value.Day);
         }
 
         [Theory]
@@ -167,7 +171,9 @@ namespace Identifiers.Czech.Tests
         [InlineData(53, 0, 2053)]
         public void YearIsAccuratelyDetermined(int yearPart, int? checkDigit, int expectedYear)
         {
-            Assert.Equal(expectedYear, new BirthNumber(yearPart, 1, 1, 0, checkDigit).Year);
+            var dateOfBirth = new BirthNumber(yearPart, 1, 1, 0, checkDigit).DateOfBirth;
+            Assert.NotNull(dateOfBirth);
+            Assert.Equal(expectedYear, dateOfBirth.Value.Year);
         }
 
         [Theory]

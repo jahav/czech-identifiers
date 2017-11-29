@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NodaTime;
+using System;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Identifiers.Tests")]
 namespace Identifiers.Czech
@@ -102,20 +103,21 @@ namespace Identifiers.Czech
         }
 
         /// <summary>
-        /// Return a year of birth.
-        /// </summary>
-        public int Year => CalculateYear();
-
-        /// <summary>
         /// Return a month of birth. If the month part of birth 
         /// number is invalid, the returned month will be out of 1-12 range.
         /// </summary>
         public int Month => CalculateMonth();
 
         /// <summary>
-        /// Return a day of birth. Is the birth number is invalid, day might be invalid too.
+        /// Get date of birth. If the date of birth is not valid, return null.
         /// </summary>
-        public int Day => DayPart;
+        public LocalDate? DateOfBirth
+        {
+            get
+            {
+                return CalculateDateOfBirth();
+            }
+        }
 
         /// <summary>
         /// Get expected check digit, if the birth number is after year 1954.
@@ -130,23 +132,23 @@ namespace Identifiers.Czech
 
         private bool IsAfter1954 => !(CheckDigit is null);
 
-        private bool IsDateValid
+        private bool IsDateValid => CalculateDateOfBirth() != null;
+
+        private LocalDate? CalculateDateOfBirth()
         {
-            get
+            var month = CalculateMonth();
+            if (month < 1 || month > 12 || DayPart < 1)
             {
-                var month = CalculateMonth();
-                if (month < 1 || month > 12 || DayPart < 1)
-                {
-                    return false;
-                }
-
-                if (DayPart > DateTime.DaysInMonth(CalculateYear(), month))
-                {
-                    return false;
-                }
-
-                return true;
+                return null;
             }
+
+            var year = CalculateYear();
+            if (DayPart > DateTime.DaysInMonth(year, month))
+            {
+                return null;
+            }
+
+            return new LocalDate(year, month, DayPart);
         }
 
         public int CalculateYear()
