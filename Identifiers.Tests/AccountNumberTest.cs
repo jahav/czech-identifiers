@@ -8,7 +8,7 @@ namespace Identifiers.Czech.Tests
         [Fact]
         public void StandardFormatConstructor_BankCode_CantBeNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new AccountNumber(0, 0, null, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AccountNumber(0, 0, null));
         }
 
         [Theory]
@@ -20,7 +20,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(400000, false)]
         public void NumberMustHaveAtLeast2NonZeroDigitsToBeValid(long number, bool isValid)
         {
-            Assert.Equal(isValid, new AccountNumber(0, number, "0100", string.Empty).IsValid);
+            Assert.Equal(isValid, new AccountNumber(0, number, "0100").IsValid);
         }
 
         [Theory]
@@ -32,7 +32,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(73, 17, false)]
         public void PrefixChecksumMustBeFullyDivisibleBy11ToBeValid(long prefix, int prefixChecksum, bool isValid)
         {
-            var accountNumber = new AccountNumber(prefix, 19, "0100", string.Empty);
+            var accountNumber = new AccountNumber(prefix, 19, "0100");
             Assert.Equal(accountNumber.PrefixChecksum % 11 == 0, isValid);
             Assert.Equal(prefixChecksum, accountNumber.PrefixChecksum);
             Assert.Equal(isValid, accountNumber.IsValid);
@@ -45,7 +45,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(9999999999, 495, true)]
         public void NumberChecksumMustBeFullyDivisibleBy11ToBeValid(long number, int numberChecksum, bool isValid)
         {
-            var accountNumber = new AccountNumber(0, number, "0100", string.Empty);
+            var accountNumber = new AccountNumber(0, number, "0100");
             Assert.Equal(accountNumber.NumberChecksum % 11 == 0, isValid);
             Assert.Equal(numberChecksum, accountNumber.NumberChecksum);
             Assert.Equal(isValid, accountNumber.IsValid);

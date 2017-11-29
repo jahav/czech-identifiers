@@ -29,7 +29,7 @@
         /// Create a new instance of a <see cref="AccountNumber"/>.
         /// </summary>
         /// <param name="accountNumber">A string of the czech account number. Can be invalid or even null.</param>
-        public AccountNumber(long prefix, long number, string bankCode, string input)
+        public AccountNumber(long prefix, long number, string bankCode)
         {
             if (bankCode == null)
             {
