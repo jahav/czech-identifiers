@@ -32,7 +32,6 @@ namespace Identifiers.Czech.Tests
         {
             var idNumber8digits = "00007064";
             var idNum = parser.Parse(idNumber8digits);
-            Assert.True(idNum.HasStandardFormat);
             Assert.Equal(706, idNum.Number);
             Assert.Equal(4, idNum.CheckDigit);
         }

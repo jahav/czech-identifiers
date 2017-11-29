@@ -29,7 +29,7 @@ namespace Identifiers.Czech
         private int checkDigit;
 
         /// <summary>
-        /// A constructor used to create a identifier number that was succesfully parsed (=has <see cref="HasStandardFormat"/> <c>true</c>).
+        /// A constructor used to create a identifier number.
         /// </summary>
         /// <param name="number">First seven digits of IČO, a number from <see cref="numberLowerLimit"/> to <see cref="upperLowerLimit"/>.</param>
         /// <param name="checkDigit">Check digit, doesn't have to be correct for the <paramref name="number"/>, but it must be from <see cref="checkDigitLowerLimit"/> to <see cref="checkDigitUpperLimit"/>.</param>
@@ -47,7 +47,6 @@ namespace Identifiers.Czech
             }
 
             Input = input;
-            HasStandardFormat = true;
             this.number = number;
             this.checkDigit = checkDigit;
         }
@@ -58,29 +57,24 @@ namespace Identifiers.Czech
         public string Input { get; }
 
         /// <summary>
-        /// Does the identification number use standard 8 digit format?
+        /// Is the identifier valid? I.e. its check digit is equal to expected check digit?
         /// </summary>
-        public bool HasStandardFormat { get; }
+        public bool IsValid => CheckDigit == ExpectedCheckDigit;
 
         /// <summary>
-        /// Is the identifier valid according to the specification.
+        /// Get a IČO number = number constructed from first 7 digits (eight digit is check digit).
         /// </summary>
-        public bool IsValid => HasStandardFormat && CheckDigit == ExpectedCheckDigit;
+        public long Number => number;
 
         /// <summary>
-        /// Get a IČO number = umber constructed from first 7 digits (eight digit is check digit). Return null, if not in standard format.
+        /// Get check digit of IČO (it is last, least significat digit).
         /// </summary>
-        public long? Number => HasStandardFormat ? number : (long?)null;
+        public int CheckDigit => checkDigit;
 
         /// <summary>
-        /// Get check digit of IČO (it is last, least significat digit). Return null, if not in standard format.
+        /// Get expected check digit according to the checksum algorithm.
         /// </summary>
-        public int? CheckDigit => HasStandardFormat ? checkDigit : (int?)null;
-
-        /// <summary>
-        /// Get expected check digit according to the checksum algorithm. Return null, if not in standard format.
-        /// </summary>
-        public int? ExpectedCheckDigit => HasStandardFormat ? CalculateExpectedCheckDigit(CalculateModulo(number)) : (int?)null;
+        public int ExpectedCheckDigit => CalculateExpectedCheckDigit(CalculateModulo(number));
 
         /// <summary>
         /// Get modulo from digits:

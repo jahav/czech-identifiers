@@ -58,20 +58,6 @@ namespace Identifiers.Czech.Tests
             Assert.Equal(checkDigit, idNumber.CheckDigit);
         }
 
-        [Fact]
-        public void StandardFormConstructorHasStandardFrom()
-        {
-            var idNumber = new IdentificationNumber(0, 0, string.Empty);
-            Assert.True(idNumber.HasStandardFormat);
-        }
-
-        [Fact]
-        public void StandardFormConstructorHasNonNullExpectedCheckDigit()
-        {
-            var idNumber = new IdentificationNumber(0, 0, string.Empty);
-            Assert.True(idNumber.HasStandardFormat);
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("")]
