@@ -14,7 +14,7 @@ namespace Identifiers.Czech
     /// </ul>
     /// </summary>
     /// <see cref="http://www.mvcr.cz/clanek/overovani-rodneho-cisla-331794.aspx"/>
-    public class BirthNumber : IIdentifier, IFormattable
+    public class BirthNumber : IIdentifier
     {
         private const int datePartLowerLimit = 0;
         private const int datePartUpperLimit = 99;
@@ -36,12 +36,6 @@ namespace Identifiers.Czech
         /// <see cref="https://www.zakonyprolidi.cz/cs/2000-133/">Law number. 133/2000 § 13 (5)</see>
         /// </summary>
         internal const int ExhaustMonthShift = 20;
-
-        /// <summary>
-        /// Every birth number after 1.1.1954 has a check digit, so it is 10 digits.
-        /// </summary>
-        /// <remarks><c>\d</c> character class includes other digits from other character set, so it is not used.</remarks>
-        private readonly static Regex standardForm = new Regex("^[0-9]{9,10}$");
 
         private readonly int yearPart;
         private readonly int monthPart;
@@ -231,7 +225,22 @@ namespace Identifiers.Czech
         /// <returns>The formatted birth number.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            throw new NotImplementedException();
+            if (format == null)
+            {
+                format = "S";
+            }
+
+            switch (format)
+            {
+                case "N":
+                case "n":
+                    return string.Format("{0:00}{1:00}{2:00}{3:000}{4}", yearPart, monthPart, dayPart, sequence, checkDigit);
+                case "S":
+                case "s":
+                    return string.Format("{0:00}{1:00}{2:00}/{3:000}{4}", yearPart, monthPart, dayPart, sequence, checkDigit);
+                default:
+                    throw new ArgumentException($"Format value {format} is not valid.", nameof(format));
+            }
         }
     }
 }
