@@ -37,11 +37,11 @@ namespace Identifiers.Czech
         /// </summary>
         internal const int ExhaustMonthShift = 20;
 
-        private readonly int yearPart;
-        private readonly int monthPart;
-        private readonly int dayPart;
-        private readonly int sequence;
-        private readonly int? checkDigit;
+        internal readonly int yearPart;
+        internal readonly int monthPart;
+        internal readonly int dayPart;
+        internal readonly int sequence;
+        internal readonly int? checkDigit;
 
         /// <summary>
         /// Create a new birth number in standard form.

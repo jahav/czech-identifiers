@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Identifiers.Czech
 {
+    [Obsolete("To be replaced by AccountNumberPattern")]
     public class AccountNumberParser : IIdentifierParser<string, AccountNumber>
     {
         /// <summary>

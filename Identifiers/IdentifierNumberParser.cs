@@ -8,6 +8,7 @@ namespace Identifiers.Czech
     /// <summary>
     /// A parser for standard format of the 
     /// </summary>
+    [Obsolete("To be replaced by IdentifierNumberPattern")]
     public class IdentifierNumberParser : IIdentifierParser<string, IdentificationNumber>
     {
         /// <summary>
