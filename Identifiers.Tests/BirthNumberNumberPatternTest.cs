@@ -10,19 +10,19 @@ namespace Identifiers.Czech.Tests
         [Fact]
         public void PatternAcceptsBirthNumbersBefore1954()
         {
-            pattern.Parse("010203004").VerifyBirthNumber(1, 2, 3, 4, null);
+            pattern.Parse("010203004").AssertBirthNumber(1, 2, 3, 4, null);
         }
 
         [Fact]
         public void PatternAcceptsBirthNumbersAfter1954()
         {
-            pattern.Parse("010203004").VerifyBirthNumber(1, 2, 3, 4, null);
+            pattern.Parse("010203004").AssertBirthNumber(1, 2, 3, 4, null);
         }
 
         [Fact]
         public void PatternDoesntAcceptStandardPattern()
         {
-            pattern.Parse("010203/004").VerifyBirthNumberError<FormatException>();
+            pattern.Parse("010203/004").AssertBirthNumberError<FormatException>();
         }
 
         [Theory]
@@ -32,7 +32,7 @@ namespace Identifiers.Czech.Tests
         [InlineData("00000")]
         public void PatternDoesntAcceptText(string text)
         {
-            pattern.Parse(text).VerifyBirthNumberError<FormatException>();
+            pattern.Parse(text).AssertBirthNumberError<FormatException>();
         }
 
     }

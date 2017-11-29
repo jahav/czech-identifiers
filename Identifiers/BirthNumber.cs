@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Identifiers.Tests")]
 namespace Identifiers.Czech
 {
     /// <summary>
@@ -37,12 +37,6 @@ namespace Identifiers.Czech
         /// </summary>
         internal const int ExhaustMonthShift = 20;
 
-        internal readonly int yearPart;
-        internal readonly int monthPart;
-        internal readonly int dayPart;
-        internal readonly int sequence;
-        internal readonly int? checkDigit;
-
         /// <summary>
         /// Create a new birth number in standard form.
         /// </summary>
@@ -78,11 +72,11 @@ namespace Identifiers.Czech
                 throw new ArgumentOutOfRangeException(nameof(checkDigit), $"Check digit of birth number can either be empty or from {checkDigitLowerLimit} to {checkDigitUpperLimit}, but argument was {checkDigit}.");
             }
 
-            this.yearPart = yearPart;
-            this.monthPart = monthPart;
-            this.dayPart = dayPart;
-            this.sequence = sequence;
-            this.checkDigit = checkDigit;
+            YearPart = yearPart;
+            MonthPart = monthPart;
+            DayPart = dayPart;
+            Sequence = sequence;
+            CheckDigit = checkDigit;
         }
 
         /// <summary>
@@ -97,7 +91,7 @@ namespace Identifiers.Czech
                 {
                     if (IsAfter1954)
                     {
-                        return CalculateCheckDigit() == checkDigit;
+                        return CalculateCheckDigit() == CheckDigit;
                     }
 
                     return true;
@@ -121,26 +115,32 @@ namespace Identifiers.Czech
         /// <summary>
         /// Return a day of birth. Is the birth number is invalid, day might be invalid too.
         /// </summary>
-        public int Day => dayPart;
+        public int Day => DayPart;
 
         /// <summary>
         /// Get expected check digit, if the birth number is after year 1954.
         /// </summary>
         public int? ExpectedCheckDigit => IsAfter1954 ? CalculateCheckDigit() : (int?)null;
 
-        private bool IsAfter1954 => !(checkDigit is null);
+        internal int YearPart { get; }
+        internal int MonthPart { get; }
+        internal int DayPart { get; }
+        internal int Sequence { get; }
+        internal int? CheckDigit { get; }
+
+        private bool IsAfter1954 => !(CheckDigit is null);
 
         private bool IsDateValid
         {
             get
             {
                 var month = CalculateMonth();
-                if (month < 1 || month > 12 || dayPart < 1)
+                if (month < 1 || month > 12 || DayPart < 1)
                 {
                     return false;
                 }
 
-                if (dayPart > DateTime.DaysInMonth(CalculateYear(), month))
+                if (DayPart > DateTime.DaysInMonth(CalculateYear(), month))
                 {
                     return false;
                 }
@@ -151,7 +151,7 @@ namespace Identifiers.Czech
 
         public int CalculateYear()
         {
-            var yearInCentury = yearPart;
+            var yearInCentury = YearPart;
             int year = yearInCentury;
             if (IsAfter1954)
             {
@@ -181,8 +181,8 @@ namespace Identifiers.Czech
 
         private int CalculateMonth()
         {
-            var month = monthPart;
-            var isWomen = monthPart > WomanMonthShift;
+            var month = MonthPart;
+            var isWomen = MonthPart > WomanMonthShift;
             if (isWomen)
             {
                 month -= WomanMonthShift;
@@ -200,7 +200,7 @@ namespace Identifiers.Czech
 
         private int CalculateCheckDigit()
         {
-            var number = ((yearPart * 1_00 + monthPart) * 1_00 + dayPart) * 1_000 + sequence;
+            var number = ((YearPart * 1_00 + MonthPart) * 1_00 + DayPart) * 1_000 + Sequence;
             var modulo = number % 11;
             return modulo == 10 ? 0 : modulo;
         }
@@ -227,10 +227,10 @@ namespace Identifiers.Czech
             {
                 case "N":
                 case "n":
-                    return string.Format("{0:00}{1:00}{2:00}{3:000}{4}", yearPart, monthPart, dayPart, sequence, checkDigit);
+                    return string.Format("{0:00}{1:00}{2:00}{3:000}{4}", YearPart, MonthPart, DayPart, Sequence, CheckDigit);
                 case "S":
                 case "s":
-                    return string.Format("{0:00}{1:00}{2:00}/{3:000}{4}", yearPart, monthPart, dayPart, sequence, checkDigit);
+                    return string.Format("{0:00}{1:00}{2:00}/{3:000}{4}", YearPart, MonthPart, DayPart, Sequence, CheckDigit);
                 default:
                     throw new ArgumentException($"Format value {format} is not valid.", nameof(format));
             }

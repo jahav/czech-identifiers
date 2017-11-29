@@ -11,17 +11,6 @@ namespace Identifiers.Czech
     /// </summary>
     public sealed class BirthNumberPattern : IPattern<BirthNumber>
     {
-        private const int yearDigit0 = 0;
-        private const int yearDigit1 = 1;
-        private const int monthDigit0 = 2;
-        private const int monthDigit1 = 3;
-        private const int dayDigit0 = 4;
-        private const int dayDigit1 = 5;
-        private const int sequenceDigit0 = 6;
-        private const int sequenceDigit1 = 7;
-        private const int sequenceDigit2 = 8;
-        private const int checkDigit = 9;
-
         private readonly Regex regex;
         private readonly string format;
 
@@ -73,7 +62,7 @@ namespace Identifiers.Czech
 
         public string Format(BirthNumber value)
         {
-            return string.Format(CultureInfo.InvariantCulture, format, value.yearPart, value.monthPart, value.dayPart, value.sequence, value.checkDigit);
+            return string.Format(CultureInfo.InvariantCulture, format, value.YearPart, value.MonthPart, value.DayPart, value.Sequence, value.CheckDigit);
         }
 
         public ParseResult<BirthNumber> Parse(string text)
@@ -89,27 +78,14 @@ namespace Identifiers.Czech
                 return ParseResult<BirthNumber>.ForException(() => new FormatException($"Unable to parse '{text}'."));
             }
 
-            var yearPart = ConvertGroupToNumber(match.Groups[1]);
-            var monthPart = ConvertGroupToNumber(match.Groups[2]);
-            var dayPart = ConvertGroupToNumber(match.Groups[3]);
-            var sequence = ConvertGroupToNumber(match.Groups[4]);
-            var checkDigitPart = match.Groups[5].Success ? ConvertGroupToNumber(match.Groups[5]) : (int?)null;
+            var yearPart = match.Groups[1].ConvertToNumber();
+            var monthPart = match.Groups[2].ConvertToNumber();
+            var dayPart = match.Groups[3].ConvertToNumber();
+            var sequence = match.Groups[4].ConvertToNumber();
+            var checkDigitPart = match.Groups[5].Success ? match.Groups[5].ConvertToNumber() : (int?)null;
 
             var birthNumber = new BirthNumber(yearPart, monthPart, dayPart, sequence, checkDigitPart);
             return ParseResult<BirthNumber>.ForValue(birthNumber);
-        }
-
-        private int ConvertGroupToNumber(Group group)
-        {
-            var text = group.Captures[0].Value;
-            var number = 0;
-            for (int i = 0; i< text.Length; i++)
-            {
-                var digit = text[i] - '0';
-                number = number * 10 + digit;
-            }
-
-            return number;
         }
     }
 }
