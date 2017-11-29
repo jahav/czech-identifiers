@@ -22,4 +22,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NodaTime" Version="2.2.3" />
+  </ItemGroup>
+
 </Project>

@@ -17,7 +17,7 @@ namespace Identifiers.Czech
     /// </ul>
     /// </summary>
     /// <see cref="http://www.mvcr.cz/clanek/overovani-rodneho-cisla-331794.aspx"/>
-    public class BirthNumber : IIdentifier
+    public class BirthNumber : IIdentifier, IFormattable
     {
         private const int datePartLowerLimit = 0;
         private const int datePartUpperLimit = 99;
@@ -229,6 +229,17 @@ namespace Identifiers.Czech
         private bool IsDatePartOutOfRange(int datePart)
         {
             return datePart < datePartLowerLimit || datePart > datePartUpperLimit;
+        }
+
+        /// <summary>
+        /// Get formatted birth number.
+        /// </summary>
+        /// <param name="format">Either null for a birth number with a slash between datepart and sequence or <c>N</c>/<c>n</c> for a single 9-10 digit number, including leading zeros.</param>
+        /// <param name="formatProvider">Not used.</param>
+        /// <returns>The formatted birth number.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            throw new NotImplementedException();
         }
     }
 }
