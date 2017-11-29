@@ -11,7 +11,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(99, 99, 99)]
         public void StandardFormConstructor_Accepts0To99InDateParts(int yearPart, int monthPart, int dayPart)
         {
-            new BirthNumber(yearPart, monthPart, dayPart, 0, null, string.Empty);
+            new BirthNumber(yearPart, monthPart, dayPart, 0, null);
         }
 
         [Theory]
@@ -23,7 +23,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(0, 0, 100)]
         public void StandardFormConstructor_OnNumbersOutside0To99InDatePart_ThrowsOutOfRangeException(int yearPart, int monthPart, int dayPart)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(yearPart, monthPart, dayPart, 0, null, string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(yearPart, monthPart, dayPart, 0, null));
         }
 
         [Theory]
@@ -31,7 +31,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(99)]
         public void StandardFormConstructor_Accepts0To999InSequence(int sequence)
         {
-            new BirthNumber(0, 0, 0, sequence, null, string.Empty);
+            new BirthNumber(0, 0, 0, sequence, null);
         }
 
         [Theory]
@@ -39,7 +39,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(1000)]
         public void StandardFormConstructor_OnNumbersOutside0To999InSequence_ThrowsOutOfRangeException(int sequence)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(0, 0, 0, sequence, null, string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(0, 0, 0, sequence, null));
         }
 
         [Theory]
@@ -48,7 +48,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(9)]
         public void StandardFormConstructor_Accepts0To9OrNullInCheckDigit(int? checkDigit)
         {
-            new BirthNumber(0, 0, 0, 0, checkDigit, string.Empty);
+            new BirthNumber(0, 0, 0, 0, checkDigit);
         }
 
         [Theory]
@@ -56,17 +56,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(10)]
         public void StandardFormConstructor_OnNumbersOutside0To9InCheckDigit_ThrowsOutOfRangeException(int checkDigit)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(0, 0, 0, 0, checkDigit, string.Empty));
-        }
-
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData("846517/0014")]
-        public void StandardFormConstructor_AcceptsAnythingInInput(string input)
-        {
-            var birthNumber = new BirthNumber(0, 0, 0, 0, 0, input);
-            Assert.Equal(input, birthNumber.Input);
+            Assert.Throws<ArgumentOutOfRangeException>(() => new BirthNumber(0, 0, 0, 0, checkDigit));
         }
 
         [Theory]
@@ -78,7 +68,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(62, 12)]
         public void MonthPartCanBeShiftedBy50ForWomen(int monthPart, int expectedMonth)
         {
-            var birthNumber = new BirthNumber(0, monthPart, 1, 0, 0, null);
+            var birthNumber = new BirthNumber(0, monthPart, 1, 0, 0);
             Assert.Equal(expectedMonth, birthNumber.Month);
         }
 
@@ -91,7 +81,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(82, 12)]
         public void MonthPartCanBeShiftedBy20WhenSequenceIsExhaustedAfterYear2003(int monthPart, int expectedMonth)
         {
-            var birthNumber = new BirthNumber(04, monthPart, 1, 0, 0, null);
+            var birthNumber = new BirthNumber(04, monthPart, 1, 0, 0);
             Assert.Equal(expectedMonth, birthNumber.Month);
         }
 
@@ -100,7 +90,7 @@ namespace Identifiers.Czech.Tests
         [MemberData(nameof(GetInvalidMonthPartsBefore2004))]
         public void BirthNumberWithInvalidMonthPartWillBeOutOf1To12Range(int year, int monthPart)
         {
-            var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0, null);
+            var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0);
             Assert.NotInRange(birthNumber.Month, 1, 12);
         }
 
@@ -109,7 +99,7 @@ namespace Identifiers.Czech.Tests
         [MemberData(nameof(GetValidMonthPartsBefore2004))]
         public void BirthNumberWithValidMonthPartWillBeIn1To12Range(int year, int monthPart)
         {
-            var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0, null);
+            var birthNumber = new BirthNumber(year, monthPart, 1, 0, 0);
             Assert.InRange(birthNumber.Month, 1, 12);
         }
 
@@ -117,7 +107,7 @@ namespace Identifiers.Czech.Tests
         [MemberData(nameof(GetAllYears))]
         public void BirthNumberCorrectlyDeterminesYear(int yearPart, bool hasCheckDigit, int expectedYear)
         {
-            var birthNumber = new BirthNumber(yearPart, 1, 1, 1, hasCheckDigit ? 1 : (int?)null, string.Empty);
+            var birthNumber = new BirthNumber(yearPart, 1, 1, 1, hasCheckDigit ? 1 : (int?)null);
             Assert.Equal(expectedYear, birthNumber.Year);
         }
 
@@ -135,13 +125,13 @@ namespace Identifiers.Czech.Tests
         [InlineData(78, 01, 23, 354, 0)]
         public void ExpectedCheckDigitIsCalculatedAsNumberWithoutCheckDigitModulo11(int yearPart, int monthPart, int dayPart, int sequence, int expectedCheckDigit)
         {
-            Assert.Equal(expectedCheckDigit, new BirthNumber(yearPart, monthPart, dayPart, sequence, 5, string.Empty).ExpectedCheckDigit);
+            Assert.Equal(expectedCheckDigit, new BirthNumber(yearPart, monthPart, dayPart, sequence, 5).ExpectedCheckDigit);
         }
 
         [Fact]
         public void ExpectedCheckDigit_ForBirthNumbersBefore1954_IsNull()
         {
-            Assert.Null(new BirthNumber(50, 1, 1, 1, null, string.Empty).ExpectedCheckDigit);
+            Assert.Null(new BirthNumber(50, 1, 1, 1, null).ExpectedCheckDigit);
         }
 
         [Theory]
@@ -150,7 +140,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(99)]
         public void Day_ForStandardFormConstructor_IsEqualToDayPart(int day)
         {
-            Assert.Equal(day, new BirthNumber(50, 1, day, 1, null, string.Empty).Day);
+            Assert.Equal(day, new BirthNumber(50, 1, day, 1, null).Day);
         }
 
         [Theory]
@@ -162,7 +152,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(53, 05, 99, false)]
         public void DatePartMustBeValidDateForValidNumber(int yearPart, int monthPart, int dayPart, bool shouldBeValid)
         {
-            Assert.Equal(shouldBeValid, new BirthNumber(yearPart, monthPart, dayPart, 1, null, string.Empty).IsValid);
+            Assert.Equal(shouldBeValid, new BirthNumber(yearPart, monthPart, dayPart, 1, null).IsValid);
         }
 
         [Theory]
@@ -177,7 +167,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(53, 0, 2053)]
         public void YearIsAccuratelyDetermined(int yearPart, int? checkDigit, int expectedYear)
         {
-            Assert.Equal(expectedYear, new BirthNumber(yearPart, 1, 1, 0, checkDigit, string.Empty).Year);
+            Assert.Equal(expectedYear, new BirthNumber(yearPart, 1, 1, 0, checkDigit).Year);
         }
 
         [Theory]
@@ -185,7 +175,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(70)]
         public void ExpectedCheckDigit_Before1954_IsNull(int yearPart)
         {
-            Assert.Null(new BirthNumber(yearPart, 1, 1, 0, null, string.Empty).ExpectedCheckDigit);
+            Assert.Null(new BirthNumber(yearPart, 1, 1, 0, null).ExpectedCheckDigit);
         }
 
         [Theory]
@@ -197,7 +187,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(75, 52, 31, 851, 0, false)]
         public void BirthNumbersAfter1954_IsValid_OnlyIfItIsHasStandardFormAndValidDatePartAndCheckDigit(int yearPart, int monthPart, int dayPart, int sequence, int checkDigit, bool shouldBeValid)
         {
-            var birthNumber = new BirthNumber(yearPart, monthPart, dayPart, sequence, checkDigit, string.Empty);
+            var birthNumber = new BirthNumber(yearPart, monthPart, dayPart, sequence, checkDigit);
             Assert.Equal(shouldBeValid, birthNumber.IsValid);
         }
 
@@ -210,7 +200,7 @@ namespace Identifiers.Czech.Tests
         [InlineData(75, 02, 30, false)]
         public void BirthNumbersBefore1954_IsValid_OnlyIfItIsHasStandardFormAndValidDatePart(int yearPart, int monthPart, int dayPart, bool shouldBeValid)
         {
-            var birthNumber = new BirthNumber(yearPart, monthPart, dayPart, 0, null, string.Empty);
+            var birthNumber = new BirthNumber(yearPart, monthPart, dayPart, 0, null);
             Assert.Equal(shouldBeValid, birthNumber.IsValid);
         }
 

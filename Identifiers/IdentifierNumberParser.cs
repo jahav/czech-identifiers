@@ -42,7 +42,7 @@ namespace Identifiers.Czech
             }
 
             var checkDigit = input[input.Length - 1] - '0';
-            return new IdentificationNumber(number, checkDigit, input);
+            return new IdentificationNumber(number, checkDigit);
         }
     }
 }

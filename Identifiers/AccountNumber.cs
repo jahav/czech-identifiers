@@ -1,7 +1,4 @@
-﻿using System.Globalization;
-using System.Text.RegularExpressions;
-
-namespace Identifiers.Czech
+﻿namespace Identifiers.Czech
 {
     /// <summary>
     /// An account number used in Czech Republic, it consists from three parts:
@@ -39,16 +36,10 @@ namespace Identifiers.Czech
                 throw new System.ArgumentNullException(nameof(bankCode));
             }
 
-            Input = input;
             this.prefix = prefix;
             this.number = number;
             this.bankCode = bankCode;
         }
-
-        /// <summary>
-        /// The original input from which was the account number created.
-        /// </summary>
-        public string Input { get; }
 
         /// <summary>
         /// Check if the account number is valid.

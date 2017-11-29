@@ -74,7 +74,7 @@ namespace Identifiers.Czech
             var dayPart = digits[dayDigit0] * 10 + digits[dayDigit1];
             var sequence = digits[sequenceDigit0] * 100 + digits[sequenceDigit1] * 10 + digits[sequenceDigit2];
 
-            return new BirthNumber(yearPart, monthPart, dayPart, sequence, (digits.Length > checkDigit) ? digits[checkDigit] : (int?)null, input);
+            return new BirthNumber(yearPart, monthPart, dayPart, sequence, (digits.Length > checkDigit) ? digits[checkDigit] : (int?)null);
         }
     }
 }

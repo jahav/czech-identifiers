@@ -51,8 +51,7 @@ namespace Identifiers.Czech
         /// <param name="dayPart"></param>
         /// <param name="sequence"></param>
         /// <param name="checkDigit"></param>
-        /// <param name="input"></param>
-        public BirthNumber(int yearPart, int monthPart, int dayPart, int sequence, int? checkDigit, string input)
+        public BirthNumber(int yearPart, int monthPart, int dayPart, int sequence, int? checkDigit)
         {
             if (IsDatePartOutOfRange(yearPart))
             {
@@ -84,13 +83,7 @@ namespace Identifiers.Czech
             this.dayPart = dayPart;
             this.sequence = sequence;
             this.checkDigit = checkDigit;
-            Input = input;
         }
-
-        /// <summary>
-        /// Input used to create the identifier.
-        /// </summary>
-        public string Input { get; }
 
         /// <summary>
         /// Is the birth number valid? The birth number is valid, if its date is valid and 

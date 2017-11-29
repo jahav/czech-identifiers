@@ -33,8 +33,8 @@ namespace Identifiers.Czech
         /// </summary>
         /// <param name="number">First seven digits of IČO, a number from <see cref="numberLowerLimit"/> to <see cref="upperLowerLimit"/>.</param>
         /// <param name="checkDigit">Check digit, doesn't have to be correct for the <paramref name="number"/>, but it must be from <see cref="checkDigitLowerLimit"/> to <see cref="checkDigitUpperLimit"/>.</param>
-        /// <param name="input">The identifier number <paramref name="number"/> and <paramref name="checkDigit"/> were parsed from.</param>
-        public IdentificationNumber(long number, int checkDigit, string input)
+        /// 
+        public IdentificationNumber(long number, int checkDigit)
         {
             if (number < numberLowerLimit || number > numberUpperLimit)
             {
@@ -46,15 +46,9 @@ namespace Identifiers.Czech
                 throw new ArgumentOutOfRangeException(nameof(checkDigit), $"Argument must be from {checkDigitLowerLimit} to {checkDigitUpperLimit}, but was {checkDigit}.");
             }
 
-            Input = input;
             this.number = number;
             this.checkDigit = checkDigit;
         }
-
-        /// <summary>
-        /// Input value the identifier was created from, warts and all.
-        /// </summary>
-        public string Input { get; }
 
         /// <summary>
         /// Is the identifier valid? I.e. its check digit is equal to expected check digit?
