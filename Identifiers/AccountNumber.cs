@@ -87,12 +87,10 @@ namespace Identifiers.Czech
         /// </summary>
         /// <param name="part">Tested part</param>
         /// <returns>Number of digits in the <paramref name="part"/> that are not zero.</returns>
-        private int CalculateNonDigitCount(long? part)
+        private int CalculateNonDigitCount(long part)
         {
-            if (part == null) return 0;
-
             int count = 0;
-            var value = part.Value;
+            var value = part;
             while (value > 0)
             {
                 var digit = value % 10;
