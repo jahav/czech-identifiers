@@ -9,26 +9,37 @@ There are three basic classes so far:
 * `IdentificationNumber` - IČO - identifier of legal persons.
 * `AccountNumber` - Czech bank account number
 
-```
-    ParseResult<AccountNumber> parseResult = AccountNumberPattern.StandardPattern.Parse("00012-2548/0300");
-    if (!parseResult.Success)
-    {
-        Console.WriteLine("Account number couldn't be parsed.");
-        return;
-    }
+All of these classes follow this use pattern:
 
-    Console.WriteLine("Account was successfully parsed, but we don't know yet if it is valid or not.");
-
-    AccountNumber accountNumber = parseResult.Value;
-    if (accountNumber.IsValid)
-    {
-        Console.WriteLine("Account number is valid.");
-    }
-    else
-    {
-        Console.WriteLine("Account number is invalid.");
-    }
 ```
+// First choose a pattern from [identifier]Pattern class. Generally, there is always a standard pattern, possibly others.
+ParseResult<BirthNumber> parseResult = BirthNumberPattern.StandardPattern.Parse("780123/3540");
+if (!parseResult.Success)
+{
+    Console.WriteLine("Birth number couldn't be parsed.");
+    return;
+}
+
+Console.WriteLine("Birth number was successfully parsed, but we don't know yet if it is valid or not.");
+
+// Get a parsed value
+BirthNumber birthNumber = parseResult.Value;
+
+// check if it is valid, it might be or it might not.
+if (birthNumber.IsValid)
+{
+    Console.WriteLine("Birth number is is valid for a {0} born at {1:d}.", birthNumber.BelongsToWoman ? "woman" : "man", birthNumber.DateOfBirth);
+}
+else
+{
+    Console.WriteLine("Birth number is invalid, expected check digit to be {0}, but was {1}.", birthNumber.ExpectedCheckDigit, birthNumber.CheckDigit);
+}
+```
+
+This code will output 
+
+> Birth number was successfully parsed, but we don't know yet if it is valid or not.
+> Birth number is is valid for a man born at 23.1.1978.
 
 ## Design principles
 Basically if you ever worked in a bank, you know you often get a garbage as an input. You get an IBAN where you should get BIC, you get wrong invalid data all the time.

@@ -102,6 +102,11 @@ namespace Identifiers.Czech
         }
 
         /// <summary>
+        /// Does the birth number belong to a woman?
+        /// </summary>
+        public bool BelongsToWoman => MonthPart > WomanMonthShift;
+
+        /// <summary>
         /// Return a month of birth. If the month part of birth 
         /// number is invalid, the returned month will be out of 1-12 range.
         /// </summary>
