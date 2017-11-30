@@ -90,22 +90,5 @@ namespace Identifiers.Czech.Tests
             var accountNumber = new AccountNumber(0, 0, "0100");
             Assert.Equal(accountNumber.ToString("S", null), pattern.Format(accountNumber));
         }
-
-        [Fact]
-        public void ApendBuilderCheckThatBuilderIsNotNull()
-        {
-            var accountNumber = new AccountNumber(0, 0, "0100");
-            Assert.Throws<ArgumentNullException>(() => pattern.AppendFormat(accountNumber, null));
-        }
-
-        [Fact]
-        public void ApendBuilderAppendsAccountNumberInStandardPattern()
-        {
-            var accountNumber = new AccountNumber(0, 0, "0100");
-            var standardFormat = accountNumber.ToString("S", null);
-            var builder = new StringBuilder("Hello, my account is ");
-            builder = pattern.AppendFormat(accountNumber, builder);
-            Assert.Equal("Hello, my account is 00/0100", builder.ToString());
-        }
     }
 }

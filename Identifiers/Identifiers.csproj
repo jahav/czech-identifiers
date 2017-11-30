@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.0</TargetFramework>
     <PackageId>Identifiers.Czech</PackageId>
     <PackageVersion>1.0.0-beta</PackageVersion>
     <Authors>jahav</Authors>
@@ -21,9 +21,5 @@
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NodaTime" Version="2.1.0" />
-  </ItemGroup>
 
 </Project>

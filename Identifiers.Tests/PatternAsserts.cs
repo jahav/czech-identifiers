@@ -1,5 +1,4 @@
-﻿using NodaTime.Text;
-using Xunit;
+﻿using Xunit;
 
 namespace Identifiers.Czech.Tests
 {

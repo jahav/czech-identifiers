@@ -1,8 +1,5 @@
-﻿using System.Text;
-using NodaTime.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System;
-using System.Globalization;
 
 namespace Identifiers.Czech
 {
@@ -33,7 +30,7 @@ namespace Identifiers.Czech
             var match = standardForm.Match(text);
             if (!match.Success)
             {
-                return ParseResult<IdentificationNumber>.ForException(() => throw new FormatException($"Unable to parse identifier number '{text}'. Expecting a text of 8 digits."));
+                return ParseResult<IdentificationNumber>.ForException(new FormatException($"Unable to parse identifier number '{text}'. Expecting a text of 8 digits."));
             }
 
             var number = match.Groups[1].ConvertToLong();
@@ -51,23 +48,6 @@ namespace Identifiers.Czech
         public string Format(IdentificationNumber value)
         {
             return value.ToString("S", null);
-        }
-
-        /// <summary>
-        /// Format the identification number in <see cref="IdentificationNumberPattern.StandardPattern"/> and append it to the <paramref name="builder"/>.
-        /// </summary>
-        /// <param name="value">Identification number.</param>
-        /// <param name="builder">Build to append formatted identification number.</param>
-        /// <returns>Builder with appended formatted <see cref="value">identification number</see>.</returns>
-        /// <exception cref="ArgumentNullException">Builder must not be null.</exception>
-        public StringBuilder AppendFormat(IdentificationNumber value, StringBuilder builder)
-        {
-            if (builder == null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
-
-            return builder.Append(Format(value));
         }
     }
 }

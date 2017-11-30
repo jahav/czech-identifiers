@@ -1,8 +1,5 @@
-﻿using NodaTime.Text;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Identifiers.Czech
@@ -38,7 +35,7 @@ namespace Identifiers.Czech
             Match match = standardForm.Match(text);
             if (!match.Success)
             {
-                return ParseResult<AccountNumber>.ForException(() => new FormatException($"The account doesn't have expected format, it should be prefix-number/bank_code, but it {text}."));
+                return ParseResult<AccountNumber>.ForException(new FormatException($"The account doesn't have expected format, it should be prefix-number/bank_code, but it {text}."));
             }
 
             long prefix = 0;
@@ -62,23 +59,6 @@ namespace Identifiers.Czech
         public string Format(AccountNumber value)
         {
             return value.ToString(format, null);
-        }
-
-        /// <summary>
-        /// Format the identification number in standard pattern and append it to the <paramref name="builder"/>.
-        /// </summary>
-        /// <param name="value">Account number.</param>
-        /// <param name="builder">Build to append formatted account number.</param>
-        /// <returns>Builder with appended formatted <see cref="value">account number</see> in a <see cref="AccountNumberPattern.StandardPattern"/>.</returns>
-        /// <exception cref="ArgumentNullException">Builder must not be null.</exception>
-        public StringBuilder AppendFormat(AccountNumber value, StringBuilder builder)
-        {
-            if (builder == null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
-
-            return builder.Append(Format(value));
         }
     }
 }

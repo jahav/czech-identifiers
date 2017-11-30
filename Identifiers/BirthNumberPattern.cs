@@ -1,6 +1,4 @@
-﻿using NodaTime.Text;
-using System;
-using System.Text;
+﻿using System;
 using System.Text.RegularExpressions;
 
 namespace Identifiers.Czech
@@ -54,11 +52,6 @@ namespace Identifiers.Czech
             this.format = format;
         }
 
-        public StringBuilder AppendFormat(BirthNumber value, StringBuilder builder)
-        {
-            return builder.Append(Format(value));
-        }
-
         public string Format(BirthNumber value)
         {
             return value.ToString(format, null);
@@ -74,7 +67,7 @@ namespace Identifiers.Czech
             var match = regex.Match(text);
             if (!match.Success)
             {
-                return ParseResult<BirthNumber>.ForException(() => new FormatException($"Unable to parse '{text}'."));
+                return ParseResult<BirthNumber>.ForException(new FormatException($"Unable to parse '{text}'."));
             }
 
             var yearPart = match.Groups[1].ConvertToNumber();

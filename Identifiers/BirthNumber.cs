@@ -1,5 +1,4 @@
-﻿using NodaTime;
-using System;
+﻿using System;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Identifiers.Tests")]
 namespace Identifiers.Czech
@@ -111,7 +110,7 @@ namespace Identifiers.Czech
         /// <summary>
         /// Get date of birth. If the date of birth is not valid, return null.
         /// </summary>
-        public LocalDate? DateOfBirth
+        public DateTime? DateOfBirth
         {
             get
             {
@@ -134,7 +133,7 @@ namespace Identifiers.Czech
 
         private bool IsDateValid => CalculateDateOfBirth() != null;
 
-        private LocalDate? CalculateDateOfBirth()
+        private DateTime? CalculateDateOfBirth()
         {
             var month = CalculateMonth();
             if (month < 1 || month > 12 || DayPart < 1)
@@ -148,10 +147,10 @@ namespace Identifiers.Czech
                 return null;
             }
 
-            return new LocalDate(year, month, DayPart);
+            return new DateTime(year, month, DayPart);
         }
 
-        public int CalculateYear()
+        private int CalculateYear()
         {
             var yearInCentury = YearPart;
             int year = yearInCentury;

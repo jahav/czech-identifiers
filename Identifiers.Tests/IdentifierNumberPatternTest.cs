@@ -56,22 +56,5 @@ namespace Identifiers.Czech.Tests
             var identificationNumber = new IdentificationNumber(123, 5);
             Assert.Equal(identificationNumber.ToString("S", null), pattern.Format(identificationNumber));
         }
-
-        [Fact]
-        public void ApendBuilderCheckThatBuilderIsNotNull()
-        {
-            var identificationNumber = new IdentificationNumber(0, 0);
-            Assert.Throws<ArgumentNullException>(() => pattern.AppendFormat(identificationNumber, null));
-        }
-
-        [Fact]
-        public void ApendBuilderAppendsIdentificationNumberInStandardPattern()
-        {
-            var identificationNumber = new IdentificationNumber(123, 0);
-            var standardFormat = identificationNumber.ToString("S", null);
-            var builder = new StringBuilder("Hello, my ICO is ");
-            builder = pattern.AppendFormat(identificationNumber, builder);
-            Assert.Equal("Hello, my ICO is 00001230", builder.ToString());
-        }
     }
 }
