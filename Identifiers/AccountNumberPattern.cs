@@ -65,7 +65,7 @@ namespace Identifiers.Czech
         }
 
         /// <summary>
-        /// Format the account number in standard pattern and append it to the <paramref name="builder"/>.
+        /// Format the identification number in standard pattern and append it to the <paramref name="builder"/>.
         /// </summary>
         /// <param name="value">Account number.</param>
         /// <param name="builder">Build to append formatted account number.</param>
@@ -78,7 +78,7 @@ namespace Identifiers.Czech
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            return builder.AppendFormat(Format(value));
+            return builder.Append(Format(value));
         }
     }
 }

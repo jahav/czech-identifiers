@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Identifiers.Czech
 {
@@ -11,7 +12,7 @@ namespace Identifiers.Czech
     /// Unfortunatelly, I was unable to find official definition, so I ended up with this: 
     /// <see cref="https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo"/>.
     /// </remarks>
-    public struct IdentificationNumber : IIdentifier
+    public struct IdentificationNumber : IIdentifier, IFormattable
     {
         private const long numberLowerLimit = 0;
         private const long numberUpperLimit = 9999999;
@@ -101,6 +102,27 @@ namespace Identifiers.Czech
                 default:
                     return 11 - modulo;
             }
+        }
+
+        /// <summary>
+        /// Format the identification number in a standard way, as 8 digit number, including leading zeros.
+        /// </summary>
+        /// <param name="format">Format, can be either <c>null</c> (default-standard) or <c>S</c>/<c>s</c> (standard).</param>
+        /// <param name="formatProvider">Not used.</param>
+        /// <returns>Formatted identification number.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (format == null)
+            {
+                format = "S";
+            }
+            switch (format) {
+                case "S":
+                case "s":
+                    return string.Format(CultureInfo.InvariantCulture, "{0:0000000}{1:0}", number, checkDigit);
+                default:
+                    throw new ArgumentException($"Unknown format {format}.", nameof(format));
+            }            
         }
     }
 }
