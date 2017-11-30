@@ -54,11 +54,23 @@ namespace Identifiers.Czech
             return ParseResult<AccountNumber>.ForValue(new AccountNumber(prefix, number, bankCode));
         }
 
+        /// <summary>
+        /// Format account number in a specified format.
+        /// </summary>
+        /// <param name="value">Account number to format.</param>
+        /// <returns>Formatted account number.</returns>
         public string Format(AccountNumber value)
         {
             return value.ToString(format, null);
         }
 
+        /// <summary>
+        /// Format the account number in standard pattern and append it to the <paramref name="builder"/>.
+        /// </summary>
+        /// <param name="value">Account number.</param>
+        /// <param name="builder">Build to append formatted account number.</param>
+        /// <returns>Builder with appended formatted <see cref="value">account number</see> in a <see cref="AccountNumberPattern.StandardPattern"/>.</returns>
+        /// <exception cref="ArgumentNullException">Builder must not be null.</exception>
         public StringBuilder AppendFormat(AccountNumber value, StringBuilder builder)
         {
             if (builder == null)
