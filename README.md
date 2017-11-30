@@ -32,7 +32,7 @@ if (birthNumber.IsValid)
 }
 else
 {
-    Console.WriteLine("Birth number is invalid, expected check digit to be {0}, but was {1}.", birthNumber.ExpectedCheckDigit, birthNumber.CheckDigit);
+    Console.WriteLine("Birth number is invalid, expected check digit to be {0}.", birthNumber.ExpectedCheckDigit);
 }
 ```
 
