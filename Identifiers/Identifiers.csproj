@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NodaTime" Version="2.2.3" />
+    <PackageReference Include="NodaTime" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
