@@ -157,7 +157,7 @@ namespace Identifiers.Czech
                 case "S":
                 case "s":
                     prefixFormat = prefix != 0 ? "{0}-" : "";
-                    remainderFormat = "{1}/{2}";
+                    remainderFormat = "{1:00}/{2}";
                     break;
                 case "F":
                 case "f":
