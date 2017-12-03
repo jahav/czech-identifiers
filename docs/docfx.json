@@ -3,8 +3,9 @@
     {
       "src": [
         {
+          "src": "..",
           "files": [
-            "../Identities/Identities.csproj"
+            "Identifiers/Identifiers.csproj"
           ],
           "exclude": [
             "**/obj/**",
@@ -13,7 +14,8 @@
           ]
         }
       ],
-      "dest": "api"
+      "dest": "api",
+      "force": true
     }
   ],
   "build": {
