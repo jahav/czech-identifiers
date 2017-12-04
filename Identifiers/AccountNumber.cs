@@ -4,19 +4,48 @@ using System.Globalization;
 namespace Identifiers.Czech
 {
     /// <summary>
-    /// An account number used in Czech Republic, it consists from three parts:
+    /// A bank account number used in Czech Republic, it consists from three parts:
     /// <ul>
     /// <li>Prefix (optional)</li>
     /// <li>Account number</li>
     /// <li>Bank code</li>
     /// </ul>
-    /// and generally between prefix and account number is a dash, while between account number and bank code is a slash.
+    /// The leading zeros are insignificant, so 00123 is same as 123.
+    /// <para>
     /// <example>
-    /// 19-123457/0710
+    /// <c>19-123457/0710</c> is a bank account number with a prefix 19, account number 123457 and a bank code 0710.
     /// </example>
+    /// </para>
+    /// <para>
+    /// <example>
+    /// <c>0025478/0710</c> is a bank account number with a prefix 0, account number 25478 and a bank code 0710.
+    /// </example>
+    /// </para>
+    /// The prefix and number should be visibly separated, but in practice everyone uses hypen. The number is 
+    /// and generally between prefix and account number is a dash, while between account number and bank code is a slash.
     /// </summary>
-    /// <see cref="https://www.cnb.cz/miranda2/export/sites/www.cnb.cz/cs/platebni_styk/pravni_predpisy/download/vyhl_169_2011.pdf">Decree 169/2011</see>
-    /// <see cref="https://www.cnb.cz/cs/platebni_styk/iban/iban_napoveda.html"/>
+    /// <remarks>
+    /// <para>
+    /// The structure of account number is defined by ČNB at [decree 169/2011](https://www.cnb.cz/miranda2/export/sites/www.cnb.cz/cs/platebni_styk/pravni_predpisy/download/vyhl_169_2011.pdf).
+    /// Each bank has a bank code, they are published by ČNB at [directory of payment system code](https://www.cnb.cz/en/payment_systems/accounts_bank_codes/index.html).
+    /// ČNB has also published a <a href="https://www.cnb.cz/en/payment_systems/iban/iban_help.html">calculator</a> to convert account number to IBAN, the precise algorithm can be find at [Article 6 of decree 169/2011](http://www.cnb.cz/miranda2/export/sites/www.cnb.cz/en/legislation/decrees/decree_169_2011.pdf).
+    /// </para>
+    /// <para>
+    /// The validity of the account number is checked by making sure that checksum of both prefix and number are fully divisible by 11.
+    /// The checksum is calculated as a weighted sum of digits and its weights.
+    /// The weights used for a calculation of a checksum are:
+    /// <pre>
+    /// |         |  A | B | C | D | E | F | G | H | I | J |
+    /// | ------- | -- | - | - | - | - | - | - | - | - | - |
+    /// | Digit   | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 |  
+    /// | weight  |  6 | 3 | 7 | 9 |10 | 5 | 8 | 4 | 2 | 1 |
+    /// </pre>
+    /// Where J is the rightest digit. You can find precise definition in decree 169/2011.
+    /// <example>
+    /// Number <c>7315789</c> has a checksum <c>7\*9 + 3\*10 + 1\*5 + 5\*8 + 7\*4 + 8\*2 +9\*1 = 191</c>. This number is not fully divisible by 11 (remainder is 4), so it would not be valid.
+    /// </example>
+    /// </para>
+    /// </remarks>
     public struct AccountNumber : IIdentifier, IFormattable
     {
         /// <summary>
@@ -31,7 +60,9 @@ namespace Identifiers.Czech
         /// <summary>
         /// Create a new instance of a <see cref="AccountNumber"/>.
         /// </summary>
-        /// <param name="accountNumber">A string of the czech account number. Can be invalid or even null.</param>
+        /// <param name="prefix">The prefix number of the account.</param>
+        /// <param name="number">The account number.</param>
+        /// <param name="bankCode">A 4 digit bank code of the account, must not be null.</param>
         public AccountNumber(long prefix, long number, string bankCode)
         {
             if (bankCode == null)
@@ -50,8 +81,8 @@ namespace Identifiers.Czech
         /// <remarks>
         /// The account number is valid, if it has
         /// <ul>
-        ///   <li>Prefix weighted checksum is divisiable by 11.</li>
-        ///   <li>Number weighted checksum is divisiable by 11.</li>
+        ///   <li>Prefix weighted checksum is divisible by 11.</li>
+        ///   <li>Number weighted checksum is divisible by 11.</li>
         ///   <li>Number has at least two non-zero digits.</li>
         /// </ul>
         /// </remarks>
@@ -131,11 +162,17 @@ namespace Identifiers.Czech
         /// <list type="bullet">
         ///     <item>
         ///         <term>S</term>
-        ///         <description>Standard format. If prefix is </description>
+        ///         <description>
+        ///         <see cref="AccountNumberPattern.StandardPattern">Standard format</see> (numbers are printed without leadin zeros). If prefix is 0, it is omitted and no hypen is printed.
+        ///         <example><c>25478/0710</c></example>
+        ///         </description>
         ///     </item>
         ///     <item>
         ///         <term>F</term>
-        ///         <description>Full format, both prefix and number will be it </description>
+        ///         <description>
+        ///         Full format, both prefix and number will have full number of digits, including leading zeros.
+        ///         <example><c>000000-0000025478/0710</c></example>
+        ///         </description>
         ///     </item>
         /// </list>
         /// </remarks>
