@@ -73,16 +73,25 @@
   
   <h1 id="Identifiers_Czech_AccountNumber" data-uid="Identifiers.Czech.AccountNumber" class="text-break">Struct AccountNumber
   </h1>
-  <div class="markdown level0 summary"><p>An account number used in Czech Republic, it consists from three parts:
+  <div class="markdown level0 summary"><p>A bank account number used in Czech Republic, it consists from three parts:
 <ul>
 <li>Prefix (optional)</li>
 <li>Account number</li>
 <li>Bank code</li>
 </ul>
-and generally between prefix and account number is a dash, while between account number and bank code is a slash.
+The leading zeros are insignificant, so 00123 is same as 123.
+<p>
 <example>
-19-123457/0710
-</example></p>
+<code>19-123457/0710</code> is a bank account number with a prefix 19, account number 123457 and a bank code 0710.
+</example>
+</p>
+<p>
+<example>
+<code>0025478/0710</code> is a bank account number with a prefix 0, account number 25478 and a bank code 0710.
+</example>
+</p>
+The prefix and number should be visibly separated, but in practice everyone uses hypen. The number is 
+and generally between prefix and account number is a dash, while between account number and bank code is a slash.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div classs="implements">
@@ -117,6 +126,28 @@ and generally between prefix and account number is a dash, while between account
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public struct AccountNumber : IIdentifier, IFormattable</code></pre>
   </div>
+  <h5 id="Identifiers_Czech_AccountNumber_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>
+The structure of account number is defined by ČNB at <a href="https://www.cnb.cz/miranda2/export/sites/www.cnb.cz/cs/platebni_styk/pravni_predpisy/download/vyhl_169_2011.pdf">decree 169/2011</a>.
+Each bank has a bank code, they are published by ČNB at <a href="https://www.cnb.cz/en/payment_systems/accounts_bank_codes/index.html">directory of payment system code</a>.
+ČNB has also published a <a href="https://www.cnb.cz/en/payment_systems/iban/iban_help.html">calculator</a> to convert account number to IBAN, the precise algorithm can be find at <a href="http://www.cnb.cz/miranda2/export/sites/www.cnb.cz/en/legislation/decrees/decree_169_2011.pdf">Article 6 of decree 169/2011</a>.
+</p>
+<p>
+The validity of the account number is checked by making sure that checksum of both prefix and number are fully divisible by 11.
+The checksum is calculated as a weighted sum of digits and its weights.
+The weights used for a calculation of a checksum are:
+<pre>
+|         |  A | B | C | D | E | F | G | H | I | J |
+| ------- | -- | - | - | - | - | - | - | - | - | - |
+| Digit   | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 |  
+| weight  |  6 | 3 | 7 | 9 |10 | 5 | 8 | 4 | 2 | 1 |
+</pre>
+Where J is the rightest digit. You can find precise definition in decree 169/2011.
+<example>
+Number <code>7315789</code> has a checksum <code>7*9 + 3*10 + 1*5 + 5*8 + 7*4 + 8*2 +9*1 = 191</code>
+</example>
+</p>
+</div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
@@ -124,7 +155,7 @@ and generally between prefix and account number is a dash, while between account
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber__ctor_System_Int64_System_Int64_System_String_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber.%23ctor(System.Int64%2CSystem.Int64%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L35">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L66">View Source</a>
   </span>
   <a id="Identifiers_Czech_AccountNumber__ctor_" data-uid="Identifiers.Czech.AccountNumber.#ctor*"></a>
   <h4 id="Identifiers_Czech_AccountNumber__ctor_System_Int64_System_Int64_System_String_" data-uid="Identifiers.Czech.AccountNumber.#ctor(System.Int64,System.Int64,System.String)">AccountNumber(Int64, Int64, String)</h4>
@@ -148,17 +179,20 @@ and generally between prefix and account number is a dash, while between account
       <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><span class="parametername">prefix</span></td>
-        <td></td>
+        <td><p>The prefix number of the account.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><span class="parametername">number</span></td>
-        <td></td>
+        <td><p>The account number.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">bankCode</span></td>
-        <td></td>
+        <td><p>A 4 digit bank code of the account, must not be null.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -169,7 +203,7 @@ and generally between prefix and account number is a dash, while between account
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber_BankCode.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber.BankCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L73">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L104">View Source</a>
   </span>
   <a id="Identifiers_Czech_AccountNumber_BankCode_" data-uid="Identifiers.Czech.AccountNumber.BankCode*"></a>
   <h4 id="Identifiers_Czech_AccountNumber_BankCode" data-uid="Identifiers.Czech.AccountNumber.BankCode">BankCode</h4>
@@ -200,7 +234,7 @@ and generally between prefix and account number is a dash, while between account
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber_IsValid.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber.IsValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L58">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L89">View Source</a>
   </span>
   <a id="Identifiers_Czech_AccountNumber_IsValid_" data-uid="Identifiers.Czech.AccountNumber.IsValid*"></a>
   <h4 id="Identifiers_Czech_AccountNumber_IsValid" data-uid="Identifiers.Czech.AccountNumber.IsValid">IsValid</h4>
@@ -229,8 +263,8 @@ and generally between prefix and account number is a dash, while between account
   <h5 id="Identifiers_Czech_AccountNumber_IsValid_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The account number is valid, if it has
 <ul>
-<li>Prefix weighted checksum is divisiable by 11.</li>
-<li>Number weighted checksum is divisiable by 11.</li>
+<li>Prefix weighted checksum is divisible by 11.</li>
+<li>Number weighted checksum is divisible by 11.</li>
 <li>Number has at least two non-zero digits.</li>
 </ul></p>
 </div>
@@ -239,7 +273,7 @@ and generally between prefix and account number is a dash, while between account
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber_Number.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber.Number%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L68">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L99">View Source</a>
   </span>
   <a id="Identifiers_Czech_AccountNumber_Number_" data-uid="Identifiers.Czech.AccountNumber.Number*"></a>
   <h4 id="Identifiers_Czech_AccountNumber_Number" data-uid="Identifiers.Czech.AccountNumber.Number">Number</h4>
@@ -270,7 +304,7 @@ and generally between prefix and account number is a dash, while between account
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber_NumberChecksum.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber.NumberChecksum%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L83">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L114">View Source</a>
   </span>
   <a id="Identifiers_Czech_AccountNumber_NumberChecksum_" data-uid="Identifiers.Czech.AccountNumber.NumberChecksum*"></a>
   <h4 id="Identifiers_Czech_AccountNumber_NumberChecksum" data-uid="Identifiers.Czech.AccountNumber.NumberChecksum">NumberChecksum</h4>
@@ -301,7 +335,7 @@ and generally between prefix and account number is a dash, while between account
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber_Prefix.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber.Prefix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L63">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L94">View Source</a>
   </span>
   <a id="Identifiers_Czech_AccountNumber_Prefix_" data-uid="Identifiers.Czech.AccountNumber.Prefix*"></a>
   <h4 id="Identifiers_Czech_AccountNumber_Prefix" data-uid="Identifiers.Czech.AccountNumber.Prefix">Prefix</h4>
@@ -332,7 +366,7 @@ and generally between prefix and account number is a dash, while between account
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber_PrefixChecksum.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber.PrefixChecksum%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L78">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L109">View Source</a>
   </span>
   <a id="Identifiers_Czech_AccountNumber_PrefixChecksum_" data-uid="Identifiers.Czech.AccountNumber.PrefixChecksum*"></a>
   <h4 id="Identifiers_Czech_AccountNumber_PrefixChecksum" data-uid="Identifiers.Czech.AccountNumber.PrefixChecksum">PrefixChecksum</h4>
@@ -365,7 +399,7 @@ and generally between prefix and account number is a dash, while between account
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber_ToString_System_String_System_IFormatProvider_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber.ToString(System.String%2CSystem.IFormatProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L146">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L183">View Source</a>
   </span>
   <a id="Identifiers_Czech_AccountNumber_ToString_" data-uid="Identifiers.Czech.AccountNumber.ToString*"></a>
   <h4 id="Identifiers_Czech_AccountNumber_ToString_System_String_System_IFormatProvider_" data-uid="Identifiers.Czech.AccountNumber.ToString(System.String,System.IFormatProvider)">ToString(String, IFormatProvider)</h4>
@@ -418,7 +452,13 @@ and generally between prefix and account number is a dash, while between account
   </table>
   <h5 id="Identifiers_Czech_AccountNumber_ToString_System_String_System_IFormatProvider__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The format 
-<ul><li>SStandard format. If prefix is </li><li>FFull format, both prefix and number will be it </li></ul></p>
+<ul><li>S
+<a class="xref" href="Identifiers.Czech.AccountNumberPattern.html#Identifiers_Czech_AccountNumberPattern_StandardPattern">StandardPattern</a> (numbers are printed without leadin zeros). If prefix is 0, it is omitted and no hypen is printed.
+<example><code>25478/0710</code></example>
+</li><li>F
+Full format, both prefix and number will have full number of digits, including leading zeros.
+<example><code>000000-0000025478/0710</code></example>
+</li></ul></p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -454,7 +494,7 @@ and generally between prefix and account number is a dash, while between account
                     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_AccountNumber.md&amp;value=---%0Auid%3A%20Identifiers.Czech.AccountNumber%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L20" class="contribution-link">View Source</a>
+                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/AccountNumber.cs/#L49" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
