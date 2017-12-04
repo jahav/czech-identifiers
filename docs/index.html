@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Identifiers.Czech </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Identifiers.Czech ">
+    <meta name="generator" content="docfx 2.28.1.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="identifiersczech">Identifiers.Czech</h1>
+
+<p>Identifiers.Czech is a C# library for creating, parsing and validating various identifiers used in Czech Republic. As of this time, it supports
+following identifiers:</p>
+<ul>
+<li>Birth number - this identifier is assigned to ever person born in Czech Republic. It is used extensively in a medical care. The number itself contains a flag indicating whether the person is a man or a woman and also a date of birth.</li>
+<li>Business identifying number - It is a number used for identification of a business, either a company or a person doing business. In czech, it is called IČO - Identifikační číslo osoby.</li>
+<li>Bank account number - account number in the bank. IBAN is not in widespread use, instead we still use a system from 90s. It is possible to transform the account number to an IBAN.</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<p>There are three identifier so far:</p>
+<ul>
+<li><code>BirthNumber</code> - birth number.</li>
+<li><code>IdentificationNumber</code> - Business identifying number.</li>
+<li><code>AccountNumber</code> - bank account number.</li>
+</ul>
+<p>All of these classes follow this use pattern:</p>
+<pre><code>// First choose a pattern from [identifier]Pattern class. Generally, there is always a standard pattern, possibly others.
+ParseResult&lt;BirthNumber&gt; parseResult = BirthNumberPattern.StandardPattern.Parse(&quot;780123/3540&quot;);
+if (!parseResult.Success)
+{
+    Console.WriteLine(&quot;Birth number couldn&#39;t be parsed.&quot;);
+    return;
+}
+
+Console.WriteLine(&quot;Birth number was successfully parsed, but we don&#39;t know yet if it is valid or not.&quot;);
+
+// Get a parsed value
+BirthNumber birthNumber = parseResult.Value;
+
+// check if it is valid, it might be or it might not.
+if (birthNumber.IsValid)
+{
+    Console.WriteLine(&quot;Birth number is is valid for a {0} born at {1:d}.&quot;, birthNumber.BelongsToWoman ? &quot;woman&quot; : &quot;man&quot;, birthNumber.DateOfBirth);
+}
+else
+{
+    Console.WriteLine(&quot;Birth number is invalid, expected check digit to be {0}.&quot;, birthNumber.ExpectedCheckDigit);
+}
+</code></pre></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/jahav/czech-identifiers/blob/master/docfx/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

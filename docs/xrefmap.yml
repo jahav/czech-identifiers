@@ -1,0 +1,603 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Identifiers.Czech
+  name: Identifiers.Czech
+  href: api/Identifiers.Czech.html
+  commentId: N:Identifiers.Czech
+  fullName: Identifiers.Czech
+  nameWithType: Identifiers.Czech
+- uid: Identifiers.Czech.AccountNumber
+  name: AccountNumber
+  href: api/Identifiers.Czech.AccountNumber.html
+  commentId: T:Identifiers.Czech.AccountNumber
+  fullName: Identifiers.Czech.AccountNumber
+  nameWithType: AccountNumber
+- uid: Identifiers.Czech.AccountNumber.#ctor(System.Int64,System.Int64,System.String)
+  name: AccountNumber(Int64, Int64, String)
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber__ctor_System_Int64_System_Int64_System_String_
+  commentId: M:Identifiers.Czech.AccountNumber.#ctor(System.Int64,System.Int64,System.String)
+  fullName: Identifiers.Czech.AccountNumber.AccountNumber(System.Int64, System.Int64, System.String)
+  nameWithType: AccountNumber.AccountNumber(Int64, Int64, String)
+- uid: Identifiers.Czech.AccountNumber.#ctor*
+  name: AccountNumber
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber__ctor_
+  commentId: Overload:Identifiers.Czech.AccountNumber.#ctor
+  fullName: Identifiers.Czech.AccountNumber.AccountNumber
+  nameWithType: AccountNumber.AccountNumber
+- uid: Identifiers.Czech.AccountNumber.BankCode
+  name: BankCode
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_BankCode
+  commentId: P:Identifiers.Czech.AccountNumber.BankCode
+  fullName: Identifiers.Czech.AccountNumber.BankCode
+  nameWithType: AccountNumber.BankCode
+- uid: Identifiers.Czech.AccountNumber.BankCode*
+  name: BankCode
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_BankCode_
+  commentId: Overload:Identifiers.Czech.AccountNumber.BankCode
+  fullName: Identifiers.Czech.AccountNumber.BankCode
+  nameWithType: AccountNumber.BankCode
+- uid: Identifiers.Czech.AccountNumber.IsValid
+  name: IsValid
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_IsValid
+  commentId: P:Identifiers.Czech.AccountNumber.IsValid
+  fullName: Identifiers.Czech.AccountNumber.IsValid
+  nameWithType: AccountNumber.IsValid
+- uid: Identifiers.Czech.AccountNumber.IsValid*
+  name: IsValid
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_IsValid_
+  commentId: Overload:Identifiers.Czech.AccountNumber.IsValid
+  fullName: Identifiers.Czech.AccountNumber.IsValid
+  nameWithType: AccountNumber.IsValid
+- uid: Identifiers.Czech.AccountNumber.Number
+  name: Number
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_Number
+  commentId: P:Identifiers.Czech.AccountNumber.Number
+  fullName: Identifiers.Czech.AccountNumber.Number
+  nameWithType: AccountNumber.Number
+- uid: Identifiers.Czech.AccountNumber.Number*
+  name: Number
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_Number_
+  commentId: Overload:Identifiers.Czech.AccountNumber.Number
+  fullName: Identifiers.Czech.AccountNumber.Number
+  nameWithType: AccountNumber.Number
+- uid: Identifiers.Czech.AccountNumber.NumberChecksum
+  name: NumberChecksum
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_NumberChecksum
+  commentId: P:Identifiers.Czech.AccountNumber.NumberChecksum
+  fullName: Identifiers.Czech.AccountNumber.NumberChecksum
+  nameWithType: AccountNumber.NumberChecksum
+- uid: Identifiers.Czech.AccountNumber.NumberChecksum*
+  name: NumberChecksum
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_NumberChecksum_
+  commentId: Overload:Identifiers.Czech.AccountNumber.NumberChecksum
+  fullName: Identifiers.Czech.AccountNumber.NumberChecksum
+  nameWithType: AccountNumber.NumberChecksum
+- uid: Identifiers.Czech.AccountNumber.Prefix
+  name: Prefix
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_Prefix
+  commentId: P:Identifiers.Czech.AccountNumber.Prefix
+  fullName: Identifiers.Czech.AccountNumber.Prefix
+  nameWithType: AccountNumber.Prefix
+- uid: Identifiers.Czech.AccountNumber.Prefix*
+  name: Prefix
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_Prefix_
+  commentId: Overload:Identifiers.Czech.AccountNumber.Prefix
+  fullName: Identifiers.Czech.AccountNumber.Prefix
+  nameWithType: AccountNumber.Prefix
+- uid: Identifiers.Czech.AccountNumber.PrefixChecksum
+  name: PrefixChecksum
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_PrefixChecksum
+  commentId: P:Identifiers.Czech.AccountNumber.PrefixChecksum
+  fullName: Identifiers.Czech.AccountNumber.PrefixChecksum
+  nameWithType: AccountNumber.PrefixChecksum
+- uid: Identifiers.Czech.AccountNumber.PrefixChecksum*
+  name: PrefixChecksum
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_PrefixChecksum_
+  commentId: Overload:Identifiers.Czech.AccountNumber.PrefixChecksum
+  fullName: Identifiers.Czech.AccountNumber.PrefixChecksum
+  nameWithType: AccountNumber.PrefixChecksum
+- uid: Identifiers.Czech.AccountNumber.ToString(System.String,System.IFormatProvider)
+  name: ToString(String, IFormatProvider)
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_ToString_System_String_System_IFormatProvider_
+  commentId: M:Identifiers.Czech.AccountNumber.ToString(System.String,System.IFormatProvider)
+  fullName: Identifiers.Czech.AccountNumber.ToString(System.String, System.IFormatProvider)
+  nameWithType: AccountNumber.ToString(String, IFormatProvider)
+- uid: Identifiers.Czech.AccountNumber.ToString*
+  name: ToString
+  href: api/Identifiers.Czech.AccountNumber.html#Identifiers_Czech_AccountNumber_ToString_
+  commentId: Overload:Identifiers.Czech.AccountNumber.ToString
+  fullName: Identifiers.Czech.AccountNumber.ToString
+  nameWithType: AccountNumber.ToString
+- uid: Identifiers.Czech.AccountNumberPattern
+  name: AccountNumberPattern
+  href: api/Identifiers.Czech.AccountNumberPattern.html
+  commentId: T:Identifiers.Czech.AccountNumberPattern
+  fullName: Identifiers.Czech.AccountNumberPattern
+  nameWithType: AccountNumberPattern
+- uid: Identifiers.Czech.AccountNumberPattern.Format(Identifiers.Czech.AccountNumber)
+  name: Format(AccountNumber)
+  href: api/Identifiers.Czech.AccountNumberPattern.html#Identifiers_Czech_AccountNumberPattern_Format_Identifiers_Czech_AccountNumber_
+  commentId: M:Identifiers.Czech.AccountNumberPattern.Format(Identifiers.Czech.AccountNumber)
+  fullName: Identifiers.Czech.AccountNumberPattern.Format(Identifiers.Czech.AccountNumber)
+  nameWithType: AccountNumberPattern.Format(AccountNumber)
+- uid: Identifiers.Czech.AccountNumberPattern.Format*
+  name: Format
+  href: api/Identifiers.Czech.AccountNumberPattern.html#Identifiers_Czech_AccountNumberPattern_Format_
+  commentId: Overload:Identifiers.Czech.AccountNumberPattern.Format
+  fullName: Identifiers.Czech.AccountNumberPattern.Format
+  nameWithType: AccountNumberPattern.Format
+- uid: Identifiers.Czech.AccountNumberPattern.Parse(System.String)
+  name: Parse(String)
+  href: api/Identifiers.Czech.AccountNumberPattern.html#Identifiers_Czech_AccountNumberPattern_Parse_System_String_
+  commentId: M:Identifiers.Czech.AccountNumberPattern.Parse(System.String)
+  fullName: Identifiers.Czech.AccountNumberPattern.Parse(System.String)
+  nameWithType: AccountNumberPattern.Parse(String)
+- uid: Identifiers.Czech.AccountNumberPattern.Parse*
+  name: Parse
+  href: api/Identifiers.Czech.AccountNumberPattern.html#Identifiers_Czech_AccountNumberPattern_Parse_
+  commentId: Overload:Identifiers.Czech.AccountNumberPattern.Parse
+  fullName: Identifiers.Czech.AccountNumberPattern.Parse
+  nameWithType: AccountNumberPattern.Parse
+- uid: Identifiers.Czech.AccountNumberPattern.StandardPattern
+  name: StandardPattern
+  href: api/Identifiers.Czech.AccountNumberPattern.html#Identifiers_Czech_AccountNumberPattern_StandardPattern
+  commentId: F:Identifiers.Czech.AccountNumberPattern.StandardPattern
+  fullName: Identifiers.Czech.AccountNumberPattern.StandardPattern
+  nameWithType: AccountNumberPattern.StandardPattern
+- uid: Identifiers.Czech.BirthNumber
+  name: BirthNumber
+  href: api/Identifiers.Czech.BirthNumber.html
+  commentId: T:Identifiers.Czech.BirthNumber
+  fullName: Identifiers.Czech.BirthNumber
+  nameWithType: BirthNumber
+- uid: Identifiers.Czech.BirthNumber.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Nullable{System.Int32})
+  name: BirthNumber(Int32, Int32, Int32, Int32, Nullable<Int32>)
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber__ctor_System_Int32_System_Int32_System_Int32_System_Int32_System_Nullable_System_Int32__
+  commentId: M:Identifiers.Czech.BirthNumber.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Nullable{System.Int32})
+  name.vb: BirthNumber(Int32, Int32, Int32, Int32, Nullable(Of Int32))
+  fullName: Identifiers.Czech.BirthNumber.BirthNumber(System.Int32, System.Int32, System.Int32, System.Int32, System.Nullable<System.Int32>)
+  fullName.vb: Identifiers.Czech.BirthNumber.BirthNumber(System.Int32, System.Int32, System.Int32, System.Int32, System.Nullable(Of System.Int32))
+  nameWithType: BirthNumber.BirthNumber(Int32, Int32, Int32, Int32, Nullable<Int32>)
+  nameWithType.vb: BirthNumber.BirthNumber(Int32, Int32, Int32, Int32, Nullable(Of Int32))
+- uid: Identifiers.Czech.BirthNumber.#ctor*
+  name: BirthNumber
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber__ctor_
+  commentId: Overload:Identifiers.Czech.BirthNumber.#ctor
+  fullName: Identifiers.Czech.BirthNumber.BirthNumber
+  nameWithType: BirthNumber.BirthNumber
+- uid: Identifiers.Czech.BirthNumber.BelongsToWoman
+  name: BelongsToWoman
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_BelongsToWoman
+  commentId: P:Identifiers.Czech.BirthNumber.BelongsToWoman
+  fullName: Identifiers.Czech.BirthNumber.BelongsToWoman
+  nameWithType: BirthNumber.BelongsToWoman
+- uid: Identifiers.Czech.BirthNumber.BelongsToWoman*
+  name: BelongsToWoman
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_BelongsToWoman_
+  commentId: Overload:Identifiers.Czech.BirthNumber.BelongsToWoman
+  fullName: Identifiers.Czech.BirthNumber.BelongsToWoman
+  nameWithType: BirthNumber.BelongsToWoman
+- uid: Identifiers.Czech.BirthNumber.DateOfBirth
+  name: DateOfBirth
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_DateOfBirth
+  commentId: P:Identifiers.Czech.BirthNumber.DateOfBirth
+  fullName: Identifiers.Czech.BirthNumber.DateOfBirth
+  nameWithType: BirthNumber.DateOfBirth
+- uid: Identifiers.Czech.BirthNumber.DateOfBirth*
+  name: DateOfBirth
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_DateOfBirth_
+  commentId: Overload:Identifiers.Czech.BirthNumber.DateOfBirth
+  fullName: Identifiers.Czech.BirthNumber.DateOfBirth
+  nameWithType: BirthNumber.DateOfBirth
+- uid: Identifiers.Czech.BirthNumber.ExpectedCheckDigit
+  name: ExpectedCheckDigit
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_ExpectedCheckDigit
+  commentId: P:Identifiers.Czech.BirthNumber.ExpectedCheckDigit
+  fullName: Identifiers.Czech.BirthNumber.ExpectedCheckDigit
+  nameWithType: BirthNumber.ExpectedCheckDigit
+- uid: Identifiers.Czech.BirthNumber.ExpectedCheckDigit*
+  name: ExpectedCheckDigit
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_ExpectedCheckDigit_
+  commentId: Overload:Identifiers.Czech.BirthNumber.ExpectedCheckDigit
+  fullName: Identifiers.Czech.BirthNumber.ExpectedCheckDigit
+  nameWithType: BirthNumber.ExpectedCheckDigit
+- uid: Identifiers.Czech.BirthNumber.IsValid
+  name: IsValid
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_IsValid
+  commentId: P:Identifiers.Czech.BirthNumber.IsValid
+  fullName: Identifiers.Czech.BirthNumber.IsValid
+  nameWithType: BirthNumber.IsValid
+- uid: Identifiers.Czech.BirthNumber.IsValid*
+  name: IsValid
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_IsValid_
+  commentId: Overload:Identifiers.Czech.BirthNumber.IsValid
+  fullName: Identifiers.Czech.BirthNumber.IsValid
+  nameWithType: BirthNumber.IsValid
+- uid: Identifiers.Czech.BirthNumber.Month
+  name: Month
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_Month
+  commentId: P:Identifiers.Czech.BirthNumber.Month
+  fullName: Identifiers.Czech.BirthNumber.Month
+  nameWithType: BirthNumber.Month
+- uid: Identifiers.Czech.BirthNumber.Month*
+  name: Month
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_Month_
+  commentId: Overload:Identifiers.Czech.BirthNumber.Month
+  fullName: Identifiers.Czech.BirthNumber.Month
+  nameWithType: BirthNumber.Month
+- uid: Identifiers.Czech.BirthNumber.ToString(System.String,System.IFormatProvider)
+  name: ToString(String, IFormatProvider)
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_ToString_System_String_System_IFormatProvider_
+  commentId: M:Identifiers.Czech.BirthNumber.ToString(System.String,System.IFormatProvider)
+  fullName: Identifiers.Czech.BirthNumber.ToString(System.String, System.IFormatProvider)
+  nameWithType: BirthNumber.ToString(String, IFormatProvider)
+- uid: Identifiers.Czech.BirthNumber.ToString*
+  name: ToString
+  href: api/Identifiers.Czech.BirthNumber.html#Identifiers_Czech_BirthNumber_ToString_
+  commentId: Overload:Identifiers.Czech.BirthNumber.ToString
+  fullName: Identifiers.Czech.BirthNumber.ToString
+  nameWithType: BirthNumber.ToString
+- uid: Identifiers.Czech.BirthNumberPattern
+  name: BirthNumberPattern
+  href: api/Identifiers.Czech.BirthNumberPattern.html
+  commentId: T:Identifiers.Czech.BirthNumberPattern
+  fullName: Identifiers.Czech.BirthNumberPattern
+  nameWithType: BirthNumberPattern
+- uid: Identifiers.Czech.BirthNumberPattern.Format(Identifiers.Czech.BirthNumber)
+  name: Format(BirthNumber)
+  href: api/Identifiers.Czech.BirthNumberPattern.html#Identifiers_Czech_BirthNumberPattern_Format_Identifiers_Czech_BirthNumber_
+  commentId: M:Identifiers.Czech.BirthNumberPattern.Format(Identifiers.Czech.BirthNumber)
+  fullName: Identifiers.Czech.BirthNumberPattern.Format(Identifiers.Czech.BirthNumber)
+  nameWithType: BirthNumberPattern.Format(BirthNumber)
+- uid: Identifiers.Czech.BirthNumberPattern.Format*
+  name: Format
+  href: api/Identifiers.Czech.BirthNumberPattern.html#Identifiers_Czech_BirthNumberPattern_Format_
+  commentId: Overload:Identifiers.Czech.BirthNumberPattern.Format
+  fullName: Identifiers.Czech.BirthNumberPattern.Format
+  nameWithType: BirthNumberPattern.Format
+- uid: Identifiers.Czech.BirthNumberPattern.NumberPattern
+  name: NumberPattern
+  href: api/Identifiers.Czech.BirthNumberPattern.html#Identifiers_Czech_BirthNumberPattern_NumberPattern
+  commentId: P:Identifiers.Czech.BirthNumberPattern.NumberPattern
+  fullName: Identifiers.Czech.BirthNumberPattern.NumberPattern
+  nameWithType: BirthNumberPattern.NumberPattern
+- uid: Identifiers.Czech.BirthNumberPattern.NumberPattern*
+  name: NumberPattern
+  href: api/Identifiers.Czech.BirthNumberPattern.html#Identifiers_Czech_BirthNumberPattern_NumberPattern_
+  commentId: Overload:Identifiers.Czech.BirthNumberPattern.NumberPattern
+  fullName: Identifiers.Czech.BirthNumberPattern.NumberPattern
+  nameWithType: BirthNumberPattern.NumberPattern
+- uid: Identifiers.Czech.BirthNumberPattern.Parse(System.String)
+  name: Parse(String)
+  href: api/Identifiers.Czech.BirthNumberPattern.html#Identifiers_Czech_BirthNumberPattern_Parse_System_String_
+  commentId: M:Identifiers.Czech.BirthNumberPattern.Parse(System.String)
+  fullName: Identifiers.Czech.BirthNumberPattern.Parse(System.String)
+  nameWithType: BirthNumberPattern.Parse(String)
+- uid: Identifiers.Czech.BirthNumberPattern.Parse*
+  name: Parse
+  href: api/Identifiers.Czech.BirthNumberPattern.html#Identifiers_Czech_BirthNumberPattern_Parse_
+  commentId: Overload:Identifiers.Czech.BirthNumberPattern.Parse
+  fullName: Identifiers.Czech.BirthNumberPattern.Parse
+  nameWithType: BirthNumberPattern.Parse
+- uid: Identifiers.Czech.BirthNumberPattern.StandardPattern
+  name: StandardPattern
+  href: api/Identifiers.Czech.BirthNumberPattern.html#Identifiers_Czech_BirthNumberPattern_StandardPattern
+  commentId: P:Identifiers.Czech.BirthNumberPattern.StandardPattern
+  fullName: Identifiers.Czech.BirthNumberPattern.StandardPattern
+  nameWithType: BirthNumberPattern.StandardPattern
+- uid: Identifiers.Czech.BirthNumberPattern.StandardPattern*
+  name: StandardPattern
+  href: api/Identifiers.Czech.BirthNumberPattern.html#Identifiers_Czech_BirthNumberPattern_StandardPattern_
+  commentId: Overload:Identifiers.Czech.BirthNumberPattern.StandardPattern
+  fullName: Identifiers.Czech.BirthNumberPattern.StandardPattern
+  nameWithType: BirthNumberPattern.StandardPattern
+- uid: Identifiers.Czech.IdentificationNumber
+  name: IdentificationNumber
+  href: api/Identifiers.Czech.IdentificationNumber.html
+  commentId: T:Identifiers.Czech.IdentificationNumber
+  fullName: Identifiers.Czech.IdentificationNumber
+  nameWithType: IdentificationNumber
+- uid: Identifiers.Czech.IdentificationNumber.#ctor(System.Int64,System.Int32)
+  name: IdentificationNumber(Int64, Int32)
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber__ctor_System_Int64_System_Int32_
+  commentId: M:Identifiers.Czech.IdentificationNumber.#ctor(System.Int64,System.Int32)
+  fullName: Identifiers.Czech.IdentificationNumber.IdentificationNumber(System.Int64, System.Int32)
+  nameWithType: IdentificationNumber.IdentificationNumber(Int64, Int32)
+- uid: Identifiers.Czech.IdentificationNumber.#ctor*
+  name: IdentificationNumber
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber__ctor_
+  commentId: Overload:Identifiers.Czech.IdentificationNumber.#ctor
+  fullName: Identifiers.Czech.IdentificationNumber.IdentificationNumber
+  nameWithType: IdentificationNumber.IdentificationNumber
+- uid: Identifiers.Czech.IdentificationNumber.CheckDigit
+  name: CheckDigit
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_CheckDigit
+  commentId: P:Identifiers.Czech.IdentificationNumber.CheckDigit
+  fullName: Identifiers.Czech.IdentificationNumber.CheckDigit
+  nameWithType: IdentificationNumber.CheckDigit
+- uid: Identifiers.Czech.IdentificationNumber.CheckDigit*
+  name: CheckDigit
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_CheckDigit_
+  commentId: Overload:Identifiers.Czech.IdentificationNumber.CheckDigit
+  fullName: Identifiers.Czech.IdentificationNumber.CheckDigit
+  nameWithType: IdentificationNumber.CheckDigit
+- uid: Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit
+  name: ExpectedCheckDigit
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_ExpectedCheckDigit
+  commentId: P:Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit
+  fullName: Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit
+  nameWithType: IdentificationNumber.ExpectedCheckDigit
+- uid: Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit*
+  name: ExpectedCheckDigit
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_ExpectedCheckDigit_
+  commentId: Overload:Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit
+  fullName: Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit
+  nameWithType: IdentificationNumber.ExpectedCheckDigit
+- uid: Identifiers.Czech.IdentificationNumber.IsValid
+  name: IsValid
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_IsValid
+  commentId: P:Identifiers.Czech.IdentificationNumber.IsValid
+  fullName: Identifiers.Czech.IdentificationNumber.IsValid
+  nameWithType: IdentificationNumber.IsValid
+- uid: Identifiers.Czech.IdentificationNumber.IsValid*
+  name: IsValid
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_IsValid_
+  commentId: Overload:Identifiers.Czech.IdentificationNumber.IsValid
+  fullName: Identifiers.Czech.IdentificationNumber.IsValid
+  nameWithType: IdentificationNumber.IsValid
+- uid: Identifiers.Czech.IdentificationNumber.Number
+  name: Number
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_Number
+  commentId: P:Identifiers.Czech.IdentificationNumber.Number
+  fullName: Identifiers.Czech.IdentificationNumber.Number
+  nameWithType: IdentificationNumber.Number
+- uid: Identifiers.Czech.IdentificationNumber.Number*
+  name: Number
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_Number_
+  commentId: Overload:Identifiers.Czech.IdentificationNumber.Number
+  fullName: Identifiers.Czech.IdentificationNumber.Number
+  nameWithType: IdentificationNumber.Number
+- uid: Identifiers.Czech.IdentificationNumber.ToString(System.String,System.IFormatProvider)
+  name: ToString(String, IFormatProvider)
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_ToString_System_String_System_IFormatProvider_
+  commentId: M:Identifiers.Czech.IdentificationNumber.ToString(System.String,System.IFormatProvider)
+  fullName: Identifiers.Czech.IdentificationNumber.ToString(System.String, System.IFormatProvider)
+  nameWithType: IdentificationNumber.ToString(String, IFormatProvider)
+- uid: Identifiers.Czech.IdentificationNumber.ToString*
+  name: ToString
+  href: api/Identifiers.Czech.IdentificationNumber.html#Identifiers_Czech_IdentificationNumber_ToString_
+  commentId: Overload:Identifiers.Czech.IdentificationNumber.ToString
+  fullName: Identifiers.Czech.IdentificationNumber.ToString
+  nameWithType: IdentificationNumber.ToString
+- uid: Identifiers.Czech.IdentificationNumberPattern
+  name: IdentificationNumberPattern
+  href: api/Identifiers.Czech.IdentificationNumberPattern.html
+  commentId: T:Identifiers.Czech.IdentificationNumberPattern
+  fullName: Identifiers.Czech.IdentificationNumberPattern
+  nameWithType: IdentificationNumberPattern
+- uid: Identifiers.Czech.IdentificationNumberPattern.Format(Identifiers.Czech.IdentificationNumber)
+  name: Format(IdentificationNumber)
+  href: api/Identifiers.Czech.IdentificationNumberPattern.html#Identifiers_Czech_IdentificationNumberPattern_Format_Identifiers_Czech_IdentificationNumber_
+  commentId: M:Identifiers.Czech.IdentificationNumberPattern.Format(Identifiers.Czech.IdentificationNumber)
+  fullName: Identifiers.Czech.IdentificationNumberPattern.Format(Identifiers.Czech.IdentificationNumber)
+  nameWithType: IdentificationNumberPattern.Format(IdentificationNumber)
+- uid: Identifiers.Czech.IdentificationNumberPattern.Format*
+  name: Format
+  href: api/Identifiers.Czech.IdentificationNumberPattern.html#Identifiers_Czech_IdentificationNumberPattern_Format_
+  commentId: Overload:Identifiers.Czech.IdentificationNumberPattern.Format
+  fullName: Identifiers.Czech.IdentificationNumberPattern.Format
+  nameWithType: IdentificationNumberPattern.Format
+- uid: Identifiers.Czech.IdentificationNumberPattern.Parse(System.String)
+  name: Parse(String)
+  href: api/Identifiers.Czech.IdentificationNumberPattern.html#Identifiers_Czech_IdentificationNumberPattern_Parse_System_String_
+  commentId: M:Identifiers.Czech.IdentificationNumberPattern.Parse(System.String)
+  fullName: Identifiers.Czech.IdentificationNumberPattern.Parse(System.String)
+  nameWithType: IdentificationNumberPattern.Parse(String)
+- uid: Identifiers.Czech.IdentificationNumberPattern.Parse*
+  name: Parse
+  href: api/Identifiers.Czech.IdentificationNumberPattern.html#Identifiers_Czech_IdentificationNumberPattern_Parse_
+  commentId: Overload:Identifiers.Czech.IdentificationNumberPattern.Parse
+  fullName: Identifiers.Czech.IdentificationNumberPattern.Parse
+  nameWithType: IdentificationNumberPattern.Parse
+- uid: Identifiers.Czech.IdentificationNumberPattern.StandardPattern
+  name: StandardPattern
+  href: api/Identifiers.Czech.IdentificationNumberPattern.html#Identifiers_Czech_IdentificationNumberPattern_StandardPattern
+  commentId: P:Identifiers.Czech.IdentificationNumberPattern.StandardPattern
+  fullName: Identifiers.Czech.IdentificationNumberPattern.StandardPattern
+  nameWithType: IdentificationNumberPattern.StandardPattern
+- uid: Identifiers.Czech.IdentificationNumberPattern.StandardPattern*
+  name: StandardPattern
+  href: api/Identifiers.Czech.IdentificationNumberPattern.html#Identifiers_Czech_IdentificationNumberPattern_StandardPattern_
+  commentId: Overload:Identifiers.Czech.IdentificationNumberPattern.StandardPattern
+  fullName: Identifiers.Czech.IdentificationNumberPattern.StandardPattern
+  nameWithType: IdentificationNumberPattern.StandardPattern
+- uid: Identifiers.Czech.IIdentifier
+  name: IIdentifier
+  href: api/Identifiers.Czech.IIdentifier.html
+  commentId: T:Identifiers.Czech.IIdentifier
+  fullName: Identifiers.Czech.IIdentifier
+  nameWithType: IIdentifier
+- uid: Identifiers.Czech.IIdentifier.IsValid
+  name: IsValid
+  href: api/Identifiers.Czech.IIdentifier.html#Identifiers_Czech_IIdentifier_IsValid
+  commentId: P:Identifiers.Czech.IIdentifier.IsValid
+  fullName: Identifiers.Czech.IIdentifier.IsValid
+  nameWithType: IIdentifier.IsValid
+- uid: Identifiers.Czech.IIdentifier.IsValid*
+  name: IsValid
+  href: api/Identifiers.Czech.IIdentifier.html#Identifiers_Czech_IIdentifier_IsValid_
+  commentId: Overload:Identifiers.Czech.IIdentifier.IsValid
+  fullName: Identifiers.Czech.IIdentifier.IsValid
+  nameWithType: IIdentifier.IsValid
+- uid: Identifiers.Czech.IIdentifierParser`2
+  name: IIdentifierParser<TInput, TIdentifier>
+  href: api/Identifiers.Czech.IIdentifierParser-2.html
+  commentId: T:Identifiers.Czech.IIdentifierParser`2
+  name.vb: IIdentifierParser(Of TInput, TIdentifier)
+  fullName: Identifiers.Czech.IIdentifierParser<TInput, TIdentifier>
+  fullName.vb: Identifiers.Czech.IIdentifierParser(Of TInput, TIdentifier)
+  nameWithType: IIdentifierParser<TInput, TIdentifier>
+  nameWithType.vb: IIdentifierParser(Of TInput, TIdentifier)
+- uid: Identifiers.Czech.IIdentifierParser`2.Parse(`0)
+  name: Parse(TInput)
+  href: api/Identifiers.Czech.IIdentifierParser-2.html#Identifiers_Czech_IIdentifierParser_2_Parse__0_
+  commentId: M:Identifiers.Czech.IIdentifierParser`2.Parse(`0)
+  fullName: Identifiers.Czech.IIdentifierParser<TInput, TIdentifier>.Parse(TInput)
+  fullName.vb: Identifiers.Czech.IIdentifierParser(Of TInput, TIdentifier).Parse(TInput)
+  nameWithType: IIdentifierParser<TInput, TIdentifier>.Parse(TInput)
+  nameWithType.vb: IIdentifierParser(Of TInput, TIdentifier).Parse(TInput)
+- uid: Identifiers.Czech.IIdentifierParser`2.Parse*
+  name: Parse
+  href: api/Identifiers.Czech.IIdentifierParser-2.html#Identifiers_Czech_IIdentifierParser_2_Parse_
+  commentId: Overload:Identifiers.Czech.IIdentifierParser`2.Parse
+  fullName: Identifiers.Czech.IIdentifierParser<TInput, TIdentifier>.Parse
+  fullName.vb: Identifiers.Czech.IIdentifierParser(Of TInput, TIdentifier).Parse
+  nameWithType: IIdentifierParser<TInput, TIdentifier>.Parse
+  nameWithType.vb: IIdentifierParser(Of TInput, TIdentifier).Parse
+- uid: Identifiers.Czech.IPattern`1
+  name: IPattern<T>
+  href: api/Identifiers.Czech.IPattern-1.html
+  commentId: T:Identifiers.Czech.IPattern`1
+  name.vb: IPattern(Of T)
+  fullName: Identifiers.Czech.IPattern<T>
+  fullName.vb: Identifiers.Czech.IPattern(Of T)
+  nameWithType: IPattern<T>
+  nameWithType.vb: IPattern(Of T)
+- uid: Identifiers.Czech.IPattern`1.Format(`0)
+  name: Format(T)
+  href: api/Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Format__0_
+  commentId: M:Identifiers.Czech.IPattern`1.Format(`0)
+  fullName: Identifiers.Czech.IPattern<T>.Format(T)
+  fullName.vb: Identifiers.Czech.IPattern(Of T).Format(T)
+  nameWithType: IPattern<T>.Format(T)
+  nameWithType.vb: IPattern(Of T).Format(T)
+- uid: Identifiers.Czech.IPattern`1.Format*
+  name: Format
+  href: api/Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Format_
+  commentId: Overload:Identifiers.Czech.IPattern`1.Format
+  fullName: Identifiers.Czech.IPattern<T>.Format
+  fullName.vb: Identifiers.Czech.IPattern(Of T).Format
+  nameWithType: IPattern<T>.Format
+  nameWithType.vb: IPattern(Of T).Format
+- uid: Identifiers.Czech.IPattern`1.Parse(System.String)
+  name: Parse(String)
+  href: api/Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Parse_System_String_
+  commentId: M:Identifiers.Czech.IPattern`1.Parse(System.String)
+  fullName: Identifiers.Czech.IPattern<T>.Parse(System.String)
+  fullName.vb: Identifiers.Czech.IPattern(Of T).Parse(System.String)
+  nameWithType: IPattern<T>.Parse(String)
+  nameWithType.vb: IPattern(Of T).Parse(String)
+- uid: Identifiers.Czech.IPattern`1.Parse*
+  name: Parse
+  href: api/Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Parse_
+  commentId: Overload:Identifiers.Czech.IPattern`1.Parse
+  fullName: Identifiers.Czech.IPattern<T>.Parse
+  fullName.vb: Identifiers.Czech.IPattern(Of T).Parse
+  nameWithType: IPattern<T>.Parse
+  nameWithType.vb: IPattern(Of T).Parse
+- uid: Identifiers.Czech.ParseResult`1
+  name: ParseResult<TValue>
+  href: api/Identifiers.Czech.ParseResult-1.html
+  commentId: T:Identifiers.Czech.ParseResult`1
+  name.vb: ParseResult(Of TValue)
+  fullName: Identifiers.Czech.ParseResult<TValue>
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue)
+  nameWithType: ParseResult<TValue>
+  nameWithType.vb: ParseResult(Of TValue)
+- uid: Identifiers.Czech.ParseResult`1.Exception
+  name: Exception
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Exception
+  commentId: P:Identifiers.Czech.ParseResult`1.Exception
+  fullName: Identifiers.Czech.ParseResult<TValue>.Exception
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).Exception
+  nameWithType: ParseResult<TValue>.Exception
+  nameWithType.vb: ParseResult(Of TValue).Exception
+- uid: Identifiers.Czech.ParseResult`1.Exception*
+  name: Exception
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Exception_
+  commentId: Overload:Identifiers.Czech.ParseResult`1.Exception
+  fullName: Identifiers.Czech.ParseResult<TValue>.Exception
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).Exception
+  nameWithType: ParseResult<TValue>.Exception
+  nameWithType.vb: ParseResult(Of TValue).Exception
+- uid: Identifiers.Czech.ParseResult`1.ForException(System.Exception)
+  name: ForException(Exception)
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_ForException_System_Exception_
+  commentId: M:Identifiers.Czech.ParseResult`1.ForException(System.Exception)
+  fullName: Identifiers.Czech.ParseResult<TValue>.ForException(System.Exception)
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).ForException(System.Exception)
+  nameWithType: ParseResult<TValue>.ForException(Exception)
+  nameWithType.vb: ParseResult(Of TValue).ForException(Exception)
+- uid: Identifiers.Czech.ParseResult`1.ForException*
+  name: ForException
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_ForException_
+  commentId: Overload:Identifiers.Czech.ParseResult`1.ForException
+  fullName: Identifiers.Czech.ParseResult<TValue>.ForException
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).ForException
+  nameWithType: ParseResult<TValue>.ForException
+  nameWithType.vb: ParseResult(Of TValue).ForException
+- uid: Identifiers.Czech.ParseResult`1.ForValue(`0)
+  name: ForValue(TValue)
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_ForValue__0_
+  commentId: M:Identifiers.Czech.ParseResult`1.ForValue(`0)
+  fullName: Identifiers.Czech.ParseResult<TValue>.ForValue(TValue)
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).ForValue(TValue)
+  nameWithType: ParseResult<TValue>.ForValue(TValue)
+  nameWithType.vb: ParseResult(Of TValue).ForValue(TValue)
+- uid: Identifiers.Czech.ParseResult`1.ForValue*
+  name: ForValue
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_ForValue_
+  commentId: Overload:Identifiers.Czech.ParseResult`1.ForValue
+  fullName: Identifiers.Czech.ParseResult<TValue>.ForValue
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).ForValue
+  nameWithType: ParseResult<TValue>.ForValue
+  nameWithType.vb: ParseResult(Of TValue).ForValue
+- uid: Identifiers.Czech.ParseResult`1.GetValueOrThrow
+  name: GetValueOrThrow()
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_GetValueOrThrow
+  commentId: M:Identifiers.Czech.ParseResult`1.GetValueOrThrow
+  fullName: Identifiers.Czech.ParseResult<TValue>.GetValueOrThrow()
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).GetValueOrThrow()
+  nameWithType: ParseResult<TValue>.GetValueOrThrow()
+  nameWithType.vb: ParseResult(Of TValue).GetValueOrThrow()
+- uid: Identifiers.Czech.ParseResult`1.GetValueOrThrow*
+  name: GetValueOrThrow
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_GetValueOrThrow_
+  commentId: Overload:Identifiers.Czech.ParseResult`1.GetValueOrThrow
+  fullName: Identifiers.Czech.ParseResult<TValue>.GetValueOrThrow
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).GetValueOrThrow
+  nameWithType: ParseResult<TValue>.GetValueOrThrow
+  nameWithType.vb: ParseResult(Of TValue).GetValueOrThrow
+- uid: Identifiers.Czech.ParseResult`1.Success
+  name: Success
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Success
+  commentId: P:Identifiers.Czech.ParseResult`1.Success
+  fullName: Identifiers.Czech.ParseResult<TValue>.Success
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).Success
+  nameWithType: ParseResult<TValue>.Success
+  nameWithType.vb: ParseResult(Of TValue).Success
+- uid: Identifiers.Czech.ParseResult`1.Success*
+  name: Success
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Success_
+  commentId: Overload:Identifiers.Czech.ParseResult`1.Success
+  fullName: Identifiers.Czech.ParseResult<TValue>.Success
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).Success
+  nameWithType: ParseResult<TValue>.Success
+  nameWithType.vb: ParseResult(Of TValue).Success
+- uid: Identifiers.Czech.ParseResult`1.Value
+  name: Value
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Value
+  commentId: P:Identifiers.Czech.ParseResult`1.Value
+  fullName: Identifiers.Czech.ParseResult<TValue>.Value
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).Value
+  nameWithType: ParseResult<TValue>.Value
+  nameWithType.vb: ParseResult(Of TValue).Value
+- uid: Identifiers.Czech.ParseResult`1.Value*
+  name: Value
+  href: api/Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Value_
+  commentId: Overload:Identifiers.Czech.ParseResult`1.Value
+  fullName: Identifiers.Czech.ParseResult<TValue>.Value
+  fullName.vb: Identifiers.Czech.ParseResult(Of TValue).Value
+  nameWithType: ParseResult<TValue>.Value
+  nameWithType.vb: ParseResult(Of TValue).Value

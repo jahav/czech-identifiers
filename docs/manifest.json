@@ -1,0 +1,249 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/Honza/Projects/czech-identifiers/docfx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.AccountNumber.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.AccountNumber.html",
+          "hash": "au/EF80IaZuz1wbuXsKCfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.AccountNumberPattern.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.AccountNumberPattern.html",
+          "hash": "Iq3F2YAsZ3OkpgrcGHJ5vA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.BirthNumber.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.BirthNumber.html",
+          "hash": "X4rn+HKFH8z1XVd8jaRZNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.BirthNumberPattern.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.BirthNumberPattern.html",
+          "hash": "x/qcsjnCUCtAjab8YjjfIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.IIdentifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.IIdentifier.html",
+          "hash": "/IjUDPUbTVMVy9fM1CeCmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.IIdentifierParser-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.IIdentifierParser-2.html",
+          "hash": "6w6OzQoMnlEHtTs3fPGp2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.IPattern-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.IPattern-1.html",
+          "hash": "INOZxFEfRLzFFg3h9/JTgw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.IdentificationNumber.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.IdentificationNumber.html",
+          "hash": "IM5uQ9QwatKKoJC/bcHylg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.IdentificationNumberPattern.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.IdentificationNumberPattern.html",
+          "hash": "oAWeuQ15QKX7QZrn4GdKTg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.ParseResult-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.ParseResult-1.html",
+          "hash": "8Vf+QzLlW1d+62ZvyTmGCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Identifiers.Czech.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Identifiers.Czech.html",
+          "hash": "Mv5k0rYdl4HxSaog5l7woQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "2lVz0lHVWMrdB37jX2SEYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "XBy9DpfJkmlF+e4aZk3zkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "nmAouKw3HyWoHX06peLawg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "xVlQaX7Tk85omoiWv3O+Ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "BNdS2K/HCWFWy/TaWoVeKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "ob7LqWp4kTNLz+9W4omdTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

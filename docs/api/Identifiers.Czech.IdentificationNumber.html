@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct IdentificationNumber
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct IdentificationNumber
+   ">
+    <meta name="generator" content="docfx 2.28.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Identifiers.Czech.IdentificationNumber">
+  
+  
+  <h1 id="Identifiers_Czech_IdentificationNumber" data-uid="Identifiers.Czech.IdentificationNumber" class="text-break">Struct IdentificationNumber
+  </h1>
+  <div class="markdown level0 summary"><p>Identifier number of a legal person in Czech Republic (also called IČO), either a company or a self-employed trader.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Identifiers.Czech.IIdentifier.html">IIdentifier</a></div>
+    <div><span class="xref">System.IFormattable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.ValueType.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ValueType.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.ValueType.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Identifiers.Czech.html">Identifiers.Czech</a></h6>
+  <h6><strong>Assembly</strong>: Identifiers.Czech.dll</h6>
+  <h5 id="Identifiers_Czech_IdentificationNumber_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct IdentificationNumber : IIdentifier, IFormattable</code></pre>
+  </div>
+  <h5 id="Identifiers_Czech_IdentificationNumber_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The number is 8 characters long and must contain only digits. Leading zeros are always included.
+Unfortunatelly, I was unable to find official definition, so I ended up with this: 
+<see cref="!:https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo"></see>.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber__ctor_System_Int64_System_Int32_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.%23ctor(System.Int64%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L38">View Source</a>
+  </span>
+  <a id="Identifiers_Czech_IdentificationNumber__ctor_" data-uid="Identifiers.Czech.IdentificationNumber.#ctor*"></a>
+  <h4 id="Identifiers_Czech_IdentificationNumber__ctor_System_Int64_System_Int32_" data-uid="Identifiers.Czech.IdentificationNumber.#ctor(System.Int64,System.Int32)">IdentificationNumber(Int64, Int32)</h4>
+  <div class="markdown level1 summary"><p>A constructor used to create a identifier number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IdentificationNumber(long number, int checkDigit)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">number</span></td>
+        <td><p>First seven digits of IČO, a number from <span class="xref">Identifiers.Czech.IdentificationNumber.numberLowerLimit</span> to <see cref="!:upperLowerLimit"></see>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">checkDigit</span></td>
+        <td><p>Check digit, doesn&apos;t have to be correct for the <code data-dev-comment-type="paramref" class="paramref">number</code>, but it must be from <span class="xref">Identifiers.Czech.IdentificationNumber.checkDigitLowerLimit</span> to <span class="xref">Identifiers.Czech.IdentificationNumber.checkDigitUpperLimit</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_ExpectedCheckDigit.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L72">View Source</a>
+  </span>
+  <a id="Identifiers_Czech_IdentificationNumber_ExpectedCheckDigit_" data-uid="Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit*"></a>
+  <h4 id="Identifiers_Czech_IdentificationNumber_ExpectedCheckDigit" data-uid="Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit">ExpectedCheckDigit</h4>
+  <div class="markdown level1 summary"><p>Get expected check digit according to the checksum algorithm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ExpectedCheckDigit { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_CheckDigit.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.CheckDigit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L67">View Source</a>
+  </span>
+  <a id="Identifiers_Czech_IdentificationNumber_CheckDigit_" data-uid="Identifiers.Czech.IdentificationNumber.CheckDigit*"></a>
+  <h4 id="Identifiers_Czech_IdentificationNumber_CheckDigit" data-uid="Identifiers.Czech.IdentificationNumber.CheckDigit">CheckDigit</h4>
+  <div class="markdown level1 summary"><p>Get check digit of IČO (it is last, least significat digit).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CheckDigit { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_IsValid.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.IsValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L57">View Source</a>
+  </span>
+  <a id="Identifiers_Czech_IdentificationNumber_IsValid_" data-uid="Identifiers.Czech.IdentificationNumber.IsValid*"></a>
+  <h4 id="Identifiers_Czech_IdentificationNumber_IsValid" data-uid="Identifiers.Czech.IdentificationNumber.IsValid">IsValid</h4>
+  <div class="markdown level1 summary"><p>Is the identifier valid? I.e. its check digit is equal to expected check digit?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsValid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_Number.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.Number%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L62">View Source</a>
+  </span>
+  <a id="Identifiers_Czech_IdentificationNumber_Number_" data-uid="Identifiers.Czech.IdentificationNumber.Number*"></a>
+  <h4 id="Identifiers_Czech_IdentificationNumber_Number" data-uid="Identifiers.Czech.IdentificationNumber.Number">Number</h4>
+  <div class="markdown level1 summary"><p>Get a IČO number = number constructed from first 7 digits (eight digit is check digit).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Number { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_ToString_System_String_System_IFormatProvider_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.ToString(System.String%2CSystem.IFormatProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L113">View Source</a>
+  </span>
+  <a id="Identifiers_Czech_IdentificationNumber_ToString_" data-uid="Identifiers.Czech.IdentificationNumber.ToString*"></a>
+  <h4 id="Identifiers_Czech_IdentificationNumber_ToString_System_String_System_IFormatProvider_" data-uid="Identifiers.Czech.IdentificationNumber.ToString(System.String,System.IFormatProvider)">ToString(String, IFormatProvider)</h4>
+  <div class="markdown level1 summary"><p>Format the identification number in a standard way, as 8 digit number, including leading zeros.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(string format, IFormatProvider formatProvider)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Format, can be either <code>null</code> (default-standard) or <code>S</code>/<code>s</code> (standard).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IFormatProvider</span></td>
+        <td><span class="parametername">formatProvider</span></td>
+        <td><p>Not used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Formatted identification number.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Identifiers.Czech.IIdentifier.html">IIdentifier</a>
+  </div>
+  <div>
+      <span class="xref">System.IFormattable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L15" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
