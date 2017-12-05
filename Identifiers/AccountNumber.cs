@@ -10,7 +10,7 @@ namespace Identifiers.Czech
     /// <li>Account number</li>
     /// <li>Bank code</li>
     /// </ul>
-    /// The leading zeros are insignificant, so 00123 is same as 123.
+    /// The leading zeros of prefix and number are not significant, so 00123 is same as 123.
     /// <para>
     /// <example>
     /// <c>19-123457/0710</c> is a bank account number with a prefix 19, account number 123457 and a bank code 0710.
