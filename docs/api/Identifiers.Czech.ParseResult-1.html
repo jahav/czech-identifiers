@@ -73,7 +73,12 @@
   
   <h1 id="Identifiers_Czech_ParseResult_1" data-uid="Identifiers.Czech.ParseResult`1" class="text-break">Class ParseResult&lt;TValue&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Result of parsing.</p>
+  <div class="markdown level0 summary"><p>A result of an attept to <a class="xref" href="Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Parse_System_String_">Parse(String)</a> a string into a value.
+The parsing either succeeded or failed. </p>
+<ul>
+<li>If it succeeded, then <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Success">Success</a> is set to <code>true</code> and the <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Value">Value</a> contains parsed value.</li>
+<li>If it failed, then <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Success">Success</a> is set to <code>fale</code> and the <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Exception">Exception</a> contains the exception that caused the parsing to fail.</li>
+</ul>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -134,7 +139,7 @@
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_ParseResult_1_Exception.md&amp;value=---%0Auid%3A%20Identifiers.Czech.ParseResult%601.Exception%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L34">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L37">View Source</a>
   </span>
   <a id="Identifiers_Czech_ParseResult_1_Exception_" data-uid="Identifiers.Czech.ParseResult`1.Exception*"></a>
   <h4 id="Identifiers_Czech_ParseResult_1_Exception" data-uid="Identifiers.Czech.ParseResult`1.Exception">Exception</h4>
@@ -171,7 +176,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>If parsing succeeded.</p>
+        <td><p>If parsing succeeded, then this property throws an exception.</p>
 </td>
       </tr>
     </tbody>
@@ -181,7 +186,7 @@
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_ParseResult_1_Success.md&amp;value=---%0Auid%3A%20Identifiers.Czech.ParseResult%601.Success%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L23">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L26">View Source</a>
   </span>
   <a id="Identifiers_Czech_ParseResult_1_Success_" data-uid="Identifiers.Czech.ParseResult`1.Success*"></a>
   <h4 id="Identifiers_Czech_ParseResult_1_Success" data-uid="Identifiers.Czech.ParseResult`1.Success">Success</h4>
@@ -212,7 +217,7 @@
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_ParseResult_1_Value.md&amp;value=---%0Auid%3A%20Identifiers.Czech.ParseResult%601.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L28">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L31">View Source</a>
   </span>
   <a id="Identifiers_Czech_ParseResult_1_Value_" data-uid="Identifiers.Czech.ParseResult`1.Value*"></a>
   <h4 id="Identifiers_Czech_ParseResult_1_Value" data-uid="Identifiers.Czech.ParseResult`1.Value">Value</h4>
@@ -245,11 +250,11 @@
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_ParseResult_1_ForException_System_Exception_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.ParseResult%601.ForException(System.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L73">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L76">View Source</a>
   </span>
   <a id="Identifiers_Czech_ParseResult_1_ForException_" data-uid="Identifiers.Czech.ParseResult`1.ForException*"></a>
   <h4 id="Identifiers_Czech_ParseResult_1_ForException_System_Exception_" data-uid="Identifiers.Czech.ParseResult`1.ForException(System.Exception)">ForException(Exception)</h4>
-  <div class="markdown level1 summary"><p>Create a new parsed result indicating error.</p>
+  <div class="markdown level1 summary"><p>Create a new parsed result indicating an error.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -285,7 +290,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Identifiers.Czech.ParseResult-1.html">ParseResult</a>&lt;TValue&gt;</td>
-        <td><p>Parsing result.</p>
+        <td><p>Created parsing result.</p>
 </td>
       </tr>
     </tbody>
@@ -295,11 +300,11 @@
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_ParseResult_1_ForValue__0_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.ParseResult%601.ForValue(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L66">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L69">View Source</a>
   </span>
   <a id="Identifiers_Czech_ParseResult_1_ForValue_" data-uid="Identifiers.Czech.ParseResult`1.ForValue*"></a>
   <h4 id="Identifiers_Czech_ParseResult_1_ForValue__0_" data-uid="Identifiers.Czech.ParseResult`1.ForValue(`0)">ForValue(TValue)</h4>
-  <div class="markdown level1 summary"><p>Create a new parsed result indicatin a success.</p>
+  <div class="markdown level1 summary"><p>Create a new parsed result indicating a success.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -335,7 +340,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Identifiers.Czech.ParseResult-1.html">ParseResult</a>&lt;TValue&gt;</td>
-        <td><p>Parsing result.</p>
+        <td><p>Created parsing result.</p>
 </td>
       </tr>
     </tbody>
@@ -345,11 +350,11 @@
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_ParseResult_1_GetValueOrThrow.md&amp;value=---%0Auid%3A%20Identifiers.Czech.ParseResult%601.GetValueOrThrow%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L51">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L54">View Source</a>
   </span>
   <a id="Identifiers_Czech_ParseResult_1_GetValueOrThrow_" data-uid="Identifiers.Czech.ParseResult`1.GetValueOrThrow*"></a>
   <h4 id="Identifiers_Czech_ParseResult_1_GetValueOrThrow" data-uid="Identifiers.Czech.ParseResult`1.GetValueOrThrow">GetValueOrThrow()</h4>
-  <div class="markdown level1 summary"><p>Get value, if parsing was successfull, otherwise throw an exception indicating parsing failure.</p>
+  <div class="markdown level1 summary"><p>Get value, if parsing was successfull, otherwise throw the exception that caused parsing failure.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -367,7 +372,7 @@
     <tbody>
       <tr>
         <td><span class="xref">TValue</span></td>
-        <td><p>Parsed value.</p>
+        <td><p>Parsed value, if parsing <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Success">Success</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -383,7 +388,7 @@
                     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_ParseResult_1.md&amp;value=---%0Auid%3A%20Identifiers.Czech.ParseResult%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/ParseResult.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

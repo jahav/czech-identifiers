@@ -456,46 +456,46 @@ references:
   nameWithType: IIdentifierParser<TInput, TIdentifier>.Parse
   nameWithType.vb: IIdentifierParser(Of TInput, TIdentifier).Parse
 - uid: Identifiers.Czech.IPattern`1
-  name: IPattern<T>
+  name: IPattern<TValue>
   href: api/Identifiers.Czech.IPattern-1.html
   commentId: T:Identifiers.Czech.IPattern`1
-  name.vb: IPattern(Of T)
-  fullName: Identifiers.Czech.IPattern<T>
-  fullName.vb: Identifiers.Czech.IPattern(Of T)
-  nameWithType: IPattern<T>
-  nameWithType.vb: IPattern(Of T)
+  name.vb: IPattern(Of TValue)
+  fullName: Identifiers.Czech.IPattern<TValue>
+  fullName.vb: Identifiers.Czech.IPattern(Of TValue)
+  nameWithType: IPattern<TValue>
+  nameWithType.vb: IPattern(Of TValue)
 - uid: Identifiers.Czech.IPattern`1.Format(`0)
-  name: Format(T)
+  name: Format(TValue)
   href: api/Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Format__0_
   commentId: M:Identifiers.Czech.IPattern`1.Format(`0)
-  fullName: Identifiers.Czech.IPattern<T>.Format(T)
-  fullName.vb: Identifiers.Czech.IPattern(Of T).Format(T)
-  nameWithType: IPattern<T>.Format(T)
-  nameWithType.vb: IPattern(Of T).Format(T)
+  fullName: Identifiers.Czech.IPattern<TValue>.Format(TValue)
+  fullName.vb: Identifiers.Czech.IPattern(Of TValue).Format(TValue)
+  nameWithType: IPattern<TValue>.Format(TValue)
+  nameWithType.vb: IPattern(Of TValue).Format(TValue)
 - uid: Identifiers.Czech.IPattern`1.Format*
   name: Format
   href: api/Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Format_
   commentId: Overload:Identifiers.Czech.IPattern`1.Format
-  fullName: Identifiers.Czech.IPattern<T>.Format
-  fullName.vb: Identifiers.Czech.IPattern(Of T).Format
-  nameWithType: IPattern<T>.Format
-  nameWithType.vb: IPattern(Of T).Format
+  fullName: Identifiers.Czech.IPattern<TValue>.Format
+  fullName.vb: Identifiers.Czech.IPattern(Of TValue).Format
+  nameWithType: IPattern<TValue>.Format
+  nameWithType.vb: IPattern(Of TValue).Format
 - uid: Identifiers.Czech.IPattern`1.Parse(System.String)
   name: Parse(String)
   href: api/Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Parse_System_String_
   commentId: M:Identifiers.Czech.IPattern`1.Parse(System.String)
-  fullName: Identifiers.Czech.IPattern<T>.Parse(System.String)
-  fullName.vb: Identifiers.Czech.IPattern(Of T).Parse(System.String)
-  nameWithType: IPattern<T>.Parse(String)
-  nameWithType.vb: IPattern(Of T).Parse(String)
+  fullName: Identifiers.Czech.IPattern<TValue>.Parse(System.String)
+  fullName.vb: Identifiers.Czech.IPattern(Of TValue).Parse(System.String)
+  nameWithType: IPattern<TValue>.Parse(String)
+  nameWithType.vb: IPattern(Of TValue).Parse(String)
 - uid: Identifiers.Czech.IPattern`1.Parse*
   name: Parse
   href: api/Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Parse_
   commentId: Overload:Identifiers.Czech.IPattern`1.Parse
-  fullName: Identifiers.Czech.IPattern<T>.Parse
-  fullName.vb: Identifiers.Czech.IPattern(Of T).Parse
-  nameWithType: IPattern<T>.Parse
-  nameWithType.vb: IPattern(Of T).Parse
+  fullName: Identifiers.Czech.IPattern<TValue>.Parse
+  fullName.vb: Identifiers.Czech.IPattern(Of TValue).Parse
+  nameWithType: IPattern<TValue>.Parse
+  nameWithType.vb: IPattern(Of TValue).Parse
 - uid: Identifiers.Czech.ParseResult`1
   name: ParseResult<TValue>
   href: api/Identifiers.Czech.ParseResult-1.html

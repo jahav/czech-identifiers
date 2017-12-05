@@ -78,14 +78,21 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="Identifiers.Czech.AccountNumberPattern.html">AccountNumberPattern</a></h4>
-      <section></section>
+      <section><p>A <a class="xref" href="Identifiers.Czech.IPattern-1.html">IPattern&lt;TValue&gt;</a> for <a class="xref" href="Identifiers.Czech.AccountNumber.html">AccountNumber</a>. It&apos;s not possible
+to create this class, you have to use provided <a class="xref" href="Identifiers.Czech.AccountNumberPattern.html#Identifiers_Czech_AccountNumberPattern_StandardPattern">StandardPattern</a>.</p>
+</section>
       <h4><a class="xref" href="Identifiers.Czech.BirthNumberPattern.html">BirthNumberPattern</a></h4>
       <section><p>Pattern for birth number.</p>
 </section>
       <h4><a class="xref" href="Identifiers.Czech.IdentificationNumberPattern.html">IdentificationNumberPattern</a></h4>
       <section></section>
       <h4><a class="xref" href="Identifiers.Czech.ParseResult-1.html">ParseResult&lt;TValue&gt;</a></h4>
-      <section><p>Result of parsing.</p>
+      <section><p>A result of an attept to <a class="xref" href="Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Parse_System_String_">Parse(String)</a> a string into a value.
+The parsing either succeeded or failed. </p>
+<ul>
+<li>If it succeeded, then <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Success">Success</a> is set to <code>true</code> and the <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Value">Value</a> contains parsed value.</li>
+<li>If it failed, then <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Success">Success</a> is set to <code>fale</code> and the <a class="xref" href="Identifiers.Czech.ParseResult-1.html#Identifiers_Czech_ParseResult_1_Exception">Exception</a> contains the exception that caused the parsing to fail.</li>
+</ul>
 </section>
     <h3 id="structs">Structs
   </h3>
@@ -131,8 +138,13 @@ and generally between prefix and account number is a dash, while between account
       <section><p>Parse an object to a standard string form used by the validators. Reponsibility of this class is only 
 parsing, not validation.</p>
 </section>
-      <h4><a class="xref" href="Identifiers.Czech.IPattern-1.html">IPattern&lt;T&gt;</a></h4>
-      <section><p>A pattern of a string, used to transform a value from and to the strin with a certain pattern..</p>
+      <h4><a class="xref" href="Identifiers.Czech.IPattern-1.html">IPattern&lt;TValue&gt;</a></h4>
+      <section><p>A string pattern of a type <see cref="!:TValue"></see>, used to </p>
+<ul>
+<li>parse a string and create value from the string.</li>
+<li>create a string from the value.</li>
+</ul>
+<p>The implementation of the interface ensure that both parsing and formatting are using same string pattern, although parsing can be more generous with accepted input.</p>
 </section>
 </article>
           </div>

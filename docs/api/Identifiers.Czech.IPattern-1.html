@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IPattern&lt;T&gt;
+    <title>Interface IPattern&lt;TValue&gt;
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IPattern&lt;T&gt;
+    <meta name="title" content="Interface IPattern&lt;TValue&gt;
    ">
     <meta name="generator" content="docfx 2.28.1.0">
     
@@ -71,16 +71,21 @@
             <article class="content wrap" id="_content" data-uid="Identifiers.Czech.IPattern`1">
   
   
-  <h1 id="Identifiers_Czech_IPattern_1" data-uid="Identifiers.Czech.IPattern`1" class="text-break">Interface IPattern&lt;T&gt;
+  <h1 id="Identifiers_Czech_IPattern_1" data-uid="Identifiers.Czech.IPattern`1" class="text-break">Interface IPattern&lt;TValue&gt;
   </h1>
-  <div class="markdown level0 summary"><p>A pattern of a string, used to transform a value from and to the strin with a certain pattern..</p>
+  <div class="markdown level0 summary"><p>A string pattern of a type <see cref="!:TValue"></see>, used to </p>
+<ul>
+<li>parse a string and create value from the string.</li>
+<li>create a string from the value.</li>
+</ul>
+<p>The implementation of the interface ensure that both parsing and formatting are using same string pattern, although parsing can be more generous with accepted input.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Identifiers.Czech.html">Identifiers.Czech</a></h6>
   <h6><strong>Assembly</strong>: Identifiers.Czech.dll</h6>
   <h5 id="Identifiers_Czech_IPattern_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IPattern&lt;T&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IPattern&lt;TValue&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -92,8 +97,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Type of value.</p>
+        <td><span class="parametername">TValue</span></td>
+        <td><p>Type of parsed/formatted value.</p>
 </td>
       </tr>
     </tbody>
@@ -105,16 +110,16 @@
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IPattern_1_Format__0_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IPattern%601.Format(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IPattern.cs/#L17">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IPattern.cs/#L20">View Source</a>
   </span>
   <a id="Identifiers_Czech_IPattern_1_Format_" data-uid="Identifiers.Czech.IPattern`1.Format*"></a>
-  <h4 id="Identifiers_Czech_IPattern_1_Format__0_" data-uid="Identifiers.Czech.IPattern`1.Format(`0)">Format(T)</h4>
-  <div class="markdown level1 summary"><p>Format the <code data-dev-comment-type="paramref" class="paramref">value</code> according to the pattern.</p>
+  <h4 id="Identifiers_Czech_IPattern_1_Format__0_" data-uid="Identifiers.Czech.IPattern`1.Format(`0)">Format(TValue)</h4>
+  <div class="markdown level1 summary"><p>Format the <code data-dev-comment-type="paramref" class="paramref">value</code> to a string according to the pattern.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string Format(T value)</code></pre>
+    <pre><code class="lang-csharp hljs">string Format(TValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -127,7 +132,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">T</span></td>
+        <td><span class="xref">TValue</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>Value to format.</p>
 </td>
@@ -155,17 +160,17 @@
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IPattern_1_Parse_System_String_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IPattern%601.Parse(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IPattern.cs/#L26">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IPattern.cs/#L29">View Source</a>
   </span>
   <a id="Identifiers_Czech_IPattern_1_Parse_" data-uid="Identifiers.Czech.IPattern`1.Parse*"></a>
   <h4 id="Identifiers_Czech_IPattern_1_Parse_System_String_" data-uid="Identifiers.Czech.IPattern`1.Parse(System.String)">Parse(String)</h4>
-  <div class="markdown level1 summary"><p>Parse a text into the value. It doesn&apos;t thow exceptions, if an error 
+  <div class="markdown level1 summary"><p>Parse a string into the value. It doesn&apos;t thow exceptions, if an error 
 happens during parsing, return unsuccessfull <a class="xref" href="Identifiers.Czech.ParseResult-1.html">ParseResult&lt;TValue&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ParseResult&lt;T&gt; Parse(string text)</code></pre>
+    <pre><code class="lang-csharp hljs">ParseResult&lt;TValue&gt; Parse(string text)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -195,7 +200,7 @@ happens during parsing, return unsuccessfull <a class="xref" href="Identifiers.C
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Identifiers.Czech.ParseResult-1.html">ParseResult</a>&lt;T&gt;</td>
+        <td><a class="xref" href="Identifiers.Czech.ParseResult-1.html">ParseResult</a>&lt;TValue&gt;</td>
         <td><p>Parsing result.</p>
 </td>
       </tr>
@@ -212,7 +217,7 @@ happens during parsing, return unsuccessfull <a class="xref" href="Identifiers.C
                     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IPattern_1.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IPattern%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IPattern.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IPattern.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

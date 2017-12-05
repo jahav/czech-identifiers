@@ -4,7 +4,11 @@ using System.Text.RegularExpressions;
 
 namespace Identifiers.Czech
 {
-    public class AccountNumberPattern : IPattern<AccountNumber>
+    /// <summary>
+    /// A <see cref="IPattern{TValue}">pattern</see> for <see cref="AccountNumber"/>. It's not possible
+    /// to create this class, you have to use provided <see cref="StandardPattern"/>.
+    /// </summary>
+    public sealed class AccountNumberPattern : IPattern<AccountNumber>
     {
         /// <summary>
         /// Accoring to the CNB decree no.169/2011, the prefix and account number should be 
@@ -14,7 +18,14 @@ namespace Identifiers.Czech
         private static Regex standardForm = new Regex("^(([0-9]{1,6})-|-?)([0-9]{2,10})/([0-9]{4}$)");
 
         /// <summary>
-        /// Parse an account number, even with leading zeros. 
+        /// A pattern that doesn't use leading zeros and prefix can be missing if it is 0.
+        /// 
+        /// * ``19-5874/0300`` is correct format
+        /// * ``5874/0300`` is correct format
+        /// * ``019-5874/0300`` is incorrect format
+        /// * ``000-5874/0300`` is incorrect format
+        /// 
+        /// The parsin is more lenient, it accepts both leading zeros and prefix consisting of only zeros.
         /// </summary>
         public static AccountNumberPattern StandardPattern = new AccountNumberPattern("S");
 
@@ -25,6 +36,7 @@ namespace Identifiers.Czech
             this.format = format;
         }
 
+        /// <inheritdoc />
         public ParseResult<AccountNumber> Parse(string text)
         {
             if (text == null)
