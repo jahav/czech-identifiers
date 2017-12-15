@@ -1,2 +1,8 @@
 - name: Introduction
   href: intro.md
+# - name: 'Example: Birth number generator'
+#   href: birth-number-generator.md
+# - name: 'Example: Identifier guesser'
+#   href: identifier-guesser.md
+# - name: 'Example: IBAN converter'
+#   href: IBAN-converter.md

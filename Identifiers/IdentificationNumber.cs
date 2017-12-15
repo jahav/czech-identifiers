@@ -38,7 +38,7 @@ namespace Identifiers.Czech
         /// <summary>
         /// A constructor used to create a identifier number.
         /// </summary>
-        /// <param name="number">First seven digits of IČO, a number from <see cref="numberLowerLimit"/> to <see cref="upperLowerLimit"/>.</param>
+        /// <param name="number">First seven digits of IČO, a number from <see cref="numberLowerLimit"/> to <see cref="numberUpperLimit"/>.</param>
         /// <param name="checkDigit">Check digit, doesn't have to be correct for the <paramref name="number"/>, but it must be from <see cref="checkDigitLowerLimit"/> to <see cref="checkDigitUpperLimit"/>.</param>
         /// <exception cref="ArgumentOutOfRangeException">When <paramref name="number"/> or <paramref name="checkDigit"/> is outside of allowed range.</exception>
         /// 

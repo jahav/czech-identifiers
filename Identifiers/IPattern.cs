@@ -1,7 +1,7 @@
 ﻿namespace Identifiers.Czech
 {
     /// <summary>
-    /// A string pattern of a type <see cref="TValue"/>, used to 
+    /// A string pattern of a type <typeparamref name="TValue"/>, used to 
     /// 
     /// * parse a string and create value from the string.
     /// * create a string from the value.

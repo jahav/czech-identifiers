@@ -1,10 +1,13 @@
 # Identifiers.Czech
 
-Identifiers.Czech is a C# library for creating, parsing and validating various identifiers used in Czech Republic. As of this time, it supports
+`Identifiers.Czech` is a C# library for creating, parsing and validating various identifiers used in [Czech Republic](https://en.wikipedia.org/wiki/Czech_Republic). As of this time, it supports
 following identifiers:
 * Birth number - this identifier is assigned to ever person born in Czech Republic. It is used extensively in a medical care. The number itself contains a flag indicating whether the person is a man or a woman and also a date of birth.
 * Business identifying number - It is a number used for identification of a business, either a company or a person doing business. In czech, it is called IČO - Identifikační číslo osoby.
 * Bank account number - account number in the bank. IBAN is not in widespread use, instead we still use a system from 90s. It is possible to transform the account number to an IBAN.
+
+## API documentation
+At the top of the page, there is a link to the [API documentation](api/index.md) describing the library classes an interfaces.
 
 ## Quick Start
 
