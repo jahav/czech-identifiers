@@ -82,10 +82,11 @@
 to create this class, you have to use provided <a class="xref" href="Identifiers.Czech.AccountNumberPattern.html#Identifiers_Czech_AccountNumberPattern_StandardPattern">StandardPattern</a>.</p>
 </section>
       <h4><a class="xref" href="Identifiers.Czech.BirthNumberPattern.html">BirthNumberPattern</a></h4>
-      <section><p>Pattern for birth number.</p>
+      <section><p><a class="xref" href="Identifiers.Czech.IPattern-1.html">IPattern&lt;TValue&gt;</a> for a <a class="xref" href="Identifiers.Czech.BirthNumber.html">BirthNumber</a>.</p>
 </section>
       <h4><a class="xref" href="Identifiers.Czech.IdentificationNumberPattern.html">IdentificationNumberPattern</a></h4>
-      <section></section>
+      <section><p><a class="xref" href="Identifiers.Czech.IPattern-1.html">IPattern&lt;TValue&gt;</a> for a <a class="xref" href="Identifiers.Czech.IdentificationNumber.html">IdentificationNumber</a>.</p>
+</section>
       <h4><a class="xref" href="Identifiers.Czech.ParseResult-1.html">ParseResult&lt;TValue&gt;</a></h4>
       <section><p>A result of an attept to <a class="xref" href="Identifiers.Czech.IPattern-1.html#Identifiers_Czech_IPattern_1_Parse_System_String_">Parse(String)</a> a string into a value.
 The parsing either succeeded or failed. </p>
@@ -103,7 +104,7 @@ The parsing either succeeded or failed. </p>
 <li>Account number</li>
 <li>Bank code</li>
 </ul>
-The leading zeros are insignificant, so 00123 is same as 123.
+The leading zeros of prefix and number are not significant, so 00123 is same as 123.
 <p>
 <example>
 <code>19-123457/0710</code> is a bank account number with a prefix 19, account number 123457 and a bank code 0710.
@@ -118,28 +119,31 @@ The prefix and number should be visibly separated, but in practice everyone uses
 and generally between prefix and account number is a dash, while between account number and bank code is a slash.</p>
 </section>
       <h4><a class="xref" href="Identifiers.Czech.BirthNumber.html">BirthNumber</a></h4>
-      <section><p>A birth number is an identifier given to every born person in Czech Republic. It can be either 9 digits long (if assigned before 1954) or 10 digits long (assigned after 1954).</p>
-<p>Birth number consists from:
+      <section><p>
+A birth number is an identifier given to every born person in Czech Republic. It can be either 
+9 digits long (if assigned before 1954) or 10 digits long (assigned after 1954). It is used 
+extensively in many areas of life, especially in medicine and insurance.
+</p>
+<p>
+Birth number consists from:
 <ul>
 <li>date of birth</li>
 <li>sequence number</li>
 <li>check digit (only after 1954)</li>
-</ul></p>
+</ul>
+<ul><li><example>675914/1488</example>A woman born 1967-09-14 with a sequence number 148 and check digit 8</li><li><example>350105/321</example>A man born 1935-01-05 with a sequence number 321</li></ul>
+</p>
 </section>
       <h4><a class="xref" href="Identifiers.Czech.IdentificationNumber.html">IdentificationNumber</a></h4>
-      <section><p>Identifier number of a legal person in Czech Republic (also called IČO), either a company or a self-employed trader.</p>
+      <section><p>Identifier number of a legal person in Czech Republic (also called IČO). IČO is assigned to a company or a self-employed trader.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="Identifiers.Czech.IIdentifier.html">IIdentifier</a></h4>
       <section><p>Interface for all identifiers.</p>
 </section>
-      <h4><a class="xref" href="Identifiers.Czech.IIdentifierParser-2.html">IIdentifierParser&lt;TInput, TIdentifier&gt;</a></h4>
-      <section><p>Parse an object to a standard string form used by the validators. Reponsibility of this class is only 
-parsing, not validation.</p>
-</section>
       <h4><a class="xref" href="Identifiers.Czech.IPattern-1.html">IPattern&lt;TValue&gt;</a></h4>
-      <section><p>A string pattern of a type <see cref="!:TValue"></see>, used to </p>
+      <section><p>A string pattern of a type <code data-dev-comment-type="typeparamref" class="typeparamref">TValue</code>, used to </p>
 <ul>
 <li>parse a string and create value from the string.</li>
 <li>create a string from the value.</li>

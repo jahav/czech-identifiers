@@ -73,7 +73,7 @@
   
   <h1 id="Identifiers_Czech_IdentificationNumber" data-uid="Identifiers.Czech.IdentificationNumber" class="text-break">Struct IdentificationNumber
   </h1>
-  <div class="markdown level0 summary"><p>Identifier number of a legal person in Czech Republic (also called IČO), either a company or a self-employed trader.</p>
+  <div class="markdown level0 summary"><p>Identifier number of a legal person in Czech Republic (also called IČO). IČO is assigned to a company or a self-employed trader.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div classs="implements">
@@ -109,9 +109,15 @@
     <pre><code class="lang-csharp hljs">public struct IdentificationNumber : IIdentifier, IFormattable</code></pre>
   </div>
   <h5 id="Identifiers_Czech_IdentificationNumber_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>The number is 8 characters long and must contain only digits. Leading zeros are always included.
-Unfortunatelly, I was unable to find official definition, so I ended up with this: 
-<see cref="!:https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo"></see>.</p>
+  <div class="markdown level0 remarks"><p>
+The number itself is 8 characters long and must contain only digits. Leading zeros are always included. 
+The first seven digits are assigned number and the eights one is a check digit.
+</p>
+<p>
+Unfortunatelly, I was unable to find official definition, so I ended up with 
+<a href="https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo">an article</a> on the internet. 
+I have verified that it works with a dump of all assigned identifiying numbers assigned to some entity.
+</p>
 </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -120,7 +126,7 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber__ctor_System_Int64_System_Int32_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.%23ctor(System.Int64%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L38">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L45">View Source</a>
   </span>
   <a id="Identifiers_Czech_IdentificationNumber__ctor_" data-uid="Identifiers.Czech.IdentificationNumber.#ctor*"></a>
   <h4 id="Identifiers_Czech_IdentificationNumber__ctor_System_Int64_System_Int32_" data-uid="Identifiers.Czech.IdentificationNumber.#ctor(System.Int64,System.Int32)">IdentificationNumber(Int64, Int32)</h4>
@@ -144,13 +150,29 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
       <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><span class="parametername">number</span></td>
-        <td><p>First seven digits of IČO, a number from <span class="xref">Identifiers.Czech.IdentificationNumber.numberLowerLimit</span> to <see cref="!:upperLowerLimit"></see>.</p>
+        <td><p>First seven digits of IČO, a number from <span class="xref">Identifiers.Czech.IdentificationNumber.numberLowerLimit</span> to <span class="xref">Identifiers.Czech.IdentificationNumber.numberUpperLimit</span>.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">checkDigit</span></td>
         <td><p>Check digit, doesn&apos;t have to be correct for the <code data-dev-comment-type="paramref" class="paramref">number</code>, but it must be from <span class="xref">Identifiers.Czech.IdentificationNumber.checkDigitLowerLimit</span> to <span class="xref">Identifiers.Czech.IdentificationNumber.checkDigitUpperLimit</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>When <code data-dev-comment-type="paramref" class="paramref">number</code> or <code data-dev-comment-type="paramref" class="paramref">checkDigit</code> is outside of allowed range.</p>
 </td>
       </tr>
     </tbody>
@@ -162,7 +184,7 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_ExpectedCheckDigit.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L72">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L79">View Source</a>
   </span>
   <a id="Identifiers_Czech_IdentificationNumber_ExpectedCheckDigit_" data-uid="Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit*"></a>
   <h4 id="Identifiers_Czech_IdentificationNumber_ExpectedCheckDigit" data-uid="Identifiers.Czech.IdentificationNumber.ExpectedCheckDigit">ExpectedCheckDigit</h4>
@@ -193,11 +215,11 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_CheckDigit.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.CheckDigit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L67">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L74">View Source</a>
   </span>
   <a id="Identifiers_Czech_IdentificationNumber_CheckDigit_" data-uid="Identifiers.Czech.IdentificationNumber.CheckDigit*"></a>
   <h4 id="Identifiers_Czech_IdentificationNumber_CheckDigit" data-uid="Identifiers.Czech.IdentificationNumber.CheckDigit">CheckDigit</h4>
-  <div class="markdown level1 summary"><p>Get check digit of IČO (it is last, least significat digit).</p>
+  <div class="markdown level1 summary"><p>Get the actual check digit of IČO (the eight digit, least significat digit).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -224,7 +246,7 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_IsValid.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.IsValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L57">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L64">View Source</a>
   </span>
   <a id="Identifiers_Czech_IdentificationNumber_IsValid_" data-uid="Identifiers.Czech.IdentificationNumber.IsValid*"></a>
   <h4 id="Identifiers_Czech_IdentificationNumber_IsValid" data-uid="Identifiers.Czech.IdentificationNumber.IsValid">IsValid</h4>
@@ -255,7 +277,7 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_Number.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.Number%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L62">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L69">View Source</a>
   </span>
   <a id="Identifiers_Czech_IdentificationNumber_Number_" data-uid="Identifiers.Czech.IdentificationNumber.Number*"></a>
   <h4 id="Identifiers_Czech_IdentificationNumber_Number" data-uid="Identifiers.Czech.IdentificationNumber.Number">Number</h4>
@@ -288,11 +310,11 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber_ToString_System_String_System_IFormatProvider_.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber.ToString(System.String%2CSystem.IFormatProvider)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L113">View Source</a>
+    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L121">View Source</a>
   </span>
   <a id="Identifiers_Czech_IdentificationNumber_ToString_" data-uid="Identifiers.Czech.IdentificationNumber.ToString*"></a>
   <h4 id="Identifiers_Czech_IdentificationNumber_ToString_System_String_System_IFormatProvider_" data-uid="Identifiers.Czech.IdentificationNumber.ToString(System.String,System.IFormatProvider)">ToString(String, IFormatProvider)</h4>
-  <div class="markdown level1 summary"><p>Format the identification number in a standard way, as 8 digit number, including leading zeros.</p>
+  <div class="markdown level1 summary"><p>Get formatted identification number.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -312,7 +334,7 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">format</span></td>
-        <td><p>Format, can be either <code>null</code> (default-standard) or <code>S</code>/<code>s</code> (standard).</p>
+        <td><p>Format of the identifiying number, can be either <code>null</code>, <code>S</code> or <code>s</code> for <a class="xref" href="Identifiers.Czech.IdentificationNumberPattern.html#Identifiers_Czech_IdentificationNumberPattern_StandardPattern">StandardPattern</a>.</p>
 </td>
       </tr>
       <tr>
@@ -339,6 +361,22 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>When format is not in the allowed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="Identifiers.Czech.IIdentifier.html">IIdentifier</a>
@@ -357,7 +395,7 @@ Unfortunatelly, I was unable to find official definition, so I ended up with thi
                     <a href="https://github.com/jahav/czech-identifiers/new/master/apiSpec/new?filename=Identifiers_Czech_IdentificationNumber.md&amp;value=---%0Auid%3A%20Identifiers.Czech.IdentificationNumber%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L15" class="contribution-link">View Source</a>
+                    <a href="https://github.com/jahav/czech-identifiers/blob/master/Identifiers/IdentificationNumber.cs/#L21" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

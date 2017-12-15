@@ -430,31 +430,6 @@ references:
   commentId: Overload:Identifiers.Czech.IIdentifier.IsValid
   fullName: Identifiers.Czech.IIdentifier.IsValid
   nameWithType: IIdentifier.IsValid
-- uid: Identifiers.Czech.IIdentifierParser`2
-  name: IIdentifierParser<TInput, TIdentifier>
-  href: api/Identifiers.Czech.IIdentifierParser-2.html
-  commentId: T:Identifiers.Czech.IIdentifierParser`2
-  name.vb: IIdentifierParser(Of TInput, TIdentifier)
-  fullName: Identifiers.Czech.IIdentifierParser<TInput, TIdentifier>
-  fullName.vb: Identifiers.Czech.IIdentifierParser(Of TInput, TIdentifier)
-  nameWithType: IIdentifierParser<TInput, TIdentifier>
-  nameWithType.vb: IIdentifierParser(Of TInput, TIdentifier)
-- uid: Identifiers.Czech.IIdentifierParser`2.Parse(`0)
-  name: Parse(TInput)
-  href: api/Identifiers.Czech.IIdentifierParser-2.html#Identifiers_Czech_IIdentifierParser_2_Parse__0_
-  commentId: M:Identifiers.Czech.IIdentifierParser`2.Parse(`0)
-  fullName: Identifiers.Czech.IIdentifierParser<TInput, TIdentifier>.Parse(TInput)
-  fullName.vb: Identifiers.Czech.IIdentifierParser(Of TInput, TIdentifier).Parse(TInput)
-  nameWithType: IIdentifierParser<TInput, TIdentifier>.Parse(TInput)
-  nameWithType.vb: IIdentifierParser(Of TInput, TIdentifier).Parse(TInput)
-- uid: Identifiers.Czech.IIdentifierParser`2.Parse*
-  name: Parse
-  href: api/Identifiers.Czech.IIdentifierParser-2.html#Identifiers_Czech_IIdentifierParser_2_Parse_
-  commentId: Overload:Identifiers.Czech.IIdentifierParser`2.Parse
-  fullName: Identifiers.Czech.IIdentifierParser<TInput, TIdentifier>.Parse
-  fullName.vb: Identifiers.Czech.IIdentifierParser(Of TInput, TIdentifier).Parse
-  nameWithType: IIdentifierParser<TInput, TIdentifier>.Parse
-  nameWithType.vb: IIdentifierParser(Of TInput, TIdentifier).Parse
 - uid: Identifiers.Czech.IPattern`1
   name: IPattern<TValue>
   href: api/Identifiers.Czech.IPattern-1.html
