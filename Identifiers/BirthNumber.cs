@@ -4,16 +4,30 @@
 namespace Identifiers.Czech
 {
     /// <summary>
-    /// A birth number is an identifier given to every born person in Czech Republic. It can be either 9 digits long (if assigned before 1954) or 10 digits long (assigned after 1954).
-    /// 
+    /// <para>
+    /// A birth number is an identifier given to every born person in Czech Republic. It can be either 
+    /// 9 digits long (if assigned before 1954) or 10 digits long (assigned after 1954). It is used 
+    /// extensively in many areas of life, especially in medicine and insurance.
+    /// </para>
+    /// <para>
     /// Birth number consists from:
     /// <ul>
     ///  <li>date of birth</li>
     ///  <li>sequence number</li>
     ///  <li>check digit (only after 1954)</li>
     /// </ul>
+    /// <list type="bullet">
+    ///     <item>
+    ///         <term><example>675914/1488</example></term>
+    ///         <description>A woman born 1967-09-14 with a sequence number 148 and check digit 8</description>
+    ///     </item>
+    ///     <item>
+    ///         <term><example>350105/321</example></term>
+    ///         <description>A man born 1935-01-05 with a sequence number 321</description>
+    ///     </item>
+    /// </list>
+    /// </para>
     /// </summary>
-    /// <see cref="http://www.mvcr.cz/clanek/overovani-rodneho-cisla-331794.aspx"/>
     public struct BirthNumber : IIdentifier
     {
         private const int datePartLowerLimit = 0;
@@ -40,11 +54,11 @@ namespace Identifiers.Czech
         /// <summary>
         /// Create a new birth number in standard form.
         /// </summary>
-        /// <param name="yearPart"></param>
-        /// <param name="monthPart"></param>
-        /// <param name="dayPart"></param>
-        /// <param name="sequence"></param>
-        /// <param name="checkDigit"></param>
+        /// <param name="yearPart">A century part of the birth number, from 0-99 range.</param>
+        /// <param name="monthPart">A month part of the birth number, from 0-99 range.</param>
+        /// <param name="dayPart">A day part of the birth number, from 0-99 range.</param>
+        /// <param name="sequence">A sequential assigned number in the day, from 0-999 range.</param>
+        /// <param name="checkDigit">The last digit, null if date of birth is before 1954-01-01.</param>
         public BirthNumber(int yearPart, int monthPart, int dayPart, int sequence, int? checkDigit)
         {
             if (IsDatePartOutOfRange(yearPart))
