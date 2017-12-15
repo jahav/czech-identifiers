@@ -3,6 +3,10 @@ A project to parse and validate various identifiers used in Czech Republic (e.g.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/aqrjgivpxk33w71k?svg=true)](https://ci.appveyor.com/project/jahav/czech-identifiers)  [![codecov](https://codecov.io/gh/jahav/czech-identifiers/branch/master/graph/badge.svg)](https://codecov.io/gh/jahav/czech-identifiers)
 
+## Documentation
+
+You can find the complete documentation at https://jahav.github.io/czech-identifiers/.
+
 ## Usage
 There are three identifier so far:
 * `BirthNumber` - identifier assigned to every natural person born in Czech Republic. If you are foreigner, you can ask for it. It is key identifier for medical care.
