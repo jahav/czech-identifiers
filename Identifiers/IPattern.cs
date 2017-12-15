@@ -8,8 +8,7 @@
     /// 
     /// The implementation of the interface ensure that both parsing and formatting are using same string pattern, although parsing can be more generous with accepted input.
     /// </summary>
-    /// <typeparam name="TValue">Type of parsed/formatted value.</typeparam>
-    /// <see cref="IFormattable"/>.
+    /// <typeparam name="TValue">Type that is being parsed or formatted using a pattern.</typeparam>
     public interface IPattern<TValue>
     {
         /// <summary>

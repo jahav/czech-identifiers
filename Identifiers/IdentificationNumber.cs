@@ -5,12 +5,18 @@ namespace Identifiers.Czech
 {
 
     /// <summary>
-    /// Identifier number of a legal person in Czech Republic (also called IČO), either a company or a self-employed trader.
+    /// Identifier number of a legal person in Czech Republic (also called IČO). IČO is assigned to a company or a self-employed trader.
     /// </summary>
     /// <remarks>
-    /// The number is 8 characters long and must contain only digits. Leading zeros are always included.
-    /// Unfortunatelly, I was unable to find official definition, so I ended up with this: 
-    /// <see cref="https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo"/>.
+    /// <para>
+    /// The number itself is 8 characters long and must contain only digits. Leading zeros are always included. 
+    /// The first seven digits are assigned number and the eights one is a check digit.
+    /// </para>
+    /// <para>
+    /// Unfortunatelly, I was unable to find official definition, so I ended up with 
+    /// <a href="https://phpfashion.com/jak-overit-platne-ic-a-rodne-cislo">an article</a> on the internet. 
+    /// I have verified that it works with a dump of all assigned identifiying numbers assigned to some entity.
+    /// </para>
     /// </remarks>
     public struct IdentificationNumber : IIdentifier, IFormattable
     {
@@ -34,6 +40,7 @@ namespace Identifiers.Czech
         /// </summary>
         /// <param name="number">First seven digits of IČO, a number from <see cref="numberLowerLimit"/> to <see cref="upperLowerLimit"/>.</param>
         /// <param name="checkDigit">Check digit, doesn't have to be correct for the <paramref name="number"/>, but it must be from <see cref="checkDigitLowerLimit"/> to <see cref="checkDigitUpperLimit"/>.</param>
+        /// <exception cref="ArgumentOutOfRangeException">When <paramref name="number"/> or <paramref name="checkDigit"/> is outside of allowed range.</exception>
         /// 
         public IdentificationNumber(long number, int checkDigit)
         {
@@ -62,7 +69,7 @@ namespace Identifiers.Czech
         public long Number => number;
 
         /// <summary>
-        /// Get check digit of IČO (it is last, least significat digit).
+        /// Get the actual check digit of IČO (the eight digit, least significat digit).
         /// </summary>
         public int CheckDigit => checkDigit;
 
@@ -105,11 +112,12 @@ namespace Identifiers.Czech
         }
 
         /// <summary>
-        /// Format the identification number in a standard way, as 8 digit number, including leading zeros.
+        /// Get formatted identification number.
         /// </summary>
-        /// <param name="format">Format, can be either <c>null</c> (default-standard) or <c>S</c>/<c>s</c> (standard).</param>
+        /// <param name="format">Format of the identifiying number, can be either <c>null</c>, <c>S</c> or <c>s</c> for <see cref="IdentificationNumberPattern.StandardPattern">standard pattern</see>.</param>
         /// <param name="formatProvider">Not used.</param>
         /// <returns>Formatted identification number.</returns>
+        /// <exception cref="ArgumentException">When format is not in the allowed.</exception>
         public string ToString(string format, IFormatProvider formatProvider)
         {
             if (format == null)

@@ -67,7 +67,7 @@ namespace Identifiers.Czech
         {
             if (bankCode == null)
             {
-                throw new System.ArgumentNullException(nameof(bankCode));
+                throw new ArgumentNullException(nameof(bankCode));
             }
 
             this.prefix = prefix;
@@ -86,7 +86,14 @@ namespace Identifiers.Czech
         ///   <li>Number has at least two non-zero digits.</li>
         /// </ul>
         /// </remarks>
-        public bool IsValid => PrefixChecksum % 11 == 0 && NumberChecksum % 11 == 0 && CalculateNonDigitCount(Number) >= 2;
+        public bool IsValid {
+            get
+            {
+                return PrefixChecksum % 11 == 0 
+                    && NumberChecksum % 11 == 0 
+                    && CalculateNonDigitCount(Number) >= 2;
+            }
+        }
 
         /// <summary>
         /// Prefix part of the the account.

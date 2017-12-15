@@ -3,6 +3,9 @@ using System;
 
 namespace Identifiers.Czech
 {
+    /// <summary>
+    /// <see cref="IPattern{TValue}">Pattern</see> for a <see cref="IdentificationNumber"/>.
+    /// </summary>
     public sealed class IdentificationNumberPattern : IPattern<IdentificationNumber>
     {
         /// <summary>
@@ -11,15 +14,25 @@ namespace Identifiers.Czech
         private static readonly Regex standardForm = new Regex("^([0-9]{7})([0-9])$");
 
         /// <summary>
-        /// Pattern for 8 digit IČO (Identifikační Číslo Osoby).
+        /// The standard pattern for 8 digit IČO (Identifikační Číslo Osoby).
+        /// <list type="bullet">
+        ///     <item>
+        ///         <term>00007064</term>
+        ///         <description>A number 706 with a check digit 4.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>69663963</term>
+        ///         <description>A number 6966396 with a check digit 3.</description>
+        ///     </item>
+        /// </list>
         /// </summary>
-        /// <example><c>00006947</c></example>
         public static IdentificationNumberPattern StandardPattern { get; } = new IdentificationNumberPattern(); 
 
         private IdentificationNumberPattern()
         {
         }
 
+        /// <inheritdoc />
         public ParseResult<IdentificationNumber> Parse(string text)
         {
             if (text == null)
@@ -41,7 +54,7 @@ namespace Identifiers.Czech
         }
 
         /// <summary>
-        /// Format identification number in a <see cref="IdentificationNumberPattern.StandardPattern"/>.
+        /// Format identification number according to a pattern.
         /// </summary>
         /// <param name="value">Identification number.</param>
         /// <returns>Identification number formatted to string.</returns>

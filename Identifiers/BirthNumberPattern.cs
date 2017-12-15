@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace Identifiers.Czech
 {
     /// <summary>
-    /// Pattern for birth number.
+    /// <see cref="IPattern{TValue}">Pattern</see> for a <see cref="BirthNumber"/>.
     /// </summary>
     public sealed class BirthNumberPattern : IPattern<BirthNumber>
     {
@@ -12,7 +12,19 @@ namespace Identifiers.Czech
         private readonly string format;
 
         /// <summary>
-        /// A pattern for the birth number written as a 9 or 10 digit number (including leading zeros) with a slash between digit date part and sequence number.
+        /// A pattern for the birth number written as a 9 or 10 digit number (including leading zeros) with a slash between digit date part and sequence number. The parsed number must include extra leading zeros and slash.
+        /// <example>
+        /// <list type="bullet">
+        ///     <item>
+        ///         <term>081102/789</term>
+        ///         <description>A birth number of a person born at 1908-11-02.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>795322/9944</term>
+        ///         <description>A birth number of a person born at 1979-03-22</description>
+        ///     </item>
+        /// </list>
+        /// </example>
         /// </summary>
         public static BirthNumberPattern StandardPattern { get; } = new BirthNumberPattern("^([0-9]{2})([0-9]{2})([0-9]{2})/([0-9]{3})([0-9])?$", "N");
 
@@ -52,11 +64,13 @@ namespace Identifiers.Czech
             this.format = format;
         }
 
+        /// <inheritdoc />
         public string Format(BirthNumber value)
         {
             return value.ToString(format, null);
         }
 
+        /// <inheritdoc />
         public ParseResult<BirthNumber> Parse(string text)
         {
             if (text == null)

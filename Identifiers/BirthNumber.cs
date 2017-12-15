@@ -116,12 +116,12 @@ namespace Identifiers.Czech
         }
 
         /// <summary>
-        /// Does the birth number belong to a woman?
+        /// Does the birth number belong to a woman? If true, the birth number belongs to a woman, if false, it belongs to a man.
         /// </summary>
         public bool BelongsToWoman => MonthPart > WomanMonthShift;
 
         /// <summary>
-        /// Return a month of birth. If the month part of birth 
+        /// Return a month of birth derived from birth number. If the month part of birth 
         /// number is invalid, the returned month will be out of 1-12 range.
         /// </summary>
         public int Month => CalculateMonth();
@@ -233,9 +233,10 @@ namespace Identifiers.Czech
         /// <summary>
         /// Get formatted birth number.
         /// </summary>
-        /// <param name="format">Either null for a birth number with a slash between datepart and sequence or <c>N</c>/<c>n</c> for a single 9-10 digit number, including leading zeros.</param>
+        /// <param name="format"><c>Null</c>, <c>S</c> or <c>s</c> for <see cref="BirthNumberPattern.StandardPattern">standard format(slash between datepart and sequence)</see>. Use <c>N</c> or <c>n</c> for a <see cref="BirthNumberPattern.NumberPattern">number pattern (no slash, but include possible leadin zero).</see>.</param>
         /// <param name="formatProvider">Not used.</param>
         /// <returns>The formatted birth number.</returns>
+        /// <exception cref="ArgumentException">If format doesn't have allowed values.</exception>
         public string ToString(string format, IFormatProvider formatProvider)
         {
             if (format == null)
