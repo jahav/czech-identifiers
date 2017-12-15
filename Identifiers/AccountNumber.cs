@@ -48,6 +48,11 @@ namespace Identifiers.Czech
     /// </remarks>
     public struct AccountNumber : IIdentifier, IFormattable
     {
+        private const long prefixLowerLimit = 0L;
+        private const long prefixUpperLimit = 999999L;
+        private const long numberLowerLimit = 0L;
+        private const long numberUpperLimit = 9999999999L;
+
         /// <summary>
         /// Weights of the digits, from the rightmost to the leftmost (=index 0 is the rightmost one, index 9 is leftmost one).
         /// </summary>
@@ -82,15 +87,21 @@ namespace Identifiers.Czech
         /// The account number is valid, if it has
         /// <ul>
         ///   <li>Prefix weighted checksum is divisible by 11.</li>
+        ///   <li>Prefix is not negative and has at most 6 digits.</li>
         ///   <li>Number weighted checksum is divisible by 11.</li>
+        ///   <li>Number is not negative and has at most 10 digits.</li>
         ///   <li>Number has at least two non-zero digits.</li>
         /// </ul>
         /// </remarks>
         public bool IsValid {
             get
             {
-                return PrefixChecksum % 11 == 0 
-                    && NumberChecksum % 11 == 0 
+                return prefix <= prefixUpperLimit
+                    && prefix >= prefixLowerLimit
+                    && PrefixChecksum % 11 == 0
+                    && number <= numberUpperLimit
+                    && number >= numberLowerLimit
+                    && NumberChecksum % 11 == 0
                     && CalculateNonDigitCount(Number) >= 2;
             }
         }
@@ -129,7 +140,7 @@ namespace Identifiers.Czech
         {
             int count = 0;
             var value = part;
-            while (value > 0)
+            while (value != 0)
             {
                 var digit = value % 10;
                 if (digit != 0)

@@ -50,5 +50,38 @@ namespace Identifiers.Czech.Tests
             Assert.Equal(numberChecksum, accountNumber.NumberChecksum);
             Assert.Equal(isValid, accountNumber.IsValid);
         }
+
+        [Fact]
+        public void Prefix_WithMoreThan6Digits_IsNotValid()
+        {
+            var sevenDigitCheckSumOkNumber = 1234562;
+            var accountNumber = new AccountNumber(sevenDigitCheckSumOkNumber, 19, "0100");
+            Assert.False(accountNumber.IsValid);
+        }
+
+        [Fact]
+        public void Number_WithNumberMoreThan10Digits_IsNotValid()
+        {
+            var elevenDigitCheckSumOkNumber = 12345678908L;
+            var accountNumber = new AccountNumber(0, elevenDigitCheckSumOkNumber, "0100");
+            Assert.False(accountNumber.IsValid);
+        }
+
+        [Fact]
+        public void Prefix_WithNegativeValue_IsNotValid()
+        {
+            var negativePrefixWithOkCheckuu = -19;
+            var accountNumber = new AccountNumber(negativePrefixWithOkCheckuu, 19, "0100");
+            Assert.False(accountNumber.IsValid);
+        }
+
+        [Fact]
+        public void Number_WithNegativeValue_IsNotValid()
+        {
+            var negativeNumberWithOkChecksum = -19;
+            var accountNumber = new AccountNumber(0, negativeNumberWithOkChecksum, "0100");
+            Assert.False(accountNumber.IsValid);
+        }
+
     }
 }
