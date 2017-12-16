@@ -210,6 +210,40 @@ namespace Identifiers.Czech.Tests
             Assert.Equal(shouldBeValid, birthNumber.IsValid);
         }
 
+
+        [Theory]
+        [InlineData("351208/1234")]
+        [InlineData("100828/123")]
+        public void TwoBirthNumbers_WithSameValue_AreEqual(string birthNumberString)
+        {
+            var lhs = BirthNumberPattern.StandardPattern.Parse(birthNumberString).Value;
+            var rhs = BirthNumberPattern.StandardPattern.Parse(birthNumberString).Value;
+            Assert.Equal(lhs.GetHashCode(), rhs.GetHashCode());
+            Assert.True(lhs.Equals((object)rhs));
+            Assert.True(lhs.Equals(rhs));
+            Assert.True(lhs == rhs);
+            Assert.False(lhs != rhs);
+        }
+
+        [Theory]
+        [InlineData("301230/1234", "306230/1234", "Male vs female is used for equality")]
+        [InlineData("350101/001", "990101/001", "Year is used for equality")]
+        [InlineData("010101/001", "010501/001", "Month is used for equality")]
+        [InlineData("010101/001", "010125/001", "Day is used for equality")]
+        [InlineData("010101/001", "010101/123", "Sequence is used for equality")]
+        [InlineData("301230/1234", "303230/1234", "Exhaustion is used for equality")]
+        [InlineData("301230/123", "303230/1234", "Check digit is used for equality")]
+        public void TwoBirthNumbers_WithDifferentValue_AreNotEqual(string lhsString, string rhsString, string comment)
+        {
+            var lhs = BirthNumberPattern.StandardPattern.Parse(lhsString).Value;
+            var rhs = BirthNumberPattern.StandardPattern.Parse(rhsString).Value;
+            Assert.False(lhs.GetHashCode() == rhs.GetHashCode(), "In general, different values can have same hash code, but in this particular case they don't have it.");
+            Assert.False(lhs.Equals((object)rhs), comment);
+            Assert.False(lhs.Equals(rhs), comment);
+            Assert.False(lhs == rhs, comment);
+            Assert.True(lhs != rhs, comment);
+        }
+
         public static IEnumerable<object[]> GetAllYears()
         {
             for (int year = 1854; year < 1954; year++)

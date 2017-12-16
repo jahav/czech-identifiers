@@ -46,7 +46,7 @@ namespace Identifiers.Czech
     /// </example>
     /// </para>
     /// </remarks>
-    public struct AccountNumber : IIdentifier, IFormattable
+    public struct AccountNumber : IIdentifier, IFormattable, IEquatable<AccountNumber>
     {
         private const long prefixLowerLimit = 0L;
         private const long prefixUpperLimit = 999999L;
@@ -224,6 +224,55 @@ namespace Identifiers.Czech
             }
 
             return string.Format(CultureInfo.InvariantCulture, prefixFormat + remainderFormat, prefix, number, bankCode);
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            if (obj is AccountNumber otherAccount)
+            {
+                return Equals(otherAccount);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return prefix.GetHashCode() ^ number.GetHashCode() ^ (bankCode != null ? bankCode.GetHashCode() : 0);
+        }
+
+        /// <summary>
+        /// Compare the account numbers by value.
+        /// </summary>
+        /// <param name="other">The account to compare with.</param>
+        /// <returns>True if the other is same account as this one.</returns>
+        public bool Equals(AccountNumber other)
+        {
+            return prefix == other.prefix
+                && number == other.number
+                && string.Equals(bankCode, other.bankCode, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// Compare the account numbers by value.
+        /// </summary>
+        /// <param name="lhs">Left hand side.</param>
+        /// <param name="rhs">Right hand side.</param>
+        /// <returns>True, if both account numbers are for same account.</returns>
+        public static bool operator ==(AccountNumber lhs, AccountNumber rhs)
+        {
+            return lhs.Equals(rhs);
+        }
+
+        /// <summary>
+        /// Compare the account numbers by value.
+        /// </summary>
+        /// <param name="lhs">Left hand side.</param>
+        /// <param name="rhs">Right hand side.</param>
+        /// <returns>True, if both account numbers are for different account.</returns>
+        public static bool operator !=(AccountNumber lhs, AccountNumber rhs)
+        {
+            return !(lhs == rhs);
         }
     }
 }

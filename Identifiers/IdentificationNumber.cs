@@ -18,7 +18,7 @@ namespace Identifiers.Czech
     /// I have verified that it works with a dump of all assigned identifiying numbers assigned to some entity.
     /// </para>
     /// </remarks>
-    public struct IdentificationNumber : IIdentifier, IFormattable
+    public struct IdentificationNumber : IIdentifier, IFormattable, IEquatable<IdentificationNumber>
     {
         private const long numberLowerLimit = 0;
         private const long numberUpperLimit = 9999999;
@@ -124,13 +124,61 @@ namespace Identifiers.Czech
             {
                 format = "S";
             }
-            switch (format) {
+            switch (format)
+            {
                 case "S":
                 case "s":
                     return string.Format(CultureInfo.InvariantCulture, "{0:0000000}{1:0}", number, checkDigit);
                 default:
                     throw new ArgumentException($"Unknown format {format}.", nameof(format));
-            }            
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is IdentificationNumber otherIdNum)
+            {
+                return Equals(otherIdNum);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return number.GetHashCode() ^ checkDigit.GetHashCode();
+        }
+
+        /// <summary>
+        /// Compare this and <paramref name="other"/> identification numbers by value.
+        /// </summary>
+        /// <param name="other">Identification number to compare.</param>
+        /// <returns>True, if both identification numbers have same value.</returns>
+        public bool Equals(IdentificationNumber other)
+        {
+            return number == other.number && checkDigit == other.checkDigit;
+        }
+
+        /// <summary>
+        /// Compare the identification numbers by value.
+        /// </summary>
+        /// <param name="lhs">Left hand side.</param>
+        /// <param name="rhs">Right hand side.</param>
+        /// <returns>True, if both identification numbers have same value.</returns>
+        public static bool operator ==(IdentificationNumber lhs, IdentificationNumber rhs)
+        {
+            return lhs.Equals(rhs);
+        }
+
+        /// <summary>
+        /// Compare the identification numbers by value.
+        /// </summary>
+        /// <param name="lhs">Left hand side.</param>
+        /// <param name="rhs">Right hand side.</param>
+        /// <returns>True, if both identification numbers have different value.</returns>
+        public static bool operator !=(IdentificationNumber lhs, IdentificationNumber rhs)
+        {
+            return !(lhs == rhs);
         }
     }
 }

@@ -83,5 +83,41 @@ namespace Identifiers.Czech.Tests
             Assert.False(accountNumber.IsValid);
         }
 
+        [Fact]
+        public void TwoAccountNumbers_WithSameValue_AreEqual()
+        {
+            var lhs = new AccountNumber(0, 19, "0100");
+            var rhs = new AccountNumber(0, 19, "0100");
+            Assert.Equal(lhs.GetHashCode(), rhs.GetHashCode());
+            Assert.True(lhs.Equals((object)rhs));
+            Assert.True(lhs.Equals(rhs));
+            Assert.True(lhs == rhs);
+            Assert.False(lhs != rhs);
+        }
+
+        [Theory]
+        [InlineData("123/7100", "306230/7100")]
+        [InlineData("1-123/7100", "5-123/7100")]
+        [InlineData("123/7100", "123/0300")]
+        [InlineData("123/7100", "456/0300")]
+        public void TwoAccountNumbers_WithDifferentValue_AreNotEqual(string lhsString, string rhsString)
+        {
+            var lhs = AccountNumberPattern.StandardPattern.Parse(lhsString).Value;
+            var rhs = AccountNumberPattern.StandardPattern.Parse(rhsString).Value;
+            Assert.False(lhs.GetHashCode() == rhs.GetHashCode(), "In general, different values can have same hash code, but in this particular case they don't have it.");
+            Assert.False(lhs.Equals((object)rhs));
+            Assert.False(lhs.Equals(rhs));
+            Assert.False(lhs == rhs);
+            Assert.True(lhs != rhs);
+        }
+
+        [Fact]
+        public void AccountNumbersCanBeComparedWithNullBankCodes()
+        {
+            var accountNumber = default(AccountNumber);
+            Assert.Null(accountNumber.BankCode);
+            Assert.Equal(accountNumber, accountNumber);
+            Assert.Equal(accountNumber.GetHashCode(), accountNumber.GetHashCode());
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Identifiers.Czech
     /// </list>
     /// </para>
     /// </summary>
-    public struct BirthNumber : IIdentifier
+    public struct BirthNumber : IIdentifier, IEquatable<BirthNumber>
     {
         private const int datePartLowerLimit = 0;
         private const int datePartUpperLimit = 99;
@@ -255,6 +255,56 @@ namespace Identifiers.Czech
                 default:
                     throw new ArgumentException($"Format value {format} is not valid.", nameof(format));
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is BirthNumber otherBirthNumber)
+            {
+                return Equals(otherBirthNumber);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return YearPart.GetHashCode() ^ MonthPart.GetHashCode() ^ DayPart.GetHashCode() ^ Sequence.GetHashCode() ^ CheckDigit.GetHashCode();
+        }
+
+        /// <summary>
+        /// Compare birth numbers by value.
+        /// </summary>
+        /// <param name="other">Birth number to compare with.</param>
+        /// <returns>True if both birth numbers have same value.</returns>
+        public bool Equals(BirthNumber other)
+        {
+            return YearPart == other.YearPart
+                && MonthPart == other.MonthPart
+                && DayPart == other.DayPart
+                && Sequence == other.Sequence
+                && CheckDigit == other.CheckDigit;
+        }
+
+        /// <summary>
+        /// Compare the birth numbers by value.
+        /// </summary>
+        /// <param name="lhs">Left hand side.</param>
+        /// <param name="rhs">Right hand side.</param>
+        /// <returns>True, if both birth numbers have same value.</returns>
+        public static bool operator ==(BirthNumber lhs, BirthNumber rhs)
+        {
+            return lhs.Equals(rhs);
+        }
+
+        /// <summary>
+        /// Compare the birth numbers by value.
+        /// </summary>
+        /// <param name="lhs">Left hand side.</param>
+        /// <param name="rhs">Right hand side.</param>
+        /// <returns>True, if both birth numbers have different value.</returns>
+        public static bool operator !=(BirthNumber lhs, BirthNumber rhs)
+        {
+            return !(lhs == rhs);
         }
     }
 }
